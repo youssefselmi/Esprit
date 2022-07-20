@@ -10,6 +10,9 @@ const dotenv = require("dotenv")
 var indexRouter = require('./routes/index');
 var productRouter = require('./routes/product');
 var departementRouter = require('./routes/departement');
+var classeRouter = require('./routes/classe');
+var upRouter = require('./routes/up');
+var moduleRouter = require('./routes/module');
 
 
 
@@ -32,6 +35,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/product', productRouter);
 app.use('/departement', departementRouter);
+app.use('/classe', classeRouter);
+app.use('/up', upRouter);
+app.use('/module', moduleRouter);
 
 
 app.use(express.static(path.join(__dirname, "public")));
