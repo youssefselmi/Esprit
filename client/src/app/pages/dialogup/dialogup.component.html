@@ -1,0 +1,38 @@
+<div class="dia">
+
+    <h1 mat-dialog-title >Add New Unité Pédagogique</h1>
+    <div mat-dialog-content  >
+    
+     <form [formGroup]="upForm" >
+    
+      <mat-form-field appearance="outline">
+        <mat-label>Unité Pédagogique</mat-label>
+        <input formControlName="nomup"  matInput placeholder="Unité Pédagogique">
+      </mat-form-field>
+      <br>
+
+
+  
+    
+    
+    
+     </form>
+        
+    
+    </div>
+    
+    
+    
+    
+    
+    
+    
+    <div mat-dialog-action [align]="'end'">
+      <button mat-raised-button color="warn" mat-dialog-close>Close</button>
+      
+      <button style="margin-left: 8px;" mat-raised-button color="primary" mat-dialog-close (click)="addUp()">{{actionButton}}</button>
+      
+      </div>
+    
+    
+    </div>

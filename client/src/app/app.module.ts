@@ -24,7 +24,19 @@ import { DialogComponent } from './pages/dialog/dialog.component';
 import {MatTableModule} from '@angular/material/table';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatSortModule} from '@angular/material/sort';
+import {MatSelectModule} from '@angular/material/select';
+import { ClasseComponent } from './pages/classe/classe.component';
+import { DialogclasseComponent } from './pages/dialogclasse/dialogclasse.component';
 
+import { NotifierModule } from 'angular-notifier';
+import { InformatiqueComponent } from './pages/informatique/informatique.component';
+import { MecaniqueComponent } from './pages/mecanique/mecanique.component';
+import { MecatroniqueComponent } from './pages/mecatronique/mecatronique.component';
+import { TelecommunicationComponent } from './pages/telecommunication/telecommunication.component';
+import { UpComponent } from './pages/up/up.component';
+import { DialogupComponent } from './pages/dialogup/dialogup.component';
+import { DialogmoduleComponent } from './pages/dialogmodule/dialogmodule.component';
+import { ModuleComponent } from './pages/module/module.component';
 
 
 @NgModule({
@@ -44,7 +56,9 @@ import {MatSortModule} from '@angular/material/sort';
     MatDialogModule,
     MatTableModule,
     MatSortModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatSelectModule,
+    NotifierModule
   ],
   declarations: [
     AppComponent,
@@ -52,6 +66,16 @@ import {MatSortModule} from '@angular/material/sort';
     AuthLayoutComponent,
     DepartementComponent,
     DialogComponent,
+    ClasseComponent,
+    DialogclasseComponent,
+    InformatiqueComponent,
+    MecaniqueComponent,
+    MecatroniqueComponent,
+    TelecommunicationComponent,
+    UpComponent,
+    DialogupComponent,
+    DialogmoduleComponent,
+    ModuleComponent,
   ],
   providers: [],
   bootstrap: [AppComponent]

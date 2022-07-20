@@ -1,0 +1,67 @@
+<div class="dia">
+
+    <h1 mat-dialog-title >Add New Classe</h1>
+    <div mat-dialog-content  >
+    
+     <form #f="ngForm" [formGroup]="classeForm" >
+    
+      <mat-form-field appearance="outline">
+        <mat-label>Classe Name</mat-label>
+        <input formControlName="nomclasse"  matInput placeholder="Classe Name" >
+      </mat-form-field>
+      <br>
+
+
+
+
+      <mat-form-field appearance="outline">
+        <mat-label>Nombre Etudiant</mat-label>
+        <input formControlName="nbretudiant"  matInput placeholder="Nombre Etudiant">
+      </mat-form-field>
+
+
+      
+     <!-- <mat-form-field appearance="outline">
+        <mat-label>Departement Name</mat-label>
+        <input formControlName="nomdepartement"  matInput placeholder="Departement Name">
+      </mat-form-field>-->
+
+
+
+   
+
+  <mat-form-field appearance="fill">
+  <mat-label>Choose Departement</mat-label>
+  <mat-select formControlName="nomdepartement">
+    <mat-option *ngFor="let u of listdepartement" [value]="u.nomdepartement">
+      {{u.nomdepartement}}
+    </mat-option>
+  </mat-select>
+  </mat-form-field>
+
+      <br>
+
+ 
+    
+    
+    
+     </form>
+        
+     <br>
+    </div>
+    
+    
+    
+    
+    
+    
+    
+    <div mat-dialog-action [align]="'end'">
+      <button mat-raised-button color="warn" mat-dialog-close>Close</button>
+      
+      <button [disabled]="f.invalid" style="margin-left: 8px;" mat-raised-button color="primary" mat-dialog-close (click)="addClasse()">{{actionButton}}</button>
+      
+      </div>
+    
+    
+    </div>

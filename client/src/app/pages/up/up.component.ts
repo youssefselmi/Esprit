@@ -1,51 +1,50 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import {MatDialog} from '@angular/material/dialog';
-import { DialogComponent } from '../dialog/dialog.component';
-import {MatPaginator} from '@angular/material/paginator';
-import {MatSort} from '@angular/material/sort';
-import {MatTableDataSource} from '@angular/material/table';
-import {AfterViewInit, ViewChild} from '@angular/core';
-import { ApiService } from 'src/app/service/api.service';
-import { Departement } from 'src/app/service/departement';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
-
+import { ApiService } from 'src/app/service/api.service';
+import { Up } from 'src/app/service/up';
+import { DialogComponent } from '../dialog/dialog.component';
+import { DialogupComponent } from '../dialogup/dialogup.component';
 
 @Component({
-  selector: 'app-departement',
-  templateUrl: './departement.component.html',
-  styleUrls: ['./departement.component.css']
+  selector: 'app-up',
+  templateUrl: './up.component.html',
+  styleUrls: ['./up.component.css']
 })
-export class DepartementComponent implements OnInit {
+export class UpComponent implements OnInit {
 
-
-  displayedColumns: string[] = ['nomdepartement', 'location' ,'actions'];
+ 
+  displayedColumns: string[] = ['nomup','actions'];
   dataSource!: MatTableDataSource<any>;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
 
 
-  listdep: Departement[];
+  listeup: Up[];
 
 
 
   constructor( private dialog : MatDialog,private api:ApiService,private router: Router) { }
 
   openDialog() {
-    this.dialog.open(DialogComponent,{
+    this.dialog.open(DialogupComponent,{
 
       width:'30%'
     }).afterClosed().subscribe(val=>{
       if(val === 'save'){
-        this.getAllDepartement();
+    this.getAllUp();
       }
     })
   }
 
 
-  getAllDepartement()
+  getAllUp()
   {
-    this.api.getDepartement().subscribe({
+    this.api.getUp().subscribe({
       next:(res)=>{
   
   
@@ -76,11 +75,11 @@ export class DepartementComponent implements OnInit {
 
 
 
-  deleteDepartement(_id:string){
-    this.api.deleteDepartement(_id).subscribe({
+  deleteUp(_id:string){
+    this.api.deleteUp(_id).subscribe({
       next:(res)=>{
         alert("Deleted successfully");
-        this.getAllDepartement();
+        this.getAllUp();
       }
     })
   
@@ -96,12 +95,12 @@ export class DepartementComponent implements OnInit {
 
   ngOnInit() {
 
-    this.getAllDepartement();
+    this.getAllUp();
 
 
-    this.api.getDepartement().subscribe(
-      (data: Departement[]) => {
-         this.listdep = data;
+    this.api.getUp().subscribe(
+      (data: Up[]) => {
+         this.listeup = data;
       })
 
   }
@@ -110,23 +109,23 @@ export class DepartementComponent implements OnInit {
 
 
   
-editDepartement(row :any){
-  this.dialog.open(DialogComponent,{
+editUp(row :any){
+  this.dialog.open(DialogupComponent,{
     width: '30%',
     data:row
   }).afterClosed().subscribe(val=>{
     if(val ==='update')
     {
-      this.getAllDepartement();
+      this.getAllUp();
     }
   })
   
 }
 
 
-changementDePage = function (nomdep) {
+/*changementDePage = function (nomdep) {
 
- /*if(nomdep=='informatique')
+  if(nomdep=='informatique')
 {this.router.navigate(['/informatique']);}
 
 else if(nomdep=='mecanique'){
@@ -139,16 +138,10 @@ else if(nomdep=='mecatronique'){
 
 else if(nomdep=='telecommunication'){
   this.router.navigate(['/telecommunication']);
-}*/
+}
 
-this.router.navigate(['/'+nomdep]);
-
-
-};
-
+};*/
 
 
 }
-
-
 

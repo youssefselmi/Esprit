@@ -15,7 +15,12 @@ export const ROUTES: RouteInfo[] = [
     { path: '/tables', title: 'Tables',  icon:'ni-bullet-list-67 text-red', class: '' },
     { path: '/login', title: 'Login',  icon:'ni-key-25 text-info', class: '' },
     { path: '/register', title: 'Register',  icon:'ni-circle-08 text-pink', class: '' },
-    { path: '/departement', title: 'Departements',  icon: 'ni-tv-2 text-primary', class: '' }
+    { path: '/departement', title: 'Departements',  icon: 'fa fa-university', class: '' },
+    { path: '/classe', title: 'Classes',  icon: 'fa fa-university', class: '' },
+    { path: '/up', title: 'Unité Pédagogique',  icon: 'fa fa-university', class: '' },
+
+    { path: '/module', title: 'Modules',  icon: 'fa fa-university', class: '' }
+
 
 ];
 
