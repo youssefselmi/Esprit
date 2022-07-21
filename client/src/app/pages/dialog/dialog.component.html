@@ -1,0 +1,42 @@
+<div class="dia">
+
+    <h1 mat-dialog-title >Add New Departement</h1>
+    <div mat-dialog-content  >
+    
+     <form [formGroup]="departementForm" >
+    
+      <mat-form-field appearance="outline">
+        <mat-label>Departement Name</mat-label>
+        <input formControlName="nomdepartement"  matInput placeholder="Departement Name">
+      </mat-form-field>
+      <br>
+
+
+      <mat-form-field appearance="outline">
+        <mat-label>Location</mat-label>
+        <input formControlName="location"  matInput placeholder="Product Name">
+      </mat-form-field>
+    
+    
+    
+    
+     </form>
+        
+    
+    </div>
+    
+    
+    
+    
+    
+    
+    
+    <div mat-dialog-action [align]="'end'">
+      <button mat-raised-button color="warn" mat-dialog-close>Close</button>
+      
+      <button style="margin-left: 8px;" mat-raised-button color="primary" mat-dialog-close (click)="addDepartement()">{{actionButton}}</button>
+      
+      </div>
+    
+    
+    </div>

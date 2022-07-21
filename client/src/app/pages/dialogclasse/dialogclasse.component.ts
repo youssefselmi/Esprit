@@ -1,0 +1,127 @@
+import { Component, Inject, OnInit } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { ApiService } from 'src/app/service/api.service';
+import { Classe } from 'src/app/service/classe';
+import { Departement } from 'src/app/service/departement';
+import { NotifierService } from 'angular-notifier';
+
+@Component({
+  selector: 'app-dialogclasse',
+  templateUrl: './dialogclasse.component.html',
+  styleUrls: ['./dialogclasse.component.css']
+})
+export class DialogclasseComponent implements OnInit {
+  private readonly notifier: NotifierService;
+
+  classeForm !: FormGroup;
+  actionButton : string = "Save";
+  listdepartement: Departement[];
+
+
+  constructor(private formbuilder : FormBuilder, private api : ApiService,notifierService: NotifierService,
+    private dialogRef : MatDialogRef<DialogclasseComponent>,
+    @Inject(MAT_DIALOG_DATA) public editData : any,
+    ) {
+
+     // this.notifier = notifierService;
+
+     }
+
+    classe: Classe;
+
+  ngOnInit(): void {
+
+   
+   
+    this.classeForm = this.formbuilder.group({
+      nomclasse: ['',Validators.minLength(4)],
+      nbretudiant: ['',Validators.required],
+      nomdepartement : ['',Validators.required],
+       })
+
+
+
+
+
+ 
+
+
+  
+  if(this.editData){
+    this.actionButton = "Update"
+    
+          this.classeForm.controls['nomclasse'].setValue(this.editData.nomclasse);
+          this.classeForm.controls['nbretudiant'].setValue(this.editData.nbretudiant);
+          this.classeForm.controls['nomdepartement'].setValue(this.editData.nomdepartement);
+
+    
+        }
+
+
+
+        
+      this.api.getDepartement().subscribe(
+        (data: Departement[]) => {
+           this.listdepartement = data;
+        })
+  
+
+}
+
+
+
+
+
+addClasse(){
+
+  if(!this.editData)
+     {
+        if(this.classeForm.valid){
+  
+          this.api.postClasse(this.classeForm.value).subscribe({
+            next:(res)=>{
+              alert("Classe added!!");
+           //   this.notifier.notify('success', 'Classe Addes with Sucess');
+              this.classeForm.reset();
+              this.dialogRef.close('save');
+            },
+            error:()=>{
+    
+              alert("Error !!!!")
+    
+            }
+          })
+    
+        }
+     }
+      else{
+       this.updateClasse();
+      }
+    
+      
+    }
+
+
+
+
+    updateClasse(){
+
+      this.api.putClasse(this.classeForm.value, this.editData._id)
+      .subscribe({
+        next:(res)=>{
+          alert("Classe updated !!");
+          this.classeForm.reset();
+          this.dialogRef.close('update');
+        }
+      })
+  
+  
+    }
+
+
+
+
+
+
+}
