@@ -5,8 +5,8 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { ApiService } from 'src/app/service/api.service';
+import { Module } from 'src/app/service/modulee';
 import { Up } from 'src/app/service/up';
-import { DialogComponent } from '../dialog/dialog.component';
 import { DialogupComponent } from '../dialogup/dialogup.component';
 
 @Component({
@@ -26,7 +26,7 @@ export class UpComponent implements OnInit {
 
   listeup: Up[];
 
-
+  listemodules : Module[];
 
   constructor( private dialog : MatDialog,private api:ApiService,private router: Router) { }
 
@@ -75,17 +75,45 @@ export class UpComponent implements OnInit {
 
 
 
-  deleteUp(_id:string){
+  deleteUp(_id:string, nomm: String){
     this.api.deleteUp(_id).subscribe({
       next:(res)=>{
         alert("Deleted successfully");
         this.getAllUp();
       }
     })
+
+
+
+
+    
+    console.log( this.listemodules);
+    for (let index = 0; index < this.listemodules.length; index++) {
+      if(this.listemodules[index].nomup==nomm)
+      {    
+        this.api.deleteModule(this.listemodules[index]._id).subscribe({
+          next:(res)=>{ } })
+          alert("Les Module de l'unité Pédagogique"+nomm+"  vont etre supprimé automatiquement");
+
+     } 
+    }
+
+
+
   
   }
   
   
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -101,6 +129,14 @@ export class UpComponent implements OnInit {
     this.api.getUp().subscribe(
       (data: Up[]) => {
          this.listeup = data;
+      })
+
+
+
+       
+    this.api.getModule().subscribe(
+      (data: Module[]) => {
+         this.listemodules = data;
       })
 
   }

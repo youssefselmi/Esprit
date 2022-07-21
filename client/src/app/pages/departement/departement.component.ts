@@ -8,6 +8,7 @@ import {AfterViewInit, ViewChild} from '@angular/core';
 import { ApiService } from 'src/app/service/api.service';
 import { Departement } from 'src/app/service/departement';
 import { Router } from '@angular/router';
+import { Classe } from 'src/app/service/classe';
 
 
 @Component({
@@ -26,7 +27,8 @@ export class DepartementComponent implements OnInit {
 
 
   listdep: Departement[];
-
+  listeclasses : Classe[];
+  nom : String;
 
 
   //@Input() bevergeas = "tea";
@@ -34,7 +36,7 @@ export class DepartementComponent implements OnInit {
 
  
 
-  constructor( private dialog : MatDialog,private api:ApiService,private router: Router) { }
+  constructor( private dialog : MatDialog,private api:ApiService,private api2:ApiService,private router: Router) { }
 
 
 
@@ -89,13 +91,45 @@ export class DepartementComponent implements OnInit {
 
 
 
-  deleteDepartement(_id:string){
+  deleteDepartement(_id:string,nomdep:String){
+
+
+    
+    if(confirm("Are you sure to delete "+nomdep)) {
+
     this.api.deleteDepartement(_id).subscribe({
       next:(res)=>{
         alert("Deleted successfully");
         this.getAllDepartement();
+
+
       }
     })
+
+  }
+
+
+      console.log( this.listeclasses);
+      for (let index = 0; index < this.listeclasses.length; index++) {
+        if(this.listeclasses[index].nomdepartement==nomdep)
+        {
+          
+            
+          this.api2.deleteClasse(this.listeclasses[index]._id).subscribe({
+            next:(res)=>{ } })
+            alert("Les Classes de département  "+nomdep+"  vont etre supprimé automatiquement");
+
+          }
+
+       
+      }
+
+
+
+
+
+
+      
   
   }
   
@@ -117,6 +151,16 @@ export class DepartementComponent implements OnInit {
          this.listdep = data;
       })
 
+
+      
+   
+    this.api2.getClasse().subscribe(
+      (data: Classe[]) => {
+         this.listeclasses = data;
+      })
+
+
+
   }
 
 
@@ -135,6 +179,8 @@ editDepartement(row :any){
   })
   
 }
+
+
 
 
 changementDePage = function (nomdep) {

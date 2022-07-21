@@ -1,10 +1,10 @@
 export class Module {
-    _id!: String;
-    nommodule!: String;
+    _id!: string;
+    nommodule!: string;
     coefficient!: Number;   
     nbrheures!: Number;
-    attribut!: String;
-    nomup!: String;
+    attribut!: string;
+    nomup!: string;
 
 
 }
