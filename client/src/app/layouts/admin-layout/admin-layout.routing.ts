@@ -13,6 +13,10 @@ import { MecatroniqueComponent } from 'src/app/pages/mecatronique/mecatronique.c
 import { TelecommunicationComponent } from 'src/app/pages/telecommunication/telecommunication.component';
 import { UpComponent } from 'src/app/pages/up/up.component';
 import { ModuleComponent } from 'src/app/pages/module/module.component';
+import { ShowclassesComponent } from 'src/app/pages/showclasses/showclasses.component';
+import { DeveloppementfrontendComponent } from 'src/app/pages/developpementfrontend/developpementfrontend.component';
+import { DeveloppementbackendComponent } from 'src/app/pages/developpementbackend/developpementbackend.component';
+import { DeveloppementwebetmobileComponent } from 'src/app/pages/developpementwebetmobile/developpementwebetmobile.component';
 
 export const AdminLayoutRoutes: Routes = [
     { path: 'dashboard',      component: DashboardComponent },
@@ -27,7 +31,13 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'mecatronique',    component: MecatroniqueComponent },
     { path: 'telecommunication',    component: TelecommunicationComponent },
     { path: 'up',    component: UpComponent },
-    { path: 'module',    component: ModuleComponent }
+    { path: 'module',    component: ModuleComponent },
+    { path: 'showclasses',    component: ShowclassesComponent },
+    { path: 'Développement Front end',    component: DeveloppementfrontendComponent },
+    { path: 'Développement Back end',    component: DeveloppementbackendComponent},
+    { path: 'Développement web et mobile',    component: DeveloppementwebetmobileComponent}
+
+
 
 
 

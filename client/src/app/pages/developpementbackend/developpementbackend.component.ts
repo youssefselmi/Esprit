@@ -1,18 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from 'src/app/service/api.service';
-import { Classe } from 'src/app/service/classe';
+import { Module } from 'src/app/service/modulee';
 
 @Component({
-  selector: 'app-informatique',
-  templateUrl: './informatique.component.html',
-  styleUrls: ['./informatique.component.css']
+  selector: 'app-developpementbackend',
+  templateUrl: './developpementbackend.component.html',
+  styleUrls: ['./developpementbackend.component.css']
 })
-export class InformatiqueComponent implements OnInit {
+export class DeveloppementbackendComponent implements OnInit {
   public copy: string;
 
 
-  listeclasses: Classe[];
-  listinformatique: Classe[];
+  listemodules: Module[];
 
 
   constructor(private api:ApiService) { }
@@ -21,14 +20,14 @@ export class InformatiqueComponent implements OnInit {
 
   
 
-      this.api.getClasse().subscribe(
-        (data: Classe[]) => {
+      this.api.getModule().subscribe(
+        (data: Module[]) => {
          for (var key in data) {
-          if(data[key].nomdepartement != 'informatique'){
+          if(data[key].nomup != 'Développement Back end'){
           delete data[key];
               } }
          var result_filter = data.filter( function(val){return true} );
-          this.listinformatique = result_filter;  
+          this.listemodules = result_filter;  
         })
   
     

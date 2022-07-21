@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy,Input,Output,EventEmitter } from '@angular/core';
 import {MatDialog} from '@angular/material/dialog';
 import { DialogComponent } from '../dialog/dialog.component';
 import {MatPaginator} from '@angular/material/paginator';
@@ -29,7 +29,20 @@ export class DepartementComponent implements OnInit {
 
 
 
+  //@Input() bevergeas = "tea";
+
+
+ 
+
   constructor( private dialog : MatDialog,private api:ApiService,private router: Router) { }
+
+
+
+
+
+
+
+
 
   openDialog() {
     this.dialog.open(DialogComponent,{

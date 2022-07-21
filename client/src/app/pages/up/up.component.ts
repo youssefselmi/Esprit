@@ -123,12 +123,13 @@ editUp(row :any){
 }
 
 
-/*changementDePage = function (nomdep) {
+changementDePage = function (nomup) {
 
-  if(nomdep=='informatique')
-{this.router.navigate(['/informatique']);}
+  this.router.navigate(['/'+nomup]);
 
-else if(nomdep=='mecanique'){
+
+
+/*else if(nomdep=='mecanique'){
   this.router.navigate(['/mecanique']);
 }
 
@@ -138,9 +139,9 @@ else if(nomdep=='mecatronique'){
 
 else if(nomdep=='telecommunication'){
   this.router.navigate(['/telecommunication']);
-}
+}*/
 
-};*/
+};
 
 
 }

@@ -21,14 +21,18 @@ export class TelecommunicationComponent implements OnInit {
 
  
 
+ 
 
+    this.api.getClasse().subscribe(
+      (data: Classe[]) => {
+       for (var key in data) {
+        if(data[key].nomdepartement != 'telecommunication'){
+        delete data[key];
+            } }
+       var result_filter = data.filter( function(val){return true} );
+        this.listtelecommunication = result_filter;  
+      })
 
-      this.api.gettelecommunication().subscribe(
-        (data: Classe[]) => {
-           this.listtelecommunication = data;
-           console.log(this.listtelecommunication)
-        })
-      
 
 
 

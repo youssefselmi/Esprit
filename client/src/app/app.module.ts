@@ -37,6 +37,10 @@ import { UpComponent } from './pages/up/up.component';
 import { DialogupComponent } from './pages/dialogup/dialogup.component';
 import { DialogmoduleComponent } from './pages/dialogmodule/dialogmodule.component';
 import { ModuleComponent } from './pages/module/module.component';
+import { ShowclassesComponent } from './pages/showclasses/showclasses.component';
+import { DeveloppementfrontendComponent } from './pages/developpementfrontend/developpementfrontend.component';
+import { DeveloppementbackendComponent } from './pages/developpementbackend/developpementbackend.component';
+import { DeveloppementwebetmobileComponent } from './pages/developpementwebetmobile/developpementwebetmobile.component';
 
 
 @NgModule({
@@ -76,6 +80,10 @@ import { ModuleComponent } from './pages/module/module.component';
     DialogupComponent,
     DialogmoduleComponent,
     ModuleComponent,
+    ShowclassesComponent,
+    DeveloppementfrontendComponent,
+    DeveloppementbackendComponent,
+    DeveloppementwebetmobileComponent,
   ],
   providers: [],
   bootstrap: [AppComponent]
