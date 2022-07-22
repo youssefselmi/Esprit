@@ -14,6 +14,7 @@ export class ApiService {
   REST_APIC: string = 'http://localhost:3001/classe';
   REST_APIU: string = 'http://localhost:3001/up';
   REST_APIM: string = 'http://localhost:3001/module';
+  REST_APIL: string = 'http://localhost:3001/user/users';
 
 
 
@@ -143,6 +144,24 @@ export class ApiService {
     let API_URL = `${this.REST_APIM}/update/${_id}`;
     return this.http.put<any>(API_URL,data);
 
+  }
+
+
+  /**************LOGIN************ */
+  login(email:string, password:string){
+    let API_URL = `${this.REST_APIL}/login`;
+    return this.http.post(API_URL,{
+      email,
+      password
+    },{observe:'response'})
+  }
+  /*********signup ***** */
+  signup(email:string, password:string){
+    let API_URL = `${this.REST_APIL}`;
+    return this.http.post(API_URL,{
+      email,
+      password
+    },{observe:'response'})
   }
 
 

@@ -86,7 +86,7 @@ User.statics.findByIdAndToken = function(_id,token){
     const User = this;
     return User.findOne({
         _id,
-        'session.token':token
+        'sessions.token':token
     });
 }
 User.statics.findByCredentials = function(email,password){
@@ -116,7 +116,7 @@ User.statics.hasRefreshTokenExpired =(expiresAt =>{
 
 /*middleware*/  
 User.pre('save',function(next){
-    let User= this;
+    let user= this;
     let constFactor = 10;
     if(user.isModified('password')){
          bcrypt.genSalt(constFactor,(err,salt)=>{
