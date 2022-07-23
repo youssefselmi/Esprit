@@ -98,7 +98,7 @@
       <div class="col">
         <div class="card shadow">
           <div class="card-header bg-transparent">
-            <h3 class="mb-0">Liste des classes dans le departement <h1>Mecatronique</h1></h3>
+            <h3 class="mb-0">Liste des modules dans l'unite pédagogique <h1>Developpement Back end</h1> </h3>
           </div>
           <div class="card-body">
             <div class="row icon-examples">
@@ -107,11 +107,11 @@
   
   
   
-              <div *ngFor="let u of listmecatronique" class="col-lg-3 col-md-6">
-                <button type="button" placement="top-center" triggers="hover focus click" ngbTooltip="{{copy === 'active-40' ? 'Copied':'Copy to clipboard'}}"  class="btn-icon-clipboard" ngxClipboard (cbOnSuccess) = "copy = 'active-40'">
+              <div *ngFor="let u of listemodules" class="col-lg-3 col-md-6">
+                <button (click)="display(u.nomup);" type="button" placement="top-center" triggers="hover focus click" ngbTooltip="{{copy === 'active-40' ? 'Copied':'Copy to clipboard'}}"  class="btn-icon-clipboard" ngxClipboard (cbOnSuccess) = "copy = 'active-40'">
                   <div>
                     <i class="ni ni-laptop"></i>
-                    <span>{{u.nomclasse}}</span>
+                    <span>{{u.nommodule}}</span>
                   </div>
                 </button>
               </div>

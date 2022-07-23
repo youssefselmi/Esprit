@@ -17,9 +17,9 @@
                         <span class="h2 font-weight-bold mb-0">{{u.nomdepartement}}</span>
                       </div>
                   <div class="col-auto">
-                    <div class="icon icon-shape bg-danger text-white rounded-circle shadow">
+                    <button   (click)="changementDePage(u.nomdepartement);"  class="icon icon-shape bg-danger text-white rounded-circle shadow">
                       <i class="fas fa-chart-bar"></i>
-                    </div>
+                    </button>
                   </div>
                 </div>
                 <p class="mt-3 mb-0 text-muted text-sm">
@@ -28,9 +28,9 @@
                 </p>
 
                 
-                <div class="posbutton">
+              <!--<div class="posbutton">
                   <button  (click)="changementDePage(u.nomdepartement);" >show Classes</button>
-                </div>
+                </div>-->
               </div>
 
           
@@ -101,7 +101,7 @@
                           </button>  
 
                           
-                          <button mat-icon-button color="warn" (click)="deleteDepartement(row._id)" >
+                          <button mat-icon-button color="warn" (click)="deleteDepartement(row._id , row.nomdepartement)" >
                             <mat-icon>
                               delete
                             </mat-icon>

@@ -21,13 +21,28 @@ export class MecatroniqueComponent implements OnInit {
 
  
 
+    this.api.getClasse().subscribe(
+      (data: Classe[]) => {
+       for (var key in data) {
+        if(data[key].nomdepartement != 'mecatronique'){
+        delete data[key];
+            } }
+       var result_filter = data.filter( function(val){return true} );
+        this.listmecatronique = result_filter;  
+      })
+
+  
 
 
-      this.api.getmecatronique().subscribe(
+
+
+
+
+     /* this.api.getmecatronique().subscribe(
         (data: Classe[]) => {
            this.listmecatronique = data;
            console.log(this.listmecatronique)
-        })
+        })*/
       
 
 

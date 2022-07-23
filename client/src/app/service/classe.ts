@@ -1,7 +1,7 @@
 export class Classe {
-    _id!: String;
-    nomclasse!: String;
+    _id!: string;
+    nomclasse!: string;
     nbretudiant!: Number;   
-    nomdepartement!: String;
+    nomdepartement!: string;
 
 }
