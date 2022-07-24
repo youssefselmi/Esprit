@@ -12,11 +12,11 @@ router.use(cors());
 router.post('/add', async(req, res, next) => {  
   
     // console.log(req.body);
-    const {nomclasse,nbretudiant,nomdepartement} = req.body;
+    const {nomclasse,nbretudiant,nomdepartement,nombreclasses,nommodules} = req.body;
     
     try {   
             const addclasse = new classe({
-                nomclasse,nbretudiant,nomdepartement});
+                nomclasse,nbretudiant,nomdepartement,nombreclasses,nommodules});
     
             await addclasse.save();
             res.status(201).json(addclasse);

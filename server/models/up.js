@@ -4,7 +4,9 @@ var Schema = mongoose.Schema;
 var Up = new Schema({
 
 
-    nomup: String
+    nomup: String,
+    nomdepartement: String,
+
 
 
 });
