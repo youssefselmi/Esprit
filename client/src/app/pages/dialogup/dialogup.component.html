@@ -12,13 +12,25 @@
       <br>
 
 
+
+
+      <mat-form-field appearance="fill">
+        <mat-label>Choose Departement</mat-label>
+        <mat-select formControlName="nomdepartement">
+          <mat-option *ngFor="let u of listdepartement" [value]="u.nomdepartement">
+            {{u.nomdepartement}}
+          </mat-option>
+        </mat-select>
+        </mat-form-field>
+      
+            <br>
+      
+
   
     
     
     
      </form>
-        
-    
     </div>
     
     
@@ -28,8 +40,7 @@
     
     
     <div mat-dialog-action [align]="'end'">
-      <button mat-raised-button color="warn" mat-dialog-close>Close</button>
-      
+      <button mat-raised-button color="warn" mat-dialog-close>Close</button>  
       <button style="margin-left: 8px;" mat-raised-button color="primary" mat-dialog-close (click)="addUp()">{{actionButton}}</button>
       
       </div>

@@ -4,4 +4,8 @@ export class Classe {
     nbretudiant!: Number;   
     nomdepartement!: string;
 
+    nombreclasses!: Number;
+    nommodules!: String[];
+
+
 }

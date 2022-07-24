@@ -18,19 +18,17 @@
         <mat-label>Nombre Etudiant</mat-label>
         <input formControlName="nbretudiant"  matInput placeholder="Nombre Etudiant">
       </mat-form-field>
-
-
-      
-     <!-- <mat-form-field appearance="outline">
-        <mat-label>Departement Name</mat-label>
-        <input formControlName="nomdepartement"  matInput placeholder="Departement Name">
-      </mat-form-field>-->
-
-
+<br>
+ 
+      <mat-form-field appearance="outline">
+        <mat-label>Nombre Classes</mat-label>
+        <input formControlName="nombreclasses"  matInput placeholder="Nombre Classes">
+      </mat-form-field>
+      <br>
 
    
 
-  <mat-form-field appearance="fill">
+  <mat-form-field appearance="outline">
   <mat-label>Choose Departement</mat-label>
   <mat-select formControlName="nomdepartement">
     <mat-option *ngFor="let u of listdepartement" [value]="u.nomdepartement">
@@ -41,6 +39,24 @@
 
       <br>
 
+
+
+     
+
+      <mat-form-field appearance="outline">
+        <mat-label>Les modules à enseigné</mat-label>
+        <mat-select formControlName="nommodules" multiple>
+          <mat-option *ngFor="let mod of listModules" [value]="mod.nommodule">{{mod.nommodule}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+
+
+       
+      
+
+
+      
  
     
     

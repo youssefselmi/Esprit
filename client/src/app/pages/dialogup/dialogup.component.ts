@@ -2,6 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ApiService } from 'src/app/service/api.service';
+import { Departement } from 'src/app/service/departement';
 
 @Component({
   selector: 'app-dialogup',
@@ -13,6 +14,7 @@ export class DialogupComponent implements OnInit {
  
   upForm !: FormGroup;
   actionButton : string = "Save";
+  listdepartement: Departement[];
 
 
   constructor(private formbuilder : FormBuilder, private api : ApiService,
@@ -25,6 +27,8 @@ export class DialogupComponent implements OnInit {
 
     this.upForm = this.formbuilder.group({
       nomup : ['',Validators.required],
+      nomdepartement : ['',Validators.required],
+
       
 
 
@@ -35,11 +39,21 @@ export class DialogupComponent implements OnInit {
 
     if(this.editData){
       this.actionButton = "Update"
-      
-            this.upForm.controls['nomup'].setValue(this.editData.nomup);
-           
-      
+  this.upForm.controls['nomup'].setValue(this.editData.nomup);
+  this.upForm.controls['nomdepartement'].setValue(this.editData.nomdepartement);
+
           }
+
+
+
+// liste des departement
+   this.api.getDepartement().subscribe(
+   (data: Departement[]) => {
+   this.listdepartement = data;
+   })
+
+
+
   }
 
 

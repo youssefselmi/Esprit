@@ -5,6 +5,7 @@ import { ApiService } from 'src/app/service/api.service';
 import { Classe } from 'src/app/service/classe';
 import { Departement } from 'src/app/service/departement';
 import { NotifierService } from 'angular-notifier';
+import { Module } from 'src/app/service/modulee';
 
 @Component({
   selector: 'app-dialogclasse',
@@ -17,6 +18,11 @@ export class DialogclasseComponent implements OnInit {
   classeForm !: FormGroup;
   actionButton : string = "Save";
   listdepartement: Departement[];
+  listModules: Module[];
+
+
+  nommodules = new FormControl('');
+
 
 
   constructor(private formbuilder : FormBuilder, private api : ApiService,notifierService: NotifierService,
@@ -32,12 +38,15 @@ export class DialogclasseComponent implements OnInit {
 
   ngOnInit(): void {
 
-   
+
    
     this.classeForm = this.formbuilder.group({
       nomclasse: ['',Validators.minLength(4)],
       nbretudiant: ['',Validators.required],
       nomdepartement : ['',Validators.required],
+      nombreclasses : ['',Validators.required],
+      nommodules : ['',Validators.required],
+
        })
 
 
@@ -54,18 +63,28 @@ export class DialogclasseComponent implements OnInit {
           this.classeForm.controls['nomclasse'].setValue(this.editData.nomclasse);
           this.classeForm.controls['nbretudiant'].setValue(this.editData.nbretudiant);
           this.classeForm.controls['nomdepartement'].setValue(this.editData.nomdepartement);
+          this.classeForm.controls['nombreclasses'].setValue(this.editData.nombreclasses);
+          this.classeForm.controls['nommodules'].setValue(this.editData.nommodules);
 
     
         }
 
 
 
-        
+  ////////////// liste des departements      
       this.api.getDepartement().subscribe(
         (data: Departement[]) => {
            this.listdepartement = data;
         })
   
+
+
+
+  ////////// liste des modules//////////////          
+      this.api.getModule().subscribe(
+        (data: Module[]) => {
+           this.listModules = data;
+        })
 
 }
 
