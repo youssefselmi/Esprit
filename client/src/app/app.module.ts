@@ -48,6 +48,7 @@ import { DialogenseignantComponent } from './pages/dialogenseignant/dialogenseig
 import { UPJAVAComponent } from './pages/upjava/upjava.component';
 import { UPWEBComponent } from './pages/upweb/upweb.component';
 import { UPASIComponent } from './pages/upasi/upasi.component';
+import { AffectationComponent } from './pages/affectation/affectation.component';
 
 
 @NgModule({
@@ -98,6 +99,7 @@ import { UPASIComponent } from './pages/upasi/upasi.component';
     UPJAVAComponent,
     UPWEBComponent,
     UPASIComponent,
+    AffectationComponent,
   ],
   providers: [],
   bootstrap: [AppComponent]

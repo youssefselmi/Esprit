@@ -1,11 +1,6 @@
-export class Classe {
+export class Affectation {
     _id!: string;
     nomclasse!: string;
-    //nbretudiant!: Number;   
     nomdepartement!: string;
-
-    nombreclasses!: Number;
     nommodules!: String[];
-
-
 }

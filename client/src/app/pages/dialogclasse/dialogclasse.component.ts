@@ -42,7 +42,7 @@ export class DialogclasseComponent implements OnInit {
    
     this.classeForm = this.formbuilder.group({
       nomclasse: ['',Validators.minLength(4)],
-      nbretudiant: ['',Validators.required],
+    //  nbretudiant: ['',Validators.required],
       nomdepartement : ['',Validators.required],
       nombreclasses : ['',Validators.required],
       nommodules : ['',Validators.required],
@@ -61,7 +61,7 @@ export class DialogclasseComponent implements OnInit {
     this.actionButton = "Update"
     
           this.classeForm.controls['nomclasse'].setValue(this.editData.nomclasse);
-          this.classeForm.controls['nbretudiant'].setValue(this.editData.nbretudiant);
+        //  this.classeForm.controls['nbretudiant'].setValue(this.editData.nbretudiant);
           this.classeForm.controls['nomdepartement'].setValue(this.editData.nomdepartement);
           this.classeForm.controls['nombreclasses'].setValue(this.editData.nombreclasses);
           this.classeForm.controls['nommodules'].setValue(this.editData.nommodules);

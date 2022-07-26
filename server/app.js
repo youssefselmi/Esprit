@@ -18,6 +18,7 @@ var competenceRouter =  require('./routes/competence');
 var enseignantRouter =  require('./routes/enseignant');
 
 
+var affectationRouter = require('./routes/affectation');
 
 
 
@@ -46,6 +47,9 @@ app.use('/up', upRouter);
 app.use('/module', moduleRouter);
 app.use('/competence', competenceRouter);
 app.use('/enseignant', enseignantRouter);
+app.use('/affectation', affectationRouter);
+
+
 
 
 app.use(express.static(path.join(__dirname, "public")));
@@ -79,6 +83,7 @@ app.use(function(err, req, res, next) {
 //import database 
 var mongoose = require('mongoose');
 var configDB = require('./database/mongodb.json');
+const affectation = require('./models/affectation');
 //mongo config 
 const connect = mongoose.connect(
     configDB.mongo.uri, {

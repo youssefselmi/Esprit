@@ -22,6 +22,7 @@ import { EnseignantComponent } from 'src/app/pages/enseignant/enseignant.compone
 import { UPJAVAComponent } from 'src/app/pages/upjava/upjava.component';
 import { UPWEBComponent } from 'src/app/pages/upweb/upweb.component';
 import { UPASIComponent } from 'src/app/pages/upasi/upasi.component';
+import { AffectationComponent } from 'src/app/pages/affectation/affectation.component';
 
 export const AdminLayoutRoutes: Routes = [
     { path: 'dashboard',      component: DashboardComponent },
@@ -45,7 +46,9 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'Enseignant',    component: EnseignantComponent},
     { path: 'UP JAVA',    component:UPJAVAComponent },
     { path: 'UP WEB',    component: UPWEBComponent},
-    { path: 'UP ASI',    component: UPASIComponent}
+    { path: 'UP ASI',    component: UPASIComponent},
+    { path: 'affectation',    component: AffectationComponent}
+
 
 
 

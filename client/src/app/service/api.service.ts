@@ -18,6 +18,7 @@ export class ApiService {
   REST_APICM: string = 'http://localhost:3001/competence';
   REST_APIE: string = 'http://localhost:3001/enseignant';
 
+  REST_APIA: string = 'http://localhost:3001/affectation';
 
 
 
@@ -213,6 +214,19 @@ export class ApiService {
 
 
 
+
+
+  /////////////////////////// Affectation //////////////////////////
+
+  getAffectation(){
+    return this.http.get<any>(`${this.REST_APIA}/read`);
+  }
+
+
+  
+  postAffectation(data : any ){
+    return this.http.post<any>(`${this.REST_APIA}/add`,data);
+  }
 
 
 
