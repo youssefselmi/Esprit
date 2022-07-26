@@ -91,47 +91,6 @@
       </div>
     </div>
   </div>
-  
-  <!-- Page content -->
-  <div class="container-fluid mt--7">
-    <!-- Table -->
-    <div class="row">
-      <div class="col">
-        <div class="card shadow">
-          <div class="card-header bg-transparent">
-            <h3 class="mb-0">Liste des modules dans l'unite pédagogique <h1>UP JAVA</h1> </h3>
-          </div>
-          <div class="card-body">
-            <div class="row icon-examples">
-  
-  
-  
-  
-  
-              <div *ngFor="let u of listemodules" class="col-lg-3 col-md-6">
-                <button (click)="display(u.nomup);" type="button" placement="top-center" triggers="hover focus click" ngbTooltip="{{copy === 'active-40' ? 'Copied':'Copy to clipboard'}}"  class="btn-icon-clipboard" ngxClipboard (cbOnSuccess) = "copy = 'active-40'">
-                  <div>
-                    <i class="ni ni-laptop"></i>
-                    <span>{{u.nommodule}}</span>
-                  </div>
-                </button>
-              </div>
-  
-              
-  
-            
-  
-  
-  
-  
-  
-  
-  
-  
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  
+
+
+  <button (click)="click()">click</button>

@@ -16,6 +16,7 @@ import { ModuleComponent } from 'src/app/pages/module/module.component';
 import { UPJAVAComponent } from 'src/app/pages/upjava/upjava.component';
 import { UPWEBComponent } from 'src/app/pages/upweb/upweb.component';
 import { UPASIComponent } from 'src/app/pages/upasi/upasi.component';
+import { AffectationComponent } from 'src/app/pages/affectation/affectation.component';
 
 export const AdminLayoutRoutes: Routes = [
     { path: 'dashboard',      component: DashboardComponent },
@@ -33,7 +34,9 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'module',    component: ModuleComponent },
     { path: 'UP JAVA',    component:UPJAVAComponent },
     { path: 'UP WEB',    component: UPWEBComponent},
-    { path: 'UP ASI',    component: UPASIComponent}
+    { path: 'UP ASI',    component: UPASIComponent},
+    { path: 'affectation',    component: AffectationComponent}
+
 
 
 

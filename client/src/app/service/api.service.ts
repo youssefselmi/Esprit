@@ -14,6 +14,7 @@ export class ApiService {
   REST_APIC: string = 'http://localhost:3001/classe';
   REST_APIU: string = 'http://localhost:3001/up';
   REST_APIM: string = 'http://localhost:3001/module';
+  REST_APIA: string = 'http://localhost:3001/affectation';
 
 
 
@@ -146,6 +147,19 @@ export class ApiService {
   }
 
 
+
+
+  /////////////////////////// Affectation //////////////////////////
+
+  getAffectation(){
+    return this.http.get<any>(`${this.REST_APIA}/read`);
+  }
+
+
+  
+  postAffectation(data : any ){
+    return this.http.post<any>(`${this.REST_APIA}/add`,data);
+  }
 
 
 
