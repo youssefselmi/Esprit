@@ -17,7 +17,7 @@ import { DialogupComponent } from '../dialogup/dialogup.component';
 export class UpComponent implements OnInit {
 
  
-  displayedColumns: string[] = ['nomup','actions'];
+  displayedColumns: string[] = ['nomup','nomdepartement','actions'];
   dataSource!: MatTableDataSource<any>;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
@@ -25,7 +25,6 @@ export class UpComponent implements OnInit {
 
 
   listeup: Up[];
-
   listemodules : Module[];
 
   constructor( private dialog : MatDialog,private api:ApiService,private router: Router) { }
@@ -84,9 +83,7 @@ export class UpComponent implements OnInit {
     })
 
 
-
-
-    
+ ////// supprimer automatiquement les modules qui se trouvne t dans l 'up  déja supprimé 
     console.log( this.listemodules);
     for (let index = 0; index < this.listemodules.length; index++) {
       if(this.listemodules[index].nomup==nomm)
@@ -97,6 +94,7 @@ export class UpComponent implements OnInit {
 
      } 
     }
+
 
 
 
@@ -162,8 +160,6 @@ editUp(row :any){
 changementDePage = function (nomup) {
 
   this.router.navigate(['/'+nomup]);
-
-
 
 /*else if(nomdep=='mecanique'){
   this.router.navigate(['/mecanique']);
