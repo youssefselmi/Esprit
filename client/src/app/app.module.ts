@@ -37,7 +37,6 @@ import { UpComponent } from './pages/up/up.component';
 import { DialogupComponent } from './pages/dialogup/dialogup.component';
 import { DialogmoduleComponent } from './pages/dialogmodule/dialogmodule.component';
 import { ModuleComponent } from './pages/module/module.component';
-<<<<<<< HEAD
 import { ShowclassesComponent } from './pages/showclasses/showclasses.component';
 import { DeveloppementfrontendComponent } from './pages/developpementfrontend/developpementfrontend.component';
 import { DeveloppementbackendComponent } from './pages/developpementbackend/developpementbackend.component';
@@ -46,11 +45,9 @@ import { CompetenceComponent } from './pages/competence/competence.component';
 import { DialogcompetenceComponent } from './pages/dialogcompetence/dialogcompetence.component';
 import { EnseignantComponent } from './pages/enseignant/enseignant.component';
 import { DialogenseignantComponent } from './pages/dialogenseignant/dialogenseignant.component';
-=======
 import { UPJAVAComponent } from './pages/upjava/upjava.component';
 import { UPWEBComponent } from './pages/upweb/upweb.component';
 import { UPASIComponent } from './pages/upasi/upasi.component';
->>>>>>> youssef
 
 
 @NgModule({
@@ -90,7 +87,6 @@ import { UPASIComponent } from './pages/upasi/upasi.component';
     DialogupComponent,
     DialogmoduleComponent,
     ModuleComponent,
-<<<<<<< HEAD
     ShowclassesComponent,
     DeveloppementfrontendComponent,
     DeveloppementbackendComponent,
@@ -99,11 +95,9 @@ import { UPASIComponent } from './pages/upasi/upasi.component';
     DialogcompetenceComponent,
     EnseignantComponent,
     DialogenseignantComponent,
-=======
     UPJAVAComponent,
     UPWEBComponent,
     UPASIComponent,
->>>>>>> youssef
   ],
   providers: [],
   bootstrap: [AppComponent]
