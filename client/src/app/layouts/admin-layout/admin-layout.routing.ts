@@ -17,6 +17,8 @@ import { ShowclassesComponent } from 'src/app/pages/showclasses/showclasses.comp
 import { DeveloppementfrontendComponent } from 'src/app/pages/developpementfrontend/developpementfrontend.component';
 import { DeveloppementbackendComponent } from 'src/app/pages/developpementbackend/developpementbackend.component';
 import { DeveloppementwebetmobileComponent } from 'src/app/pages/developpementwebetmobile/developpementwebetmobile.component';
+import { CompetenceComponent } from 'src/app/pages/competence/competence.component';
+import { EnseignantComponent } from 'src/app/pages/enseignant/enseignant.component';
 
 export const AdminLayoutRoutes: Routes = [
     { path: 'dashboard',      component: DashboardComponent },
@@ -35,7 +37,9 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'showclasses',    component: ShowclassesComponent },
     { path: 'Développement Front end',    component: DeveloppementfrontendComponent },
     { path: 'Développement Back end',    component: DeveloppementbackendComponent},
-    { path: 'Développement web et mobile',    component: DeveloppementwebetmobileComponent}
+    { path: 'Développement web et mobile',    component: DeveloppementwebetmobileComponent},
+    { path: 'Competence',    component: CompetenceComponent},
+    { path: 'Enseignant',    component: EnseignantComponent},
 
 
 

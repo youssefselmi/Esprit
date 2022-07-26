@@ -1,0 +1,38 @@
+<div class="dia">
+
+    <h1 mat-dialog-title >Add New Competence</h1>
+    <div mat-dialog-content  >
+    
+     <form [formGroup]="competenceForm" >
+    
+      <mat-form-field appearance="outline">
+        <mat-label>Competence</mat-label>
+        <input formControlName="nomcompetence"  matInput placeholder="Competence">
+      </mat-form-field>
+      <br>
+
+
+  
+    
+    
+    
+     </form>
+        
+    
+    </div>
+    
+    
+    
+    
+    
+    
+    
+    <div mat-dialog-action [align]="'end'">
+      <button mat-raised-button color="warn" mat-dialog-close>Close</button>
+      
+      <button style="margin-left: 8px;" mat-raised-button color="primary" mat-dialog-close (click)="addCompetence()">{{actionButton}}</button>
+      
+      </div>
+    
+    
+    </div>

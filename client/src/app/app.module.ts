@@ -41,6 +41,10 @@ import { ShowclassesComponent } from './pages/showclasses/showclasses.component'
 import { DeveloppementfrontendComponent } from './pages/developpementfrontend/developpementfrontend.component';
 import { DeveloppementbackendComponent } from './pages/developpementbackend/developpementbackend.component';
 import { DeveloppementwebetmobileComponent } from './pages/developpementwebetmobile/developpementwebetmobile.component';
+import { CompetenceComponent } from './pages/competence/competence.component';
+import { DialogcompetenceComponent } from './pages/dialogcompetence/dialogcompetence.component';
+import { EnseignantComponent } from './pages/enseignant/enseignant.component';
+import { DialogenseignantComponent } from './pages/dialogenseignant/dialogenseignant.component';
 
 
 @NgModule({
@@ -84,6 +88,10 @@ import { DeveloppementwebetmobileComponent } from './pages/developpementwebetmob
     DeveloppementfrontendComponent,
     DeveloppementbackendComponent,
     DeveloppementwebetmobileComponent,
+    CompetenceComponent,
+    DialogcompetenceComponent,
+    EnseignantComponent,
+    DialogenseignantComponent,
   ],
   providers: [],
   bootstrap: [AppComponent]

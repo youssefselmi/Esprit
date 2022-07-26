@@ -14,6 +14,8 @@ var departementRouter = require('./routes/departement');
 var classeRouter = require('./routes/classe');
 var upRouter = require('./routes/up');
 var moduleRouter = require('./routes/module');
+var competenceRouter =  require('./routes/competence');
+var enseignantRouter =  require('./routes/enseignant');
 
 
 
@@ -42,7 +44,8 @@ app.use('/departement', departementRouter);
 app.use('/classe', classeRouter);
 app.use('/up', upRouter);
 app.use('/module', moduleRouter);
-
+app.use('/competence', competenceRouter);
+app.use('/enseignant', enseignantRouter);
 
 
 app.use(express.static(path.join(__dirname, "public")));

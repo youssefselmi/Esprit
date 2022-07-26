@@ -1,0 +1,78 @@
+<div class="dia">
+
+    <h1 mat-dialog-title >Add New Enseignant</h1>
+    <div mat-dialog-content  >
+    
+     <form #f="ngForm" [formGroup]="enseignantForm" >
+    
+      <mat-form-field appearance="outline">
+        <mat-label>Nom enseignant</mat-label>
+        <input formControlName="nomenseignant"  matInput placeholder="Nom enseignant" >
+      </mat-form-field>
+      <br>
+
+
+
+
+      <mat-form-field appearance="outline">
+        <mat-label>Email</mat-label>
+        <input formControlName="email"  matInput placeholder="Email">
+      </mat-form-field>
+      <br>
+
+
+
+      <mat-form-field appearance="outline">
+        <mat-label>password</mat-label>
+        <input formControlName="password"  matInput placeholder="Password">
+      </mat-form-field>
+      <br>
+
+
+
+
+      
+     <!-- <mat-form-field appearance="outline">
+        <mat-label>Departement Name</mat-label>
+        <input formControlName="nomdepartement"  matInput placeholder="Departement Name">
+      </mat-form-field>-->
+
+
+
+   
+
+  <mat-form-field appearance="fill">
+  <mat-label>Choisir competences</mat-label>
+  <mat-select formControlName="nomcompetence">
+    <mat-option *ngFor="let c of listecompetence" [value]="c.nomcompetence">
+      {{c.nomcompetence}}
+    </mat-option>
+  </mat-select>
+  </mat-form-field>
+
+      <br>
+
+ 
+    
+    
+    
+     </form>
+        
+     <br>
+    </div>
+    
+    
+    
+    
+    
+    
+    
+    <div mat-dialog-action [align]="'end'">
+      <button mat-raised-button color="warn" mat-dialog-close>Close</button>
+      
+      <button [disabled]="f.invalid" style="margin-left: 8px;" mat-raised-button color="primary" mat-dialog-close (click)="addEnseignant()">{{actionButton}}</button>
+      
+      </div>
+    
+    
+    </div>

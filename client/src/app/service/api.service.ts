@@ -15,6 +15,9 @@ export class ApiService {
   REST_APIU: string = 'http://localhost:3001/up';
   REST_APIM: string = 'http://localhost:3001/module';
   REST_APIL: string = 'http://localhost:3001/user/users';
+  REST_APICM: string = 'http://localhost:3001/competence';
+  REST_APIE: string = 'http://localhost:3001/enseignant';
+
 
 
 
@@ -163,6 +166,51 @@ export class ApiService {
       password
     },{observe:'response'})
   }
+  /***********competences ****** */
+  getCompetence(){
+    return this.http.get<any>(`${this.REST_APICM}/read`);
+  }
+
+
+  deleteCompetence( _id : string){
+    let API_URL = `${this.REST_APICM}/${_id}`;
+    return this.http.delete<any>(API_URL);
+  }
+
+
+  postCompetence(data : any ){
+    return this.http.post<any>(`${this.REST_APICM}/add`,data);
+  }
+
+
+  putCompetence(data : any, _id : string){
+    let API_URL = `${this.REST_APICM}/update/${_id}`;
+    return this.http.put<any>(API_URL,data);
+
+  }
+  /**************Enseigant ************/
+  getEnseignant(){
+    return this.http.get<any>(`${this.REST_APIE}/read`);
+  }
+
+
+  deleteEnseignant( _id : string){
+    let API_URL = `${this.REST_APIE}/${_id}`;
+    return this.http.delete<any>(API_URL);
+  }
+
+
+  postEnseignant(data : any ){
+    return this.http.post<any>(`${this.REST_APIE}/add`,data);
+  }
+
+
+  putEnseignant(data : any, _id : string){
+    let API_URL = `${this.REST_APIE}/update/${_id}`;
+    return this.http.put<any>(API_URL,data);
+
+  }
+
 
 
 
