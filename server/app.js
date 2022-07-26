@@ -13,6 +13,7 @@ var departementRouter = require('./routes/departement');
 var classeRouter = require('./routes/classe');
 var upRouter = require('./routes/up');
 var moduleRouter = require('./routes/module');
+var affectationRouter = require('./routes/affectation');
 
 
 
@@ -38,6 +39,9 @@ app.use('/departement', departementRouter);
 app.use('/classe', classeRouter);
 app.use('/up', upRouter);
 app.use('/module', moduleRouter);
+app.use('/affectation', affectationRouter);
+
+
 
 
 app.use(express.static(path.join(__dirname, "public")));
@@ -71,6 +75,7 @@ app.use(function(err, req, res, next) {
 //import database 
 var mongoose = require('mongoose');
 var configDB = require('./database/mongodb.json');
+const affectation = require('./models/affectation');
 //mongo config 
 const connect = mongoose.connect(
     configDB.mongo.uri, {
