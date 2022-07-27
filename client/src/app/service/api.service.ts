@@ -161,6 +161,19 @@ export class ApiService {
     return this.http.post<any>(`${this.REST_APIA}/add`,data);
   }
 
+  deleteAffectation( _id : string){
+    let API_URL = `${this.REST_APIA}/${_id}`;
+    return this.http.delete<any>(API_URL);
+  }
+
+
+
+  putAffectation(data : any, _id : string){
+    let API_URL = `${this.REST_APIA}/update/${_id}`;
+    return this.http.put<any>(API_URL,data);
+
+  }
+
 
 
 }

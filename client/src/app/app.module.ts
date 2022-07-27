@@ -41,6 +41,7 @@ import { UPJAVAComponent } from './pages/upjava/upjava.component';
 import { UPWEBComponent } from './pages/upweb/upweb.component';
 import { UPASIComponent } from './pages/upasi/upasi.component';
 import { AffectationComponent } from './pages/affectation/affectation.component';
+import { DialogaffectationComponent } from './pages/dialogaffectation/dialogaffectation.component';
 
 
 @NgModule({
@@ -84,6 +85,7 @@ import { AffectationComponent } from './pages/affectation/affectation.component'
     UPWEBComponent,
     UPASIComponent,
     AffectationComponent,
+    DialogaffectationComponent,
   ],
   providers: [],
   bootstrap: [AppComponent]

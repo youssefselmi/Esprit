@@ -117,6 +117,12 @@ export class ClasseComponent implements OnInit {
 
 
 
+  
+
+
+
+
+
   editClasse(row :any){
     this.dialog.open(DialogclasseComponent,{
       width: '30%',

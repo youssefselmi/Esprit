@@ -13,7 +13,7 @@
               <div class="card-body">
                 <div class="row">
                     <div class="col">
-                        <h5 class="card-title text-uppercase text-muted mb-0">Classe</h5>
+                        <h5 class="card-title text-uppercase text-muted mb-0">Niveau</h5>
                         <span class="h2 font-weight-bold mb-0">{{u.nomclasse}}</span>
                       </div>
                   <div class="col-auto">
@@ -40,7 +40,7 @@
   </div>
   
 <br>
-<button class="buttonpos" mat-raised-button color="warn" (click)="openDialog()">Add New Classe</button>
+<button class="buttonpos" mat-raised-button color="warn" (click)="openDialog()">Ajouter Niveau</button>
 
 
 
@@ -63,7 +63,7 @@
         <table mat-table [dataSource]="dataSource" matSort>
       
           <ng-container matColumnDef="nomclasse">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Classe Name </th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Niveau  </th>
             <td mat-cell *matCellDef="let row"> {{row.nomclasse}} </td>
           </ng-container>
       
