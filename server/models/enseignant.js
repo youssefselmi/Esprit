@@ -7,7 +7,7 @@ var Enseignant = new Schema({
     nomenseignant: String,
     email: String,
     password : String,
-    competence :[{
+    nomcompetence :[{
         type:String
     }]
     
