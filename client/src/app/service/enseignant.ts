@@ -3,8 +3,6 @@ export class Enseignant {
     nomenseignant: String;
     email: String;
     password : String;
-    competence :[{
-        type:String
-    }]
+    competence :String[]
 
 }

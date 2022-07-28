@@ -6,9 +6,13 @@ var Affectation = new Schema({
 
     nomclasse: String,
     nomdepartement: String,
-    nommodules: [{
+    nommodules: String,
+    semestre: String,
+    periode:[{
         type: String
-    }]
+    }],
+
+    
 
 
 });

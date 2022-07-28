@@ -37,7 +37,7 @@ enseignant :Enseignant;
       nomenseignant: ['',Validators.required],
       email: ['',Validators.required],
       password : ['',Validators.required],
-      nomcompetence : ['',Validators.required],
+      competence : ['',Validators.required],
 
        })
 
@@ -52,7 +52,7 @@ enseignant :Enseignant;
               this.enseignantForm.controls['nomenseignant'].setValue(this.editData.nomenseignant);
               this.enseignantForm.controls['email'].setValue(this.editData.email);
               this.enseignantForm.controls['password'].setValue(this.editData.password);
-              this.enseignantForm.controls['nomcompetence'].setValue(this.editData.nomcompetence);
+              this.enseignantForm.controls['competence'].setValue(this.editData.competence);
     
         
             }

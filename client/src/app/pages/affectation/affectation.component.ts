@@ -17,7 +17,7 @@ import { DialogclasseComponent } from '../dialogclasse/dialogclasse.component';
 export class AffectationComponent implements OnInit {
 
 
-  displayedColumns: string[] = ['nomclasse','nomdepartement' ,'nommodules','actions'];
+  displayedColumns: string[] = ['nomclasse','nomdepartement' ,'nommodules','semestre','periode','actions'];
   dataSource!: MatTableDataSource<any>;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;

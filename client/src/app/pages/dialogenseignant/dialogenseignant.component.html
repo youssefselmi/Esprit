@@ -41,14 +41,15 @@
 
    
 
-  <mat-form-field appearance="fill">
+  <mat-form-field appearance="outline">
   <mat-label>Choisir competences</mat-label>
-  <mat-select formControlName="nomcompetence">
-    <mat-option *ngFor="let c of listecompetence" [value]="c.nomcompetence">
+  <mat-select formControlName="competence" multiple>
+    <mat-option *ngFor="let c of listecompetence" [value]="c.competence">
       {{c.nomcompetence}}
     </mat-option>
   </mat-select>
   </mat-form-field>
+  
 
       <br>
 

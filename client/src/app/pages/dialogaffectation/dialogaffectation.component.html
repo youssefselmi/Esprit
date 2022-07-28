@@ -38,6 +38,20 @@
           <mat-option *ngFor="let mod of listModules" [value]="mod.nommodule">{{mod.nommodule}}</mat-option>
         </mat-select>
       </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Semestre</mat-label>
+        <mat-select formControlName="semestre" >
+          <mat-option>S1</mat-option>
+          <mat-option>S2</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Periode</mat-label>
+        <mat-select formControlName="periode" multiple >
+          <mat-option >P1</mat-option>
+          <mat-option >P2</mat-option>
+        </mat-select>
+      </mat-form-field>
 
 
 

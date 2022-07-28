@@ -87,7 +87,14 @@
             <th mat-header-cell *matHeaderCellDef mat-sort-header> Modules d'enseignement </th>
             <td mat-cell *matCellDef="let row"> {{row.nommodules}}</td>
           </ng-container>
-      
+          <ng-container matColumnDef="semestre">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> semestre </th>
+            <td mat-cell *matCellDef="let row"> {{row.semestre}}</td>
+          </ng-container>
+          <ng-container matColumnDef="periode">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Periode </th>
+            <td mat-cell *matCellDef="let row"> {{row.periode}}</td>
+          </ng-container>
           
       
           
