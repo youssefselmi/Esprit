@@ -4,12 +4,14 @@ const app = express();
 let cors = require("cors");
 const Departement = require('../models/classe');
 const classe = require('../models/classe');
+const affectation = require('../models/affectation');
+
 router.use(cors());
 
 
 
 
-router.post('/add', async(req, res, next) => {  
+/*router.post('/add', async(req, res, next) => {  
   
     // console.log(req.body);
     const {nomclasse,nomdepartement,nombreclasses,nommodules} = req.body;
@@ -25,7 +27,95 @@ router.post('/add', async(req, res, next) => {
     } catch (error) {
         res.status(422).json(error);
     }
-    })
+    })*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+    router.all('/add', async(req, res, next) => {  
+  
+        // console.log(req.body);
+        const {nomclasse,nomdepartement,nombreclasses,nommodules} = req.body;
+        const nbr= req.body.nombreclasses;
+        const nom= req.body.nomclasse;
+        const dep= req.body.nomdepartement;
+        const mod= req.body.nommodules;
+        
+        
+       
+                const addclasse = new classe({
+                    nomclasse,nomdepartement,nombreclasses,nommodules});
+                    
+    
+                    
+                await addclasse.save();
+                res.status(201).json(addclasse);
+                console.log(addclasse);
+
+
+
+
+                for (let index = 1; index <= nbr; index++) {     
+                    const nomclasse=(nom+" "+  index);
+                    const nomdepartement =dep;
+                    const nommodules  =mod;
+                    const addaffectation = new affectation({nomclasse,nomdepartement,nommodules});        
+                  //  addaffectation.save();
+
+
+                    maFonction(addaffectation);
+
+
+
+                //    res.status(201).json(addaffectation);                   
+                    console.log(addaffectation);                 
+                }
+        
+           
+               
+              
+         
+     
+        
+        
+        
+        
+    
+          })
+
+
+
+
+
+          function maFonction (addaffectation)
+          {
+                 addaffectation.save();  
+               // res.status(201).json(addaffectation);                   
+
+          }
+        
+        
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     

@@ -5,6 +5,7 @@ let cors = require("cors");
 const Affectation = require('../models/affectation');
 const Classe = require('../models/classe');
 const classe = require('../models/classe');
+const affectation = require('../models/affectation');
 
 router.use(cors());
 
@@ -14,23 +15,19 @@ router.use(cors());
 
 
 
-router.post('/add', async(req, res, next) => {  
+router.post('/add', async(req) => {  
   
     // console.log(req.body);
     const {nomclasse,nomdepartement,nommodules} = req.body;
     
-    try {   
+   
             const addclasse = new Affectation({
                 nomclasse,nomdepartement,nommodules});
     
              addclasse.save();
-            res.status(201).json(addclasse);
- 
+           // res.status(201).json(addclasse);
             console.log(addclasse);
-    } catch (error) {
-        res.status(422).json(error);
-        //console.log("err");
-    }
+  
 
     })
 
@@ -52,7 +49,7 @@ router.get("/read", async(req, res) => {
 
 
 
-  router.get("/readclasses", async(req, res,next) => {
+  router.get("/readclasses", async (req, res) => {
     classe.find({}, (err, result) => {
   
         if (err) {
@@ -70,7 +67,7 @@ router.get("/read", async(req, res) => {
 
      
 
-
+////////////////////// tableau d'zntiers qui contient les cases des ombres des classes ///////////////
         for (let index = 0; index < result.length; index++) {
            // const element = array[index];
             listeaffectation[index]=result[index].nombreclasses;       
@@ -88,40 +85,30 @@ router.get("/read", async(req, res) => {
         listeaffectationfinal[x]=result[ct].nomclasse+" "+index1; 
         x++;
 
+        const nameclasse=result[ct].nomclasse+" "+index1;
+        const namedep=result[ct].nomdepartement;
+        const namemodules=result[ct].nommodules;
+        maFonction(nameclasse,namedep,namemodules);
 
-      /*  let nomclasse= result[ct].nomclasse;
-        let nomdepartement = result[ct].nomdepartement;
-        let nommodules= result[ct].nommodules;
 
-        /////////////////////// partie d'ajout ////////////////////////
-      //  const {nomclasse,nomdepartement,nommodules} = req.body;
+      //  console.log("===>"+nameclasse);
+
+
+        /*const  newAffectation = new Affectation(req.body);
+        savedAffectation.nomclasse=result[ct].nomclasse+" "+index1;
+        savedAffectation.nommodules=result[ct].nommodules;
+        savedAffectation.nomdepartement=result[ct].nomdepartement;
+        const savedAffectation =  await  newAffectation.save();
+        //res.status(200).json(savedAffectation);
+        console.log("1111111 hhoho");*/
+
+
     
-        //  nomclasse="aa";
-        //nomdepartement="bb";
-        //nommodules="js";
-        try {   
-            const addclasse = new Affectation({
-                    nomclasse,nomdepartement,nommodules});
-        
-                 addclasse.save();
-                res.status(201).json(addclasse);
-     
-                console.log(addclasse);
-        } catch (error) {
-            res.status(422).json(error);
-            //console.log("err");
-        }
-
-        //////////////////////////////////////////////////////////////////////////*/
 
 
 
-       // console.log(listeaffectationfinal);
-       // res.send(listeaffectationfinal);
-        /* for (let indexx = 0; indexx < i; indexx++) {
-        listeaffectationfinal[index1]=result[ct].nomclasse+" "+index1; 
-        console.log("liste affectation ===>  "+listeaffectationfinal);
-       }*/
+
+
 
 
 
@@ -130,29 +117,84 @@ router.get("/read", async(req, res) => {
 
 
 
+
+
+
+
+
        console.log(listeaffectationfinal);
        res.send(listeaffectationfinal);
-
-    
-
-
-
-
-
 
 
     })
   })
 
-
-
-
   
-/*   
-  router.delete('/:id', async(req, res) => {
+  function maFonction (nameclasse,namedep,namemodules)
+  {
+   // console.log("coucouuuuuuuuuuuuuuuu  "+nameclasse+" "+namedep+"   "+namemodules);
+
+   let  x1=nameclasse;
+   let x2=namedep;
+   let x3=namemodules;
+
+     console.log("coucouuu 1111  "+x1+" "+x2+"   "+x3);
+
+
+
+      router.post('/add', async(x1,x2,x3,req, res, next) => {  
+
+        console.log("kkkkkkkkkkkkkkkk "+x1+" "+x2+"   "+x3);
+
+
+       /* const  newAffectation = new Affectation(req.body);
+        newAffectation.nameclasse=nameclasse;
+        newAffectation.namemodules=namemodules;
+        newAffectation.namedep=namedep;
+        const savedAffectation =    newAffectation.save();
+        res.status(200).json(savedAffectation);
+        console.log("1111111 hhoho");*/
+
+
+
+
+         // const {nameclasse,namedep,namemodules} = req.body;
+          
+          try {   
+                  const addclasse = new Affectation({
+                      nameclasse,namedep,namemodules});
+          
+                   addclasse.save();
+                  res.status(201).json(addclasse);
+       
+                  console.log(addclasse);
+          } catch (error) {
+              res.status(422).json(error);
+              //console.log("err");
+          }
+      
+          })
+
+
+
+
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+ router.delete('/:id', async(req, res) => {
 
     const id = req.params.id;
-    await classe.findByIdAndRemove(id).exec();
+    await Affectation.findByIdAndRemove(id).exec();
     res.send("deleted");
 
 
@@ -166,7 +208,7 @@ router.get("/read", async(req, res) => {
 router.put("/update/:id", async(req, res) => {
     try {
         const { id } = req.params;
-        const updatecomposant = await classe.findByIdAndUpdate(id, req.body, {
+        const updatecomposant = await Affectation.findByIdAndUpdate(id, req.body, {
             new: true
         });
 
@@ -181,123 +223,9 @@ router.put("/update/:id", async(req, res) => {
 
 
 
-router.get("/readinfo", async(req, res) => {
-let informatique='informatique'
-
-    function getclasses (informatique){
-    }
-
-    classe.find({}, (err, result) => {
-
-
-        for (var key in result) {
-            if(result[key].nomdepartement != informatique){
-            delete result[key];
-                } }
 
 
 
-
-        var result_filter = result.filter( function(val){return true} );
-        if (err) {
-            res.send(err)
-        }
-        res.send(result_filter)
-
-    })
-})
-
-
-
-
-
-
-
-
-
-
-
-router.get("/readmecanique", async(req, res) => {
-  
-    
-        classe.find({}, (err, result) => {
-    
-    
-            for (var key in result) {
-                if(result[key].nomdepartement != 'mecanique'){
-                delete result[key];
-                    } }
-    
-    
-    
-    
-            var result_filter = result.filter( function(val){return true} );
-            
-            if (err) {
-                res.send(err)
-            }
-            res.send(result_filter)
-    
-        })
-    })
-
-
-
-
-
-
-
-
-
-    router.get("/readmecatronique", async(req, res) => {
-  
-    
-        classe.find({}, (err, result) => {
-    
-    
-            for (var key in result) {
-                if(result[key].nomdepartement != 'mecatronique'){
-                delete result[key];
-                    } }
-    
-    
-    
-    
-            var result_filter = result.filter( function(val){return val !== ''} );
-            if (err) {
-                res.send(err)
-            }
-            res.send(result_filter)
-    
-        })
-    })
-
-
-
-
-    router.get("/readtelecommunication", async(req, res) => {
-  
-    
-        classe.find({}, (err, result) => {
-    
-    
-            for (var key in result) {
-                if(result[key].nomdepartement != 'telecommunication'){
-                delete result[key];
-                    } }
-    
-    
-    
-    
-            var result_filter = result.filter( function(val){return val !== ''} );
-            if (err) {
-                res.send(err)
-            }
-            res.send(result_filter)
-    
-        })
-    })
-*/
 
 
 
