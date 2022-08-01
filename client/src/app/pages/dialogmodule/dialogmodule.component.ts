@@ -6,6 +6,7 @@ import { Module } from 'src/app/service/modulee';
 
 import { ApiService } from 'src/app/service/api.service';
 import { Up } from 'src/app/service/up';
+import { Competence } from 'src/app/service/competence';
 
 @Component({
   selector: 'app-dialogmodule',
@@ -19,6 +20,8 @@ export class DialogmoduleComponent implements OnInit {
   moduleForm !: FormGroup;
   actionButton : string = "Save";
   listeup: Up[];
+  listecompetence: Competence[];
+
 
 
   constructor(private formbuilder : FormBuilder, private api : ApiService,notifierService: NotifierService,
@@ -42,6 +45,7 @@ export class DialogmoduleComponent implements OnInit {
       nbrheures : ['',Validators.required],
       attribut : ['',Validators.required],
       nomup : ['',Validators.required],
+      nomcompetence : ['',Validators.required],
 
        })
 
@@ -61,6 +65,8 @@ export class DialogmoduleComponent implements OnInit {
           this.moduleForm.controls['nbrheures'].setValue(this.editData.nbrheures);
           this.moduleForm.controls['attribut'].setValue(this.editData.attribut);
           this.moduleForm.controls['nomup'].setValue(this.editData.nomup);
+          this.moduleForm.controls['nomcompetence'].setValue(this.editData.nomcompetence);
+          
 
     
         }
@@ -72,6 +78,10 @@ export class DialogmoduleComponent implements OnInit {
         (data: Up[]) => {
            this.listeup = data;
         })
+        this.api.getCompetence().subscribe(
+          (data: Competence[]) => {
+             this.listecompetence = data;
+          })
   
 
 }

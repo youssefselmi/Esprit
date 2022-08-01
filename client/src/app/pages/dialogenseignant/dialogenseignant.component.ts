@@ -38,6 +38,7 @@ enseignant :Enseignant;
       email: ['',Validators.required],
       password : ['',Validators.required],
       nomcompetence : ['',Validators.required],
+      type : ['',Validators.required]
 
        })
 
@@ -53,6 +54,7 @@ enseignant :Enseignant;
               this.enseignantForm.controls['email'].setValue(this.editData.email);
               this.enseignantForm.controls['password'].setValue(this.editData.password);
               this.enseignantForm.controls['nomcompetence'].setValue(this.editData.nomcompetence);
+              this.enseignantForm.controls['type'].setValue(this.editData.type);
     
         
             }

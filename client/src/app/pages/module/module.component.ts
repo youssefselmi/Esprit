@@ -15,7 +15,7 @@ import { DialogmoduleComponent } from '../dialogmodule/dialogmodule.component';
   styleUrls: ['./module.component.css']
 })
 export class ModuleComponent implements OnInit {
-  displayedColumns: string[] = ['nommodule', 'coefficient','nbrheures' ,'attribut','nomup','actions'];
+  displayedColumns: string[] = ['nommodule', 'coefficient','nbrheures' ,'attribut','nomup','nomcompetence','actions',];
   dataSource!: MatTableDataSource<any>;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;

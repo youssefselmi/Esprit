@@ -15,7 +15,7 @@ import { DialogenseignantComponent } from  '../dialogenseignant/dialogenseignant
   styleUrls: ['./enseignant.component.scss']
 })
 export class EnseignantComponent implements OnInit { 
-  displayedColumns: string[] = ['nomenseignant', 'email','password' ,'nomcompetence','actions'];
+  displayedColumns: string[] = ['nomenseignant', 'email','password' ,'nomcompetence','type','actions'];
   dataSource!: MatTableDataSource<any>;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;

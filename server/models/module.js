@@ -9,6 +9,9 @@ var Module = new Schema({
     nbrheures: Number,
     attribut: String,
     nomup: String,
+    nomcompetence :[{
+        type:String
+    }],
 
 
 

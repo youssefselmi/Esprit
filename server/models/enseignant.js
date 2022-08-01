@@ -9,7 +9,8 @@ var Enseignant = new Schema({
     password : String,
     nomcompetence :[{
         type:String
-    }]
+    }],
+    type:String,
     
 
     

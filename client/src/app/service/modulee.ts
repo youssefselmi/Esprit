@@ -5,6 +5,7 @@ export class Module {
     nbrheures!: Number;
     attribut!: string;
     nomup!: string;
+    nomcompetence :[];
 
 
 }

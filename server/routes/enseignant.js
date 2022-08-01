@@ -11,11 +11,11 @@ router.use(cors());
 router.post('/add', async(req, res, next) => {  
   
     // console.log(req.body);
-    const {nomenseignant,email,password,nomcompetence} = req.body;
+    const {nomenseignant,email,password,nomcompetence,type} = req.body;
     
     try {   
             const addenseignant = new enseignant({
-                nomenseignant,email,password,nomcompetence});
+                nomenseignant,email,password,nomcompetence,type});
     
             await addenseignant.save();
             res.status(201).json(addenseignant);
