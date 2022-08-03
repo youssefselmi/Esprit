@@ -19,6 +19,7 @@ var enseignantRouter =  require('./routes/enseignant');
 
 
 var affectationRouter = require('./routes/affectation');
+var optupRouter = require('./routes/optup')
 
 
 
@@ -48,6 +49,7 @@ app.use('/module', moduleRouter);
 app.use('/competence', competenceRouter);
 app.use('/enseignant', enseignantRouter);
 app.use('/affectation', affectationRouter);
+app.use('/optup', optupRouter);
 
 
 
