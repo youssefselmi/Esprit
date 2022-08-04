@@ -9,12 +9,17 @@ const dotenv = require("dotenv")
 
 var indexRouter = require('./routes/index');
 var productRouter = require('./routes/product');
+var userRouter = require('./routes/user');
 var departementRouter = require('./routes/departement');
 var classeRouter = require('./routes/classe');
 var upRouter = require('./routes/up');
 var moduleRouter = require('./routes/module');
-var affectationRouter = require('./routes/affectation');
+var competenceRouter =  require('./routes/competence');
+var enseignantRouter =  require('./routes/enseignant');
 
+
+var affectationRouter = require('./routes/affectation');
+var affectationtabchargehorraireRouter =  require('./routes/AffectationTableauxChargeHorraires');
 
 
 var app = express();
@@ -35,11 +40,15 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/product', productRouter);
+app.use('/user', userRouter);
 app.use('/departement', departementRouter);
 app.use('/classe', classeRouter);
 app.use('/up', upRouter);
 app.use('/module', moduleRouter);
+app.use('/competence', competenceRouter);
+app.use('/enseignant', enseignantRouter);
 app.use('/affectation', affectationRouter);
+app.use('/affectationtabchargehorraire', affectationtabchargehorraireRouter);
 
 
 

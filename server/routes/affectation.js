@@ -18,11 +18,11 @@ router.use(cors());
 router.post('/add', async(req) => {  
   
     // console.log(req.body);
-    const {nomclasse,nomdepartement,nommodules} = req.body;
+    const {nomclasse,nomdepartement,nommodules,semestre,periode} = req.body;
     
    
             const addclasse = new Affectation({
-                nomclasse,nomdepartement,nommodules});
+                nomclasse,nomdepartement,nommodules,semestre,periode});
     
              addclasse.save();
            // res.status(201).json(addclasse);

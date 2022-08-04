@@ -12,7 +12,11 @@ var Classe = new Schema({
     //nommodules : String,
     nommodules: [{
         type: String
-    }]
+    }],
+    semestre: String,
+    periode:[{
+        type: String
+    }],
 
 
 });

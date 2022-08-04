@@ -44,16 +44,18 @@ router.use(cors());
     router.all('/add', async(req, res, next) => {  
   
         // console.log(req.body);
-        const {nomclasse,nomdepartement,nombreclasses,nommodules} = req.body;
+        const {nomclasse,nomdepartement,nombreclasses,nommodules,semestre,periode} = req.body;
         const nbr= req.body.nombreclasses;
         const nom= req.body.nomclasse;
         const dep= req.body.nomdepartement;
         const mod= req.body.nommodules;
+        const sem = req.body.semestre;
+        const per = req.body.periode;
         
         
        
                 const addclasse = new classe({
-                    nomclasse,nomdepartement,nombreclasses,nommodules});
+                    nomclasse,nomdepartement,nombreclasses,nommodules,semestre,periode});
                     
     
                     
@@ -67,17 +69,27 @@ router.use(cors());
                 for (let index = 1; index <= nbr; index++) {     
                     const nomclasse=(nom+" "+  index);
                     const nomdepartement =dep;
-                    const nommodules  =mod;
-                    const addaffectation = new affectation({nomclasse,nomdepartement,nommodules});        
+                    const nommodule  =mod;
+                    const semestre = sem;
+                    const periode = per;
+                    for (var i = 0; i < nommodule.length; i++) {
+                        
+                        const nommodules = nommodule[i];
+                        console.log(nommodules);
+                    
+                    const addaffectation = new affectation({nomclasse,nomdepartement,nommodules,semestre,periode});        
                   //  addaffectation.save();
 
 
                     maFonction(addaffectation);
 
 
+                    
+
 
                 //    res.status(201).json(addaffectation);                   
-                    console.log(addaffectation);                 
+                    console.log(addaffectation);   
+                }              
                 }
         
            
