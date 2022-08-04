@@ -6,6 +6,8 @@ export class Classe {
 
     nombreclasses!: Number;
     nommodules!: String[];
+    semestre!: String;
+    periode! : String[];
 
 
 }

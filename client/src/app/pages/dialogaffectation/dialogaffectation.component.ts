@@ -43,6 +43,8 @@ export class DialogaffectationComponent implements OnInit {
     //  nbretudiant: ['',Validators.required],
       nomdepartement : ['',Validators.required],
       nommodules : ['',Validators.required],
+      semestre : ['',Validators.required],
+      periode : ['',Validators.required],
 
        })
 
@@ -61,6 +63,8 @@ export class DialogaffectationComponent implements OnInit {
         //  this.classeForm.controls['nbretudiant'].setValue(this.editData.nbretudiant);
           this.classeForm.controls['nomdepartement'].setValue(this.editData.nomdepartement);
           this.classeForm.controls['nommodules'].setValue(this.editData.nommodules);
+          this.classeForm.controls['semestre'].setValue(this.editData.semestre);
+          this.classeForm.controls['periode'].setValue(this.editData.periode);
 
     
         }

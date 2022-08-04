@@ -4,37 +4,34 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ApiService } from 'src/app/service/api.service';
-import { Classe } from 'src/app/service/classe';
-import { Departement } from 'src/app/service/departement';
-import { DialogclasseComponent } from '../dialogclasse/dialogclasse.component';
+import { DialogaffectationTableauCHComponent } from '../dialogaffectation-tableau-ch/dialogaffectation-tableau-ch.component';
 
 @Component({
-  selector: 'app-classe',
-  templateUrl: './classe.component.html',
-  styleUrls: ['./classe.component.css']
+  selector: 'app-affectation-tableau-ch',
+  templateUrl: './affectation-tableau-ch.component.html',
+  styleUrls: ['./affectation-tableau-ch.component.css']
 })
-export class ClasseComponent implements OnInit {
+export class AffectationTableauCHComponent implements OnInit {
 
-  displayedColumns: string[] = ['nomclasse','nomdepartement' ,'nombreclasses','nommodules','semestre','periode','actions'];
+  displayedColumns: string[] = ['nomenseignant','type' ,'chargehorraire','nbrcrenauxp1','nbrcrenauxp2','nbrcrenauxp3','nbrcrenauxp4','p1','p2','p3','p4','actions'];
   dataSource!: MatTableDataSource<any>;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
 
 
-  listclasse: Classe[];
-  listdepartement: Departement[];
+  listaffectation: AffectationTableauCHComponent[];
 
 
   constructor( private dialog : MatDialog,private api:ApiService) { }
 
   openDialog() {
-    this.dialog.open(DialogclasseComponent,{
+    this.dialog.open(DialogaffectationTableauCHComponent,{
 
       width:'30%'
     }).afterClosed().subscribe(val=>{
       if(val === 'save'){
-       this.getAllClasses();
+       this.getAllAffectatioTH();
       }
     })
   }
@@ -42,9 +39,9 @@ export class ClasseComponent implements OnInit {
 
 
 
-  getAllClasses()
+  getAllAffectatioTH()
   {
-    this.api.getClasse().subscribe({
+    this.api.getAffectationTH().subscribe({
       next:(res)=>{
   
   
@@ -79,11 +76,11 @@ export class ClasseComponent implements OnInit {
 
 
   
-  deleteClasse(_id:string){
-    this.api.deleteClasse(_id).subscribe({
+  deleteAffectationTH(_id:string){
+    this.api.deleteAffectationTH(_id).subscribe({
       next:(res)=>{
         alert("Deleted successfully");
-        this.getAllClasses();
+        this.getAllAffectatioTH();
       }
     })
   
@@ -99,19 +96,16 @@ export class ClasseComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.getAllClasses();
+    this.getAllAffectatioTH();
 
 
-    this.api.getClasse().subscribe(
-      (data: Classe[]) => {
-         this.listclasse = data;
+    this.api.getAffectationTH().subscribe(
+      (data: AffectationTableauCHComponent[]) => {
+         this.listaffectation = data;
       })
 
 
-      this.api.getDepartement().subscribe(
-        (data: Departement[]) => {
-           this.listdepartement = data;
-        })
+  
 
   }
 
@@ -123,14 +117,14 @@ export class ClasseComponent implements OnInit {
 
 
 
-  editClasse(row :any){
-    this.dialog.open(DialogclasseComponent,{
+  editAffectationTH(row :any){
+    this.dialog.open(DialogaffectationTableauCHComponent,{
       width: '30%',
       data:row
     }).afterClosed().subscribe(val=>{
       if(val ==='update')
       {
-        this.getAllClasses();
+        this.getAllAffectatioTH();
       }
     })
     

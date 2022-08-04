@@ -1,0 +1,189 @@
+
+<div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
+    <div class="container-fluid">
+      <div class="header-body">
+        <!-- Card stats -->
+        <div class="row">
+
+          <div *ngFor="let e of listenseignant"  class="col-xl-3 col-lg-6">
+
+
+
+            <div  class="card card-stats mb-4 mb-xl-0">
+              <div class="card-body">
+                <div class="row">
+                    <div class="col">
+                        <h5 class="card-title text-uppercase text-muted mb-0">Enseignant</h5>
+                        <span class="h2 font-weight-bold mb-0">{{e.nomenseignant}}</span>
+                    </div>
+                  <div class="col-auto">
+                    <div class="icon icon-shape bg-danger text-white rounded-circle shadow">
+                      <i class="fas fa-chart-bar"></i>
+                    </div>
+                  </div>
+                </div>
+                <p class="mt-3 mb-0 text-muted text-sm">
+                  <span class="text-success mr-2"> Email</span>
+                  <span class="text-nowrap">{{e.email}}</span>
+                </p>
+               
+                <p class="mt-3 mb-0 text-muted text-sm">
+                  <span class="text-success mr-2"> password</span>
+                  <span class="text-nowrap">{{e.password}}</span>
+                </p>
+                <p class="mt-3 mb-0 text-muted text-sm">
+                    <span class="text-success mr-2"> competences</span>
+                    <span class="text-nowrap">{{e.nomcompetence}}</span>
+                  </p>
+
+                  <p class="mt-3 mb-0 text-muted text-sm">
+                    <span class="text-success mr-2"> Type Enseignat</span>
+                    <span class="text-nowrap">{{e.type}}</span>
+                  </p>
+
+                  
+              </div>
+            </div>
+
+
+
+          </div>
+
+  
+
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+  
+<br>
+<button class="buttonpos" mat-raised-button color="warn" (click)="openDialog()">Add New Enseignant</button>
+
+
+
+
+
+
+
+
+    <div class="container">
+        <div style="margin-top: 10px;">
+      
+      
+      
+          <mat-form-field appearance="standard">
+            <mat-label>Filter</mat-label>
+            <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>
+          </mat-form-field>
+          
+          <div class="mat-elevation-z8">
+            <table mat-table [dataSource]="dataSource" matSort>
+          
+              <ng-container matColumnDef="nomenseignant">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Enseignant </th>
+                <td mat-cell *matCellDef="let row"> {{row.nomenseignant}} </td>
+              </ng-container>
+          
+              <ng-container matColumnDef="email">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>email </th>
+                <td mat-cell *matCellDef="let row"> {{row.email}}</td>
+              </ng-container>
+
+
+              <ng-container matColumnDef="password">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> password </th>
+                <td mat-cell *matCellDef="let row"> {{row.password}}</td>
+              </ng-container>
+              <ng-container matColumnDef="nomcompetence">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Competences </th>
+                <td mat-cell *matCellDef="let row"> {{row.nomcompetence}}</td>
+              </ng-container>
+          
+              
+
+
+              <ng-container matColumnDef="type">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Type Enseignat </th>
+                <td mat-cell *matCellDef="let row"> {{row.type}}</td>
+              </ng-container>
+
+              
+
+
+
+
+              
+              <ng-container matColumnDef="nbrcrenauxp1">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre Crenaux Periode 1 </th>
+                <td mat-cell *matCellDef="let row"> {{row.nbrcrenauxp1}}</td>
+              </ng-container>
+          
+              
+
+              
+              <ng-container matColumnDef="nbrcrenauxp2">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre Crenaux Periode 2 </th>
+                <td mat-cell *matCellDef="let row"> {{row.nbrcrenauxp2}}</td>
+              </ng-container>
+          
+              
+              
+              <ng-container matColumnDef="nbrcrenauxp3">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre Crenaux Periode 3 </th>
+                <td mat-cell *matCellDef="let row"> {{row.nbrcrenauxp3}}</td>
+              </ng-container>
+          
+              
+              
+              <ng-container matColumnDef="nbrcrenauxp4">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre Crenaux Periode 4 </th>
+                <td mat-cell *matCellDef="let row"> {{row.nbrcrenauxp4}}</td>
+              </ng-container>
+          
+              
+              
+            
+        
+            
+              
+            
+      
+      
+                      <ng-container matColumnDef="actions">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Actions </th>
+                        <td mat-cell *matCellDef="let row"> 
+      
+      
+                                <button mat-icon-button color="primary" (click)="editEnseignant(row)">
+                                  <mat-icon>
+                                    edit
+                                  </mat-icon>
+                                </button>  
+      
+                                
+                                <button mat-icon-button color="warn" (click)="deleteEnseignant(row._id)" >
+                                  <mat-icon>
+                                    delete
+                                  </mat-icon>
+                                </button>
+                        
+                        </td>
+                      </ng-container>
+      
+              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          
+              <tr class="mat-row" *matNoDataRow>
+                <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+              </tr>
+          </table>
+          
+            <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
+          </div>
+          
+      
+        </div>
+      </div>
+        

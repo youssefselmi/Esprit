@@ -37,11 +37,21 @@ import { UpComponent } from './pages/up/up.component';
 import { DialogupComponent } from './pages/dialogup/dialogup.component';
 import { DialogmoduleComponent } from './pages/dialogmodule/dialogmodule.component';
 import { ModuleComponent } from './pages/module/module.component';
+import { ShowclassesComponent } from './pages/showclasses/showclasses.component';
+import { DeveloppementfrontendComponent } from './pages/developpementfrontend/developpementfrontend.component';
+import { DeveloppementbackendComponent } from './pages/developpementbackend/developpementbackend.component';
+import { DeveloppementwebetmobileComponent } from './pages/developpementwebetmobile/developpementwebetmobile.component';
+import { CompetenceComponent } from './pages/competence/competence.component';
+import { DialogcompetenceComponent } from './pages/dialogcompetence/dialogcompetence.component';
+import { EnseignantComponent } from './pages/enseignant/enseignant.component';
+import { DialogenseignantComponent } from './pages/dialogenseignant/dialogenseignant.component';
 import { UPJAVAComponent } from './pages/upjava/upjava.component';
 import { UPWEBComponent } from './pages/upweb/upweb.component';
 import { UPASIComponent } from './pages/upasi/upasi.component';
 import { AffectationComponent } from './pages/affectation/affectation.component';
 import { DialogaffectationComponent } from './pages/dialogaffectation/dialogaffectation.component';
+import { AffectationTableauCHComponent } from './pages/affectation-tableau-ch/affectation-tableau-ch.component';
+import { DialogaffectationTableauCHComponent } from './pages/dialogaffectation-tableau-ch/dialogaffectation-tableau-ch.component';
 
 
 @NgModule({
@@ -81,11 +91,21 @@ import { DialogaffectationComponent } from './pages/dialogaffectation/dialogaffe
     DialogupComponent,
     DialogmoduleComponent,
     ModuleComponent,
+    ShowclassesComponent,
+    DeveloppementfrontendComponent,
+    DeveloppementbackendComponent,
+    DeveloppementwebetmobileComponent,
+    CompetenceComponent,
+    DialogcompetenceComponent,
+    EnseignantComponent,
+    DialogenseignantComponent,
     UPJAVAComponent,
     UPWEBComponent,
     UPASIComponent,
     AffectationComponent,
     DialogaffectationComponent,
+    AffectationTableauCHComponent,
+    DialogaffectationTableauCHComponent,
   ],
   providers: [],
   bootstrap: [AppComponent]

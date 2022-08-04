@@ -19,8 +19,14 @@ export const ROUTES: RouteInfo[] = [
     { path: '/classe', title: 'Niveaux',  icon: 'fa fa-university', class: '' },
     { path: '/up', title: 'Unité Pédagogique',  icon: 'fa fa-university', class: '' },
 
+
     { path: '/module', title: 'Modules',  icon: 'fa fa-university', class: '' },
-    { path: '/affectation', title: 'Affectation des Classes',  icon: 'fa fa-university', class: '' }
+    { path: '/Competence', title: 'Competences',  icon: 'fa fa-university', class: '' },
+    { path: '/Enseignant', title: 'Enseignants',  icon: 'fa fa-university', class: '' },
+    { path: '/affectation', title: 'Affectation des Classes',  icon: 'fa fa-university', class: '' },
+
+    { path: '/affectationTH', title: 'Affectation des Tableaux Horraire',  icon: 'fa fa-university', class: '' },
+
 
 
 ];

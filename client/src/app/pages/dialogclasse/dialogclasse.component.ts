@@ -21,6 +21,7 @@ export class DialogclasseComponent implements OnInit {
   listModules: Module[];
 
 
+
   nommodules = new FormControl('');
 
 
@@ -46,6 +47,8 @@ export class DialogclasseComponent implements OnInit {
       nomdepartement : ['',Validators.required],
       nombreclasses : ['',Validators.required],
       nommodules : ['',Validators.required],
+      semestre : ['',Validators.required],
+      periode : ['',Validators.required],
 
        })
 
@@ -65,6 +68,8 @@ export class DialogclasseComponent implements OnInit {
           this.classeForm.controls['nomdepartement'].setValue(this.editData.nomdepartement);
           this.classeForm.controls['nombreclasses'].setValue(this.editData.nombreclasses);
           this.classeForm.controls['nommodules'].setValue(this.editData.nommodules);
+          this.classeForm.controls['semestre'].setValue(this.editData.semestre);
+          this.classeForm.controls['periode'].setValue(this.editData.periode);
 
     
         }

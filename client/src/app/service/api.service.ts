@@ -14,7 +14,11 @@ export class ApiService {
   REST_APIC: string = 'http://localhost:3001/classe';
   REST_APIU: string = 'http://localhost:3001/up';
   REST_APIM: string = 'http://localhost:3001/module';
+  REST_APIL: string = 'http://localhost:3001/user/users';
+  REST_APICM: string = 'http://localhost:3001/competence';
+  REST_APIE: string = 'http://localhost:3001/enseignant';
   REST_APIA: string = 'http://localhost:3001/affectation';
+  REST_APIAFFECTATIONTABLECHARGEHORRAIRE: string = 'http://localhost:3001/affectationtabchargehorraire';
 
 
 
@@ -147,6 +151,69 @@ export class ApiService {
   }
 
 
+  /**************LOGIN************ */
+  login(email:string, password:string){
+    let API_URL = `${this.REST_APIL}/login`;
+    return this.http.post(API_URL,{
+      email,
+      password
+    },{observe:'response'})
+  }
+  /*********signup ***** */
+  signup(email:string, password:string){
+    let API_URL = `${this.REST_APIL}`;
+    return this.http.post(API_URL,{
+      email,
+      password
+    },{observe:'response'})
+  }
+  /***********competences ****** */
+  getCompetence(){
+    return this.http.get<any>(`${this.REST_APICM}/read`);
+  }
+
+
+  deleteCompetence( _id : string){
+    let API_URL = `${this.REST_APICM}/${_id}`;
+    return this.http.delete<any>(API_URL);
+  }
+
+
+  postCompetence(data : any ){
+    return this.http.post<any>(`${this.REST_APICM}/add`,data);
+  }
+
+
+  putCompetence(data : any, _id : string){
+    let API_URL = `${this.REST_APICM}/update/${_id}`;
+    return this.http.put<any>(API_URL,data);
+
+  }
+  /**************Enseigant ************/
+  getEnseignant(){
+    return this.http.get<any>(`${this.REST_APIE}/read`);
+  }
+
+
+  deleteEnseignant( _id : string){
+    let API_URL = `${this.REST_APIE}/${_id}`;
+    return this.http.delete<any>(API_URL);
+  }
+
+
+  postEnseignant(data : any ){
+    return this.http.post<any>(`${this.REST_APIE}/add`,data);
+  }
+
+
+  putEnseignant(data : any, _id : string){
+    let API_URL = `${this.REST_APIE}/update/${_id}`;
+    return this.http.put<any>(API_URL,data);
+
+  }
+
+
+
 
 
   /////////////////////////// Affectation //////////////////////////
@@ -175,5 +242,38 @@ export class ApiService {
   }
 
 
+
+
+
+  ///////////////////////////////////// Affectation Table Charge Horraire //////////////////////////////
+
+
+  getAffectationTH(){
+    return this.http.get<any>(`${this.REST_APIAFFECTATIONTABLECHARGEHORRAIRE}/read`);
+  }
+
+
+  
+  postAffectationTH(data : any ){
+    return this.http.post<any>(`${this.REST_APIAFFECTATIONTABLECHARGEHORRAIRE}/add`,data);
+  }
+
+  deleteAffectationTH( _id : string){
+    let API_URL = `${this.REST_APIAFFECTATIONTABLECHARGEHORRAIRE}/${_id}`;
+    return this.http.delete<any>(API_URL);
+  }
+
+
+
+  putAffectationTH(data : any, _id : string){
+    let API_URL = `${this.REST_APIAFFECTATIONTABLECHARGEHORRAIRE}/update/${_id}`;
+    return this.http.put<any>(API_URL,data);
+
+  }
+
+
+
+
+  /////////////////////////////////////////////////////////////////////////////////////////////
 
 }

@@ -1,0 +1,224 @@
+import { Component, Inject, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { NotifierService } from 'angular-notifier';
+import { Enseignant } from 'src/app/service/enseignant';
+
+import { ApiService } from 'src/app/service/api.service';
+import { Competence } from 'src/app/service/competence';
+
+
+interface TypeEnseignat {
+  valueen: string;
+  viewValueen: string;
+}
+
+interface NombreCrenaux {
+  value: number;
+  viewValue: number;
+}
+
+
+
+interface NombreCrenaux2 {
+  value2: number;
+  viewValue2: number;
+}
+
+
+interface NombreCrenaux3 {
+  value3: number;
+  viewValue3: number;
+}
+
+
+interface NombreCrenaux4 {
+  value4: number;
+  viewValue4: number;
+}
+
+
+
+@Component({
+  selector: 'app-dialogenseignant',
+  templateUrl: './dialogenseignant.component.html',
+  styleUrls: ['./dialogenseignant.component.scss']
+})
+export class DialogenseignantComponent implements OnInit {
+
+  private readonly notifier: NotifierService;
+
+  enseignantForm !: FormGroup;
+  actionButton : string = "Save";
+  listecompetence: Competence[];
+
+
+
+  selectedValueen: string;
+  selectedValue:  number;
+  selectedValue2: number;
+  selectedValue3: number;
+  selectedValue4: number;
+
+
+  typess: TypeEnseignat[] = [
+    {valueen: 'Normal', viewValueen: 'Normal'},
+    {valueen: 'CUP', viewValueen: 'CUP'},
+    {valueen: 'CSP', viewValueen: 'CSP'},
+    {valueen: 'Chef option', viewValueen: 'Chef option'},
+    {valueen: 'Cordinateur projet', viewValueen: 'Cordinateur projet'},
+    {valueen: 'Chef département', viewValueen: 'Chef département'},
+    {valueen: 'Moniteur', viewValueen: 'Moniteur'}
+  ];
+
+  nombrecrenaux: NombreCrenaux[] = [
+    {value: 0, viewValue: 0},
+    {value: 1, viewValue: 1},
+    {value: 2, viewValue: 2},
+    {value: 3, viewValue: 3},
+    {value: 4, viewValue: 4},
+    {value: 5, viewValue: 5},
+  ];
+
+  nombrecrenaux2: NombreCrenaux2[] = [
+    {value2: 0, viewValue2: 0},
+    {value2: 1, viewValue2: 1},
+    {value2: 2, viewValue2: 2},
+    {value2: 3, viewValue2: 3},
+    {value2: 4, viewValue2: 4},
+    {value2: 5, viewValue2: 5},
+  ];
+
+  nombrecrenaux3: NombreCrenaux3[] = [
+    {value3: 0, viewValue3: 0},
+    {value3: 1, viewValue3: 1},
+    {value3: 2, viewValue3: 2},
+    {value3: 3, viewValue3: 3},
+    {value3: 4, viewValue3: 4},
+    {value3: 5, viewValue3: 5},
+  ];
+
+  nombrecrenaux4: NombreCrenaux4[] = [
+    {value4: 0, viewValue4: 0},
+    {value4: 1, viewValue4: 1},
+    {value4: 2, viewValue4: 2},
+    {value4: 3, viewValue4: 3},
+    {value4: 4, viewValue4: 4},
+    {value4: 5, viewValue4: 5},
+  ];
+
+
+
+
+
+
+
+
+
+  constructor(private formbuilder : FormBuilder, private api : ApiService,notifierService: NotifierService,
+    private dialogRef : MatDialogRef<DialogenseignantComponent>,
+    @Inject(MAT_DIALOG_DATA) public editData : any,
+    ) {
+
+     // this.notifier = notifierService;
+}
+enseignant :Enseignant;
+
+  ngOnInit(): void {
+
+
+
+    this.enseignantForm = this.formbuilder.group({
+      nomenseignant: ['',Validators.required],
+      email: ['',Validators.required],
+    //  password : ['',Validators.required],
+      nomcompetence : ['',Validators.required],
+      type : ['',Validators.required],
+
+      //Chargehorraire : ['',Validators.required],
+
+      nbrcrenauxp1 : [''],
+      nbrcrenauxp2 : [''],
+      nbrcrenauxp3 : [''],
+      nbrcrenauxp4 : [''],
+
+
+
+       })
+
+
+
+
+
+
+       if(this.editData){
+        this.actionButton = "Update"
+        
+              this.enseignantForm.controls['nomenseignant'].setValue(this.editData.nomenseignant);
+              this.enseignantForm.controls['email'].setValue(this.editData.email);
+              this.enseignantForm.controls['password'].setValue(this.editData.password);
+              this.enseignantForm.controls['nomcompetence'].setValue(this.editData.nomcompetence);
+              this.enseignantForm.controls['type'].setValue(this.editData.type);
+           //   this.enseignantForm.controls['Chargehorraire'].setValue(this.editData.Chargehorraire);
+
+              this.enseignantForm.controls['nbrcrenauxp1'].setValue(this.editData.nbrcrenauxp1);
+              this.enseignantForm.controls['nbrcrenauxp2'].setValue(this.editData.nbrcrenauxp2);
+              this.enseignantForm.controls['nbrcrenauxp3'].setValue(this.editData.nbrcrenauxp3);
+              this.enseignantForm.controls['nbrcrenauxp4'].setValue(this.editData.nbrcrenauxp4);
+
+
+        
+            }
+    
+    
+    
+            
+          this.api.getCompetence().subscribe(
+            (data: Competence[]) => {
+               this.listecompetence = data;
+            })
+
+  }
+  addEnseignant(){
+
+    if(!this.editData)
+       {
+          if(this.enseignantForm.valid){
+    
+            this.api.postEnseignant(this.enseignantForm.value).subscribe({
+              next:(res)=>{
+                alert("Enseignant ajouté!!");
+             //   this.notifier.notify('success', 'Classe Addes with Sucess');
+                this.enseignantForm.reset();
+                this.dialogRef.close('save');
+              },
+              error:()=>{
+      
+                alert("Error !!!!")
+      
+              }
+            })
+      
+          }
+       }
+        else{
+         this.updateEnseignant();
+        }
+      
+        
+      }
+      updateEnseignant(){
+
+        this.api.putEnseignant(this.enseignantForm.value, this.editData._id)
+        .subscribe({
+          next:(res)=>{
+            alert("Updated !!");
+            this.enseignantForm.reset();
+            this.dialogRef.close('update');
+          }
+        })
+    
+    
+      }
+
+}

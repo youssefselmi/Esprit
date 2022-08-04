@@ -3,48 +3,45 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { Enseignant } from 'src/app/service/enseignant';
+
+import { Competence } from 'src/app/service/competence';
 import { ApiService } from 'src/app/service/api.service';
-import { Classe } from 'src/app/service/classe';
-import { Departement } from 'src/app/service/departement';
-import { DialogclasseComponent } from '../dialogclasse/dialogclasse.component';
+import { DialogenseignantComponent } from  '../dialogenseignant/dialogenseignant.component';
 
 @Component({
-  selector: 'app-classe',
-  templateUrl: './classe.component.html',
-  styleUrls: ['./classe.component.css']
+  selector: 'app-enseignant',
+  templateUrl: './enseignant.component.html',
+  styleUrls: ['./enseignant.component.scss']
 })
-export class ClasseComponent implements OnInit {
-
-  displayedColumns: string[] = ['nomclasse','nomdepartement' ,'nombreclasses','nommodules','semestre','periode','actions'];
+export class EnseignantComponent implements OnInit { 
+  displayedColumns: string[] = ['nomenseignant', 'email','password' ,'nomcompetence','type','nbrcrenauxp1','nbrcrenauxp2','nbrcrenauxp3','nbrcrenauxp4','actions'];
   dataSource!: MatTableDataSource<any>;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
 
 
-  listclasse: Classe[];
-  listdepartement: Departement[];
+  listenseignant: Enseignant[];
+  listcompetence: Competence[];
 
 
-  constructor( private dialog : MatDialog,private api:ApiService) { }
+  constructor(private dialog : MatDialog,private api:ApiService) { }
+
 
   openDialog() {
-    this.dialog.open(DialogclasseComponent,{
+    this.dialog.open(DialogenseignantComponent,{
 
       width:'30%'
     }).afterClosed().subscribe(val=>{
       if(val === 'save'){
-       this.getAllClasses();
+       this.getAllEnseignants();
       }
     })
   }
-
-
-
-
-  getAllClasses()
+  getAllEnseignants()
   {
-    this.api.getClasse().subscribe({
+    this.api.getEnseignant().subscribe({
       next:(res)=>{
   
   
@@ -64,9 +61,6 @@ export class ClasseComponent implements OnInit {
   }
 
 
-
-
-
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
@@ -77,20 +71,15 @@ export class ClasseComponent implements OnInit {
   }
 
 
-
-  
-  deleteClasse(_id:string){
-    this.api.deleteClasse(_id).subscribe({
+  deleteEnseignant(_id:string){
+    this.api.deleteEnseignant(_id).subscribe({
       next:(res)=>{
         alert("Deleted successfully");
-        this.getAllClasses();
+        this.getAllEnseignants();
       }
     })
   
   }
-  
-  
-
 
 
 
@@ -98,43 +87,31 @@ export class ClasseComponent implements OnInit {
 
 
   ngOnInit(): void {
+    this.getAllEnseignants();
 
-    this.getAllClasses();
 
-
-    this.api.getClasse().subscribe(
-      (data: Classe[]) => {
-         this.listclasse = data;
+    this.api.getEnseignant().subscribe(
+      (data: Enseignant[]) => {
+         this.listenseignant = data;
       })
 
 
-      this.api.getDepartement().subscribe(
-        (data: Departement[]) => {
-           this.listdepartement = data;
+      this.api.getCompetence().subscribe(
+        (data: Competence[]) => {
+           this.listcompetence = data;
         })
-
   }
-
-
-
-  
-
-
-
-
-
-  editClasse(row :any){
-    this.dialog.open(DialogclasseComponent,{
+  editEnseignant(row :any){
+    this.dialog.open(DialogenseignantComponent,{
       width: '30%',
       data:row
     }).afterClosed().subscribe(val=>{
       if(val ==='update')
       {
-        this.getAllClasses();
+        this.getAllEnseignants();
       }
     })
     
   }
-  
 
 }
