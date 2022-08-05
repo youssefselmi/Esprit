@@ -19,6 +19,8 @@ export class ApiService {
   REST_APIE: string = 'http://localhost:3001/enseignant';
 
   REST_APIA: string = 'http://localhost:3001/affectation';
+  REST_APIO: string = 'http://localhost:3001/optup';
+
 
 
 
@@ -237,6 +239,29 @@ export class ApiService {
 
   putAffectation(data : any, _id : string){
     let API_URL = `${this.REST_APIA}/update/${_id}`;
+    return this.http.put<any>(API_URL,data);
+
+  }
+  /************Optup *************/
+  getOptup(){
+    return this.http.get<any>(`${this.REST_APIO}/read`);
+  }
+
+
+  
+  postOptup(data : any ){
+    return this.http.post<any>(`${this.REST_APIO}/add`,data);
+  }
+
+  deleteOptup( _id : string){
+    let API_URL = `${this.REST_APIO}/${_id}`;
+    return this.http.delete<any>(API_URL);
+  }
+
+
+
+  putOptup(data : any, _id : string){
+    let API_URL = `${this.REST_APIO}/update/${_id}`;
     return this.http.put<any>(API_URL,data);
 
   }
