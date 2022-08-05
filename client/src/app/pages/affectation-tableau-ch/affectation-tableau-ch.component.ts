@@ -3,45 +3,45 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { Enseignant } from 'src/app/service/enseignant';
-
-import { Competence } from 'src/app/service/competence';
 import { ApiService } from 'src/app/service/api.service';
-import { DialogenseignantComponent } from  '../dialogenseignant/dialogenseignant.component';
+import { DialogaffectationTableauCHComponent } from '../dialogaffectation-tableau-ch/dialogaffectation-tableau-ch.component';
 
 @Component({
-  selector: 'app-enseignant',
-  templateUrl: './enseignant.component.html',
-  styleUrls: ['./enseignant.component.scss']
+  selector: 'app-affectation-tableau-ch',
+  templateUrl: './affectation-tableau-ch.component.html',
+  styleUrls: ['./affectation-tableau-ch.component.css']
 })
-export class EnseignantComponent implements OnInit { 
-  displayedColumns: string[] = ['nomenseignant', 'email','password' ,'nomcompetence','type','nbrcrenauxp1','nbrcrenauxp2','nbrcrenauxp3','nbrcrenauxp4','actions'];
+export class AffectationTableauCHComponent implements OnInit {
+
+  displayedColumns: string[] = ['nomenseignant','type' ,'chargehorraire','nbrcrenauxp1','nbrcrenauxp2','nbrcrenauxp3','nbrcrenauxp4','p1','p2','p3','p4','actions'];
   dataSource!: MatTableDataSource<any>;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
 
 
-  listenseignant: Enseignant[];
-  listcompetence: Competence[];
+  listaffectation: AffectationTableauCHComponent[];
 
 
-  constructor(private dialog : MatDialog,private api:ApiService) { }
-
+  constructor( private dialog : MatDialog,private api:ApiService) { }
 
   openDialog() {
-    this.dialog.open(DialogenseignantComponent,{
+    this.dialog.open(DialogaffectationTableauCHComponent,{
 
       width:'30%'
     }).afterClosed().subscribe(val=>{
       if(val === 'save'){
-       this.getAllEnseignants();
+       this.getAllAffectatioTH();
       }
     })
   }
-  getAllEnseignants()
+
+
+
+
+  getAllAffectatioTH()
   {
-    this.api.getEnseignant().subscribe({
+    this.api.getAffectationTH().subscribe({
       next:(res)=>{
   
   
@@ -61,6 +61,9 @@ export class EnseignantComponent implements OnInit {
   }
 
 
+
+
+
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
@@ -71,15 +74,20 @@ export class EnseignantComponent implements OnInit {
   }
 
 
-  deleteEnseignant(_id:string){
-    this.api.deleteEnseignant(_id).subscribe({
+
+  
+  deleteAffectationTH(_id:string){
+    this.api.deleteAffectationTH(_id).subscribe({
       next:(res)=>{
         alert("Deleted successfully");
-        this.getAllEnseignants();
+        this.getAllAffectatioTH();
       }
     })
   
   }
+  
+  
+
 
 
 
@@ -87,31 +95,40 @@ export class EnseignantComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.getAllEnseignants();
+
+    this.getAllAffectatioTH();
 
 
-    this.api.getEnseignant().subscribe(
-      (data: Enseignant[]) => {
-         this.listenseignant = data;
+    this.api.getAffectationTH().subscribe(
+      (data: AffectationTableauCHComponent[]) => {
+         this.listaffectation = data;
       })
 
 
-      this.api.getCompetence().subscribe(
-        (data: Competence[]) => {
-           this.listcompetence = data;
-        })
+  
+
   }
-  editEnseignant(row :any){
-    this.dialog.open(DialogenseignantComponent,{
+
+
+
+  
+
+
+
+
+
+  editAffectationTH(row :any){
+    this.dialog.open(DialogaffectationTableauCHComponent,{
       width: '30%',
       data:row
     }).afterClosed().subscribe(val=>{
       if(val ==='update')
       {
-        this.getAllEnseignants();
+        this.getAllAffectatioTH();
       }
     })
     
   }
+  
 
 }

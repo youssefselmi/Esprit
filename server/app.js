@@ -21,6 +21,7 @@ var enseignantRouter =  require('./routes/enseignant');
 var affectationRouter = require('./routes/affectation');
 var optupRouter = require('./routes/optup')
 
+var affectationtabchargehorraireRouter =  require('./routes/AffectationTableauxChargeHorraires');
 
 
 var app = express();
@@ -50,6 +51,7 @@ app.use('/competence', competenceRouter);
 app.use('/enseignant', enseignantRouter);
 app.use('/affectation', affectationRouter);
 app.use('/optup', optupRouter);
+app.use('/affectationtabchargehorraire', affectationtabchargehorraireRouter);
 
 
 

@@ -52,6 +52,8 @@ import { AffectationComponent } from './pages/affectation/affectation.component'
 import { DialogaffectationComponent } from './pages/dialogaffectation/dialogaffectation.component';
 import { OptupComponent } from './pages/optup/optup.component';
 import { DialogoptupComponent } from './pages/dialogoptup/dialogoptup.component';
+import { AffectationTableauCHComponent } from './pages/affectation-tableau-ch/affectation-tableau-ch.component';
+import { DialogaffectationTableauCHComponent } from './pages/dialogaffectation-tableau-ch/dialogaffectation-tableau-ch.component';
 
 
 @NgModule({
@@ -106,6 +108,8 @@ import { DialogoptupComponent } from './pages/dialogoptup/dialogoptup.component'
     DialogaffectationComponent,
     OptupComponent,
     DialogoptupComponent,
+    AffectationTableauCHComponent,
+    DialogaffectationTableauCHComponent,
   ],
   providers: [],
   bootstrap: [AppComponent]

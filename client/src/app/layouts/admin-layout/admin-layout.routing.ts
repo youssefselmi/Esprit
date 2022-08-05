@@ -24,6 +24,7 @@ import { UPWEBComponent } from 'src/app/pages/upweb/upweb.component';
 import { UPASIComponent } from 'src/app/pages/upasi/upasi.component';
 import { AffectationComponent } from 'src/app/pages/affectation/affectation.component';
 import { OptupComponent } from 'src/app/pages/optup/optup.component';
+import { AffectationTableauCHComponent } from 'src/app/pages/affectation-tableau-ch/affectation-tableau-ch.component';
 
 export const AdminLayoutRoutes: Routes = [
     { path: 'dashboard',      component: DashboardComponent },
@@ -50,6 +51,7 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'UP ASI',    component: UPASIComponent},
     { path: 'affectation',    component: AffectationComponent},
     { path: 'optup',    component: OptupComponent},
+    { path: 'affectationTH',    component: AffectationTableauCHComponent}
 
 
 

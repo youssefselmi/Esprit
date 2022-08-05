@@ -25,6 +25,8 @@ export const ROUTES: RouteInfo[] = [
     { path: '/Enseignant', title: 'Enseignants',  icon: 'fa fa-university', class: '' },
     { path: '/optup', title: 'Autre UP',  icon: 'fa fa-university', class: '' },
     { path: '/affectation', title: 'Affectation des Classes',  icon: 'fa fa-university', class: '' },
+    { path: '/affectationTH', title: 'Affectation des Tableaux Horraire',  icon: 'fa fa-university', class: '' },
+
 
 
 ];

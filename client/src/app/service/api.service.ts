@@ -22,6 +22,8 @@ export class ApiService {
   REST_APIO: string = 'http://localhost:3001/optup';
 
 
+  REST_APIAFFECTATIONTABLECHARGEHORRAIRE: string = 'http://localhost:3001/affectationtabchargehorraire';
+
 
 
      // Http Header
@@ -267,5 +269,38 @@ export class ApiService {
   }
 
 
+
+
+
+  ///////////////////////////////////// Affectation Table Charge Horraire //////////////////////////////
+
+
+  getAffectationTH(){
+    return this.http.get<any>(`${this.REST_APIAFFECTATIONTABLECHARGEHORRAIRE}/read`);
+  }
+
+
+  
+  postAffectationTH(data : any ){
+    return this.http.post<any>(`${this.REST_APIAFFECTATIONTABLECHARGEHORRAIRE}/add`,data);
+  }
+
+  deleteAffectationTH( _id : string){
+    let API_URL = `${this.REST_APIAFFECTATIONTABLECHARGEHORRAIRE}/${_id}`;
+    return this.http.delete<any>(API_URL);
+  }
+
+
+
+  putAffectationTH(data : any, _id : string){
+    let API_URL = `${this.REST_APIAFFECTATIONTABLECHARGEHORRAIRE}/update/${_id}`;
+    return this.http.put<any>(API_URL,data);
+
+  }
+
+
+
+
+  /////////////////////////////////////////////////////////////////////////////////////////////
 
 }

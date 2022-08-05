@@ -1,9 +1,9 @@
 <div class="dia">
 
-    <h1 mat-dialog-title >Add New Enseignant</h1>
+    <h1 mat-dialog-title >Add New Affectation Tableau Charge Horraire</h1>
     <div mat-dialog-content  >
     
-     <form #f="ngForm" [formGroup]="enseignantForm" >
+     <form #f="ngForm" [formGroup]="AffectationTHForm" >
     
       <mat-form-field appearance="outline">
         <mat-label>Nom enseignant</mat-label>
@@ -15,60 +15,24 @@
 
 
       <mat-form-field appearance="outline">
-        <mat-label>Email</mat-label>
-        <input formControlName="email"  matInput placeholder="Email">
+        <mat-label>Type</mat-label>
+        <input formControlName="type"  matInput placeholder="type">
       </mat-form-field>
       <br>
 
 
-
-      <!--
-      <mat-form-field appearance="outline">
-        <mat-label>password</mat-label>
-        <input formControlName="password"  matInput placeholder="Password">
-      </mat-form-field>
-      <br>
-
--->
-
-
-
-      
-     <!-- <mat-form-field appearance="outline">
-        <mat-label>Departement Name</mat-label>
-        <input formControlName="nomdepartement"  matInput placeholder="Departement Name">
-      </mat-form-field>-->
-
-
-
-   
-
-  <mat-form-field appearance="outline">
-  <mat-label>Choisir competences</mat-label>
-  <mat-select formControlName="nomcompetence" multiple>
-    <mat-option *ngFor="let c of listecompetence" [value]="c.nomcompetence">
-      {{c.nomcompetence}}
-    </mat-option>
-  </mat-select>
-  </mat-form-field>
-  
-
-      <br>
-
- 
 
       <mat-form-field appearance="outline">
-        <mat-label>Type enseignat</mat-label>
-        <mat-select   formControlName="type">
-          <mat-option *ngFor="let typeen of typess" [value]="typeen.valueen">
-            {{typeen.viewValueen}}
-          </mat-option>
-        </mat-select>
+        <mat-label>Charge horraire</mat-label>
+        <input formControlName="chargehorraire"  matInput placeholder="Charge horraire">
       </mat-form-field>
-
-
-
       <br>
+
+
+
+
+
+
 
       <mat-form-field appearance="outline">
         <mat-label>Nombre Crénaux Periode 1</mat-label>
@@ -123,6 +87,33 @@
 
 
 
+      <mat-form-field appearance="outline">
+        <mat-label>P1</mat-label>
+        <input formControlName="p1"  matInput placeholder="P1">
+      </mat-form-field>
+      <br>
+
+      
+      <mat-form-field appearance="outline">
+        <mat-label>P2</mat-label>
+        <input formControlName="p2"  matInput placeholder="P2">
+      </mat-form-field>
+      <br>
+
+      <mat-form-field appearance="outline">
+        <mat-label>P3</mat-label>
+        <input formControlName="p3"  matInput placeholder="P3">
+      </mat-form-field>
+      <br>
+
+      <mat-form-field appearance="outline">
+        <mat-label>P4</mat-label>
+        <input formControlName="p4"  matInput placeholder="P4">
+      </mat-form-field>
+      <br>
+
+
+
 
 
 
@@ -147,7 +138,7 @@
     <div mat-dialog-action [align]="'end'">
       <button mat-raised-button color="warn" mat-dialog-close>Close</button>
       
-      <button [disabled]="f.invalid" style="margin-left: 8px;" mat-raised-button color="primary" mat-dialog-close (click)="addEnseignant()">{{actionButton}}</button>
+      <button [disabled]="f.invalid" style="margin-left: 8px;" mat-raised-button color="primary" mat-dialog-close (click)="addAffectation()">{{actionButton}}</button>
       
       </div>
     

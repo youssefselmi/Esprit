@@ -84,6 +84,8 @@ router.use(cors());
                     maFonction(addaffectation);
 
 
+                    
+
 
                 //    res.status(201).json(addaffectation);                   
                     console.log(addaffectation);   
