@@ -1,0 +1,44 @@
+<div class="dia">
+
+    <h1 mat-dialog-title >Gerer les Types d'enseignement</h1>
+    <div mat-dialog-content  >
+    
+     <form #f="ngForm" [formGroup]="typeForm" >
+    
+        <mat-form-field appearance="outline">
+            <mat-label>Type d'enseignement</mat-label>
+            <input formControlName="typeenseignement"  matInput placeholder="Nombre Classes">
+          </mat-form-field>
+          <br>
+          <mat-form-field appearance="outline">
+            <mat-label>Nombre d'heures</mat-label>
+            <input formControlName="nbreheures"  matInput placeholder="Nombre Classes">
+          </mat-form-field>
+          <br>
+     
+      
+
+ 
+    
+    
+    
+     </form>
+        
+     <br>
+    </div>
+    
+    
+    
+    
+    
+    
+    
+    <div mat-dialog-action [align]="'end'">
+      <button mat-raised-button color="warn" mat-dialog-close>Close</button>
+      
+      <button [disabled]="f.invalid" style="margin-left: 8px;" mat-raised-button color="primary" mat-dialog-close (click)="addType()">{{actionButton}}</button>
+      
+      </div>
+    
+    
+    </div>

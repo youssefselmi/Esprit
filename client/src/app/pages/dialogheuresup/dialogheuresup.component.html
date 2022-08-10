@@ -1,0 +1,85 @@
+<div class="dia">
+
+    <h1 mat-dialog-title >Gerer les heures sup</h1>
+    <div mat-dialog-content  >
+    
+     <form #f="ngForm" [formGroup]="heuresupForm" >
+    
+        <mat-form-field appearance="outline">
+            <mat-label>Enseignant</mat-label>
+            <mat-select formControlName="nomenseignant">
+              <mat-option *ngFor="let c of listenseignant" [value]="c.nomenseignant">
+                {{c.nomenseignant}}
+              </mat-option>
+            </mat-select>
+            </mat-form-field>
+      <br>
+      <mat-form-field appearance="outline">
+        <mat-label>Periode</mat-label>
+        <mat-select  formControlName="periodes" multiple>
+          <mat-option value="P1" >
+            P1
+          </mat-option>
+          <mat-option value="P2" >
+            P2
+          </mat-option>
+          <mat-option value="P3" >
+            P3
+          </mat-option>
+          <mat-option value="P4" >
+            P4
+          </mat-option>
+        </mat-select>
+        </mat-form-field>
+      <br>
+      
+      <mat-form-field appearance="outline">
+        <mat-label>Nombre heures</mat-label>
+        <input formControlName="nbreheures"  matInput placeholder="Nombre Classes">
+      </mat-form-field>
+      <br>
+      <br>
+
+      
+
+
+
+
+      
+     <!-- <mat-form-field appearance="outline">
+        <mat-label>Departement Name</mat-label>
+        <input formControlName="nomdepartement"  matInput placeholder="Departement Name">
+      </mat-form-field>-->
+
+
+
+   
+
+  
+
+      <br>
+
+ 
+    
+    
+    
+     </form>
+        
+     <br>
+    </div>
+    
+    
+    
+    
+    
+    
+    
+    <div mat-dialog-action [align]="'end'">
+      <button mat-raised-button color="warn" mat-dialog-close>Close</button>
+      
+      <button [disabled]="f.invalid" style="margin-left: 8px;" mat-raised-button color="primary" mat-dialog-close (click)="addHeuresup()">{{actionButton}}</button>
+      
+      </div>
+    
+    
+    </div>

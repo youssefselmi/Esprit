@@ -26,6 +26,9 @@ export const ROUTES: RouteInfo[] = [
     { path: '/optup', title: 'Autre UP',  icon: 'fa fa-university', class: '' },
     { path: '/affectation', title: 'Affectation des Classes',  icon: 'fa fa-university', class: '' },
     { path: '/affectationTH', title: 'Affectation des Tableaux Horraire',  icon: 'fa fa-university', class: '' },
+    { path: '/disponibilite', title: 'Disponibilité des enseignant',  icon: 'fa fa-university', class: '' },
+    { path: '/heuresup', title: 'Ajouté des heures sup',  icon: 'fa fa-university', class: '' },
+    { path: '/type', title: 'Ajouter un type D enseignement',  icon: 'fa fa-university', class: '' },
 
 
 

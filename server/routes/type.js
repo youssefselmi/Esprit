@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 const app = express();
 let cors = require("cors");
-const optup = require('../models/optup');
+const type = require('../models/type');
 router.use(cors());
 
 
@@ -11,16 +11,16 @@ router.use(cors());
 router.post('/add', async(req, res, next) => {  
   
     // console.log(req.body);
-    const {idenseignant,nomenseignant,up,creneaux,periode} = req.body;
+    const {typeenseignement,nbreheure} = req.body;
     
     try {   
-            const addoptup = new optup({
-                idenseignant,nomenseignant,up,creneaux,periode});
+            const addtype = new type({
+                typeenseignement,nbreheure});
     
-            await addoptup.save();
-            res.status(201).json(addoptup);
+            await addtype.save();
+            res.status(201).json(addtype);
  
-            console.log(addoptup);
+            console.log(addtype);
     } catch (error) {
         res.status(422).json(error);
     }
@@ -29,7 +29,7 @@ router.post('/add', async(req, res, next) => {
 
     
 router.get("/read", async(req, res) => {
-    optup.find({}, (err, result) => {
+    type.find({}, (err, result) => {
   
         if (err) {
             res.send(err)
@@ -47,7 +47,7 @@ router.get("/read", async(req, res) => {
   router.delete('/:id', async(req, res) => {
 
     const id = req.params.id;
-    await optup.findByIdAndRemove(id).exec();
+    await type.findByIdAndRemove(id).exec();
     res.send("deleted");
 
 
@@ -61,7 +61,7 @@ router.get("/read", async(req, res) => {
 router.put("/update/:id", async(req, res) => {
     try {
         const { id } = req.params;
-        const updatecomposant = await enseignant.findByIdAndUpdate(id, req.body, {
+        const updatecomposant = await type.findByIdAndUpdate(id, req.body, {
             new: true
         });
 

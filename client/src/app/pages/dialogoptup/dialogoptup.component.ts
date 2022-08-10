@@ -9,6 +9,7 @@ import { ApiService } from 'src/app/service/api.service';
 
 
 
+
 @Component({
   selector: 'app-dialogoptup',
   templateUrl: './dialogoptup.component.html',
@@ -101,7 +102,7 @@ export class DialogoptupComponent implements OnInit {
         
       }
       updateOptup(){
-
+       
         this.api.putOptup(this.optupForm.value, this.editData._id)
         .subscribe({
           next:(res)=>{

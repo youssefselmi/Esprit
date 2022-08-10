@@ -1,0 +1,91 @@
+
+<div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
+    <div class="container-fluid">
+      <div class="header-body">
+        <!-- Card stats -->
+        <div class="row">
+
+        </div>
+      </div>
+    </div>
+  </div>
+  
+<br>
+
+
+
+
+
+
+
+
+
+    <div class="container">
+      <button class="buttonpos" mat-raised-button color="warn" (click)="openDialog()">Ajouter nouveau type</button>
+        <div style="margin-top: 10px;">
+      
+      
+      
+          <mat-form-field appearance="standard">
+            <mat-label>Filter</mat-label>
+            <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>
+          </mat-form-field>
+          
+          <div class="mat-elevation-z8">
+            <table mat-table [dataSource]="dataSource" matSort>
+          
+              <ng-container matColumnDef="typeenseignement">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> type d'enseignement </th>
+                <td mat-cell *matCellDef="let row"> {{row.typeenseignement}} </td>
+              </ng-container>
+          
+              <ng-container matColumnDef="nbreheures">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>nbre heures </th>
+                <td mat-cell *matCellDef="let row"> {{row.nbreheures}}</td>
+              </ng-container>
+
+
+              
+            
+        
+            
+              
+            
+      
+      
+                      <ng-container matColumnDef="actions">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Actions </th>
+                        <td mat-cell *matCellDef="let row"> 
+      
+      
+                                <button mat-icon-button color="primary" (click)="edittype(row)">
+                                  <mat-icon>
+                                    edit
+                                  </mat-icon>
+                                </button>  
+      
+                                
+                                <button mat-icon-button color="warn" (click)="deletetype(row._id)" >
+                                  <mat-icon>
+                                    delete
+                                  </mat-icon>
+                                </button>
+                        
+                        </td>
+                      </ng-container>
+      
+              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          
+              <tr class="mat-row" *matNoDataRow>
+                <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+              </tr>
+          </table>
+          
+            <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
+          </div>
+          
+      
+        </div>
+      </div>
+        

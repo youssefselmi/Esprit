@@ -20,6 +20,9 @@ export class ApiService {
 
   REST_APIA: string = 'http://localhost:3001/affectation';
   REST_APIO: string = 'http://localhost:3001/optup';
+  REST_APID: string = 'http://localhost:3001/disponibilite';
+  REST_APIT: string = 'http://localhost:3001/type';
+  REST_APIH: string = 'http://localhost:3001/heuresup';
 
 
   REST_APIAFFECTATIONTABLECHARGEHORRAIRE: string = 'http://localhost:3001/affectationtabchargehorraire';
@@ -303,4 +306,73 @@ export class ApiService {
 
   /////////////////////////////////////////////////////////////////////////////////////////////
 
+/*************disponibilite ********************************/
+getDisponibilite(){
+  return this.http.get<any>(`${this.REST_APID}/read`);
+}
+
+
+
+postDisponibilite(data : any ){
+  return this.http.post<any>(`${this.REST_APID}/add`,data);
+}
+
+deleteDisponibilite( _id : string){
+  let API_URL = `${this.REST_APID}/${_id}`;
+  return this.http.delete<any>(API_URL);
+}
+
+
+
+putDisponibilite(data : any, _id : string){
+  let API_URL = `${this.REST_APID}/update/${_id}`;
+  return this.http.put<any>(API_URL,data);
+
+}
+/**********************Type ******************/
+getType(){
+  return this.http.get<any>(`${this.REST_APIT}/read`);
+}
+
+
+
+postType(data : any ){
+  return this.http.post<any>(`${this.REST_APIT}/add`,data);
+}
+
+deleteType( _id : string){
+  let API_URL = `${this.REST_APIT}/${_id}`;
+  return this.http.delete<any>(API_URL);
+}
+
+
+
+putType(data : any, _id : string){
+  let API_URL = `${this.REST_APIT}/update/${_id}`;
+  return this.http.put<any>(API_URL,data);
+
+  
+}
+/**************heures sup ********************/
+getHeuresup(){
+  return this.http.get<any>(`${this.REST_APIH}/read`);
+}
+
+
+
+postHeuresup(data : any ){
+  return this.http.post<any>(`${this.REST_APIH}/add`,data);
+}
+
+deleteHeuresup( _id : string){
+  let API_URL = `${this.REST_APIH}/${_id}`;
+  return this.http.delete<any>(API_URL);
+}
+
+
+
+putHeuresup(data : any, _id : string){
+  let API_URL = `${this.REST_APIH}/update/${_id}`;
+  return this.http.put<any>(API_URL,data);
+}
 }

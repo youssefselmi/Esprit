@@ -16,12 +16,14 @@ var upRouter = require('./routes/up');
 var moduleRouter = require('./routes/module');
 var competenceRouter =  require('./routes/competence');
 var enseignantRouter =  require('./routes/enseignant');
-
+var typeRouter= require('./routes/type');
+var heuresupRouter = require('./routes/heuresup');
 
 var affectationRouter = require('./routes/affectation');
 var optupRouter = require('./routes/optup')
 
 var affectationtabchargehorraireRouter =  require('./routes/AffectationTableauxChargeHorraires');
+var disponibiliteRouter =  require('./routes/disponibilite');
 
 
 var app = express();
@@ -52,6 +54,9 @@ app.use('/enseignant', enseignantRouter);
 app.use('/affectation', affectationRouter);
 app.use('/optup', optupRouter);
 app.use('/affectationtabchargehorraire', affectationtabchargehorraireRouter);
+app.use('/disponibilite',disponibiliteRouter);
+app.use('/type',typeRouter);
+app.use('/heuresup', heuresupRouter);
 
 
 

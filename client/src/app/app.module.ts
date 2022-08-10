@@ -54,6 +54,12 @@ import { OptupComponent } from './pages/optup/optup.component';
 import { DialogoptupComponent } from './pages/dialogoptup/dialogoptup.component';
 import { AffectationTableauCHComponent } from './pages/affectation-tableau-ch/affectation-tableau-ch.component';
 import { DialogaffectationTableauCHComponent } from './pages/dialogaffectation-tableau-ch/dialogaffectation-tableau-ch.component';
+import { DisponibiliteComponent } from './pages/disponibilite/disponibilite.component';
+import { DialogdisponibiliteComponent } from './pages/dialogdisponibilite/dialogdisponibilite.component';
+import { HeuresupComponent } from './pages/heuresup/heuresup.component';
+import { DialogheuresupComponent } from './pages/dialogheuresup/dialogheuresup.component';
+import { TypeComponent } from './pages/type/type.component';
+import { DialogtypeComponent } from './pages/dialogtype/dialogtype.component';
 
 
 @NgModule({
@@ -110,6 +116,12 @@ import { DialogaffectationTableauCHComponent } from './pages/dialogaffectation-t
     DialogoptupComponent,
     AffectationTableauCHComponent,
     DialogaffectationTableauCHComponent,
+    DisponibiliteComponent,
+    DialogdisponibiliteComponent,
+    HeuresupComponent,
+    DialogheuresupComponent,
+    TypeComponent,
+    DialogtypeComponent,
   ],
   providers: [],
   bootstrap: [AppComponent]

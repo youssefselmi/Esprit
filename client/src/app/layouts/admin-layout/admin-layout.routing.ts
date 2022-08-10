@@ -25,6 +25,9 @@ import { UPASIComponent } from 'src/app/pages/upasi/upasi.component';
 import { AffectationComponent } from 'src/app/pages/affectation/affectation.component';
 import { OptupComponent } from 'src/app/pages/optup/optup.component';
 import { AffectationTableauCHComponent } from 'src/app/pages/affectation-tableau-ch/affectation-tableau-ch.component';
+import { DisponibiliteComponent } from 'src/app/pages/disponibilite/disponibilite.component';
+import { TypeComponent } from 'src/app/pages/type/type.component';
+import { HeuresupComponent } from 'src/app/pages/heuresup/heuresup.component';
 
 export const AdminLayoutRoutes: Routes = [
     { path: 'dashboard',      component: DashboardComponent },
@@ -51,7 +54,11 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'UP ASI',    component: UPASIComponent},
     { path: 'affectation',    component: AffectationComponent},
     { path: 'optup',    component: OptupComponent},
-    { path: 'affectationTH',    component: AffectationTableauCHComponent}
+    { path: 'affectationTH',    component: AffectationTableauCHComponent},
+    { path: 'disponibilite',    component: DisponibiliteComponent},
+    { path: 'type',    component: TypeComponent},
+    { path: 'heuresup',    component: HeuresupComponent},
+
 
 
 
