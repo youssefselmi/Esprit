@@ -15,7 +15,7 @@ import { Enseignant } from 'src/app/service/enseignant';
   styleUrls: ['./heuresup.component.scss']
 })
 export class HeuresupComponent implements OnInit {
-  displayedColumns: string[] = ['nomenseignant', 'periodes','nbreheures' ,'actions'];
+  displayedColumns: string[] = ['nomenseignant','periodes','nbreheures','actions'];
   dataSource!: MatTableDataSource<any>;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;

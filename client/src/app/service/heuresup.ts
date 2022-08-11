@@ -3,7 +3,7 @@ export class Heuresup {
     idenseignant:String;
     nomenseignant: String;
    
-    periodes :String;
+    periodes :[];
     nbreheures:Number;
     
 

@@ -11,11 +11,11 @@ router.use(cors());
 router.post('/add', async(req, res, next) => {  
   
     // console.log(req.body);
-    const {typeenseignement,nbreheure} = req.body;
+    const {typeenseignement,nbreheures} = req.body;
     
     try {   
             const addtype = new type({
-                typeenseignement,nbreheure});
+                typeenseignement,nbreheures});
     
             await addtype.save();
             res.status(201).json(addtype);

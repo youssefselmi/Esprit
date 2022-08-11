@@ -39,7 +39,7 @@ export class DialogheuresupComponent implements OnInit  {
         
               this.heuresupForm.controls['nomenseignant'].setValue(this.editData.nomenseignant);
               this.heuresupForm.controls['periodes'].setValue(this.editData.periodes);
-              this.heuresupForm.controls['nbreheures'].setValue(this.editData.motif);
+              this.heuresupForm.controls['nbreheures'].setValue(this.editData.nbreheures);
               
     
         
