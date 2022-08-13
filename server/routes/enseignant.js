@@ -37,52 +37,7 @@ router.all('/add', async(req, res, next) => {
                 pass=addenseignant.nomenseignant.substr(0,4)+Math.trunc(num);
                 console.log("passssssssss"+pass);
                 addenseignant.password=pass;
-/////////////////////////////////////////////////////////////////////////////////////////////////
 
-
-                if(addenseignant.type=="Normal"){
-
-                    addenseignant.chargehorraire=189;
-
-                }
-                else if(addenseignant.type=="CUP"){
-
-                    addenseignant.chargehorraire=168;
-
-                }
-
-                if(addenseignant.type=="CSP"){
-
-                    addenseignant.chargehorraire=168;
-
-                }
-
-
-                if(addenseignant.type=="Chef option"){
-
-                    addenseignant.chargehorraire=168;
-
-                }
-
-
-                if(addenseignant.type=="Cordinateur projet"){
-
-                    addenseignant.chargehorraire=168;
-
-                }
-
-
-                if(addenseignant.type=="Chef département"){
-
-                    addenseignant.chargehorraire=126;
-
-                }
-
-                if(addenseignant.type=="Moniteur"){
-
-                    addenseignant.chargehorraire=63;
-
-                }
 
 
 

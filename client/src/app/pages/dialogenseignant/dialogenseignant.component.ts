@@ -6,12 +6,9 @@ import { Enseignant } from 'src/app/service/enseignant';
 
 import { ApiService } from 'src/app/service/api.service';
 import { Competence } from 'src/app/service/competence';
+import { Type } from 'src/app/service/type';
 
 
-interface TypeEnseignat {
-  valueen: string;
-  viewValueen: string;
-}
 
 interface NombreCrenaux {
   value: number;
@@ -51,25 +48,17 @@ export class DialogenseignantComponent implements OnInit {
   enseignantForm !: FormGroup;
   actionButton : string = "Save";
   listecompetence: Competence[];
+  listeType: Type[];
 
 
 
-  selectedValueen: string;
   selectedValue:  number;
   selectedValue2: number;
   selectedValue3: number;
   selectedValue4: number;
 
 
-  typess: TypeEnseignat[] = [
-    {valueen: 'Normal', viewValueen: 'Normal'},
-    {valueen: 'CUP', viewValueen: 'CUP'},
-    {valueen: 'CSP', viewValueen: 'CSP'},
-    {valueen: 'Chef option', viewValueen: 'Chef option'},
-    {valueen: 'Cordinateur projet', viewValueen: 'Cordinateur projet'},
-    {valueen: 'Chef département', viewValueen: 'Chef département'},
-    {valueen: 'Moniteur', viewValueen: 'Moniteur'}
-  ];
+  
 
   nombrecrenaux: NombreCrenaux[] = [
     {value: 0, viewValue: 0},
@@ -159,7 +148,7 @@ enseignant :Enseignant;
               this.enseignantForm.controls['password'].setValue(this.editData.password);
               this.enseignantForm.controls['nomcompetence'].setValue(this.editData.nomcompetence);
               this.enseignantForm.controls['type'].setValue(this.editData.type);
-           //   this.enseignantForm.controls['Chargehorraire'].setValue(this.editData.Chargehorraire);
+              //this.enseignantForm.controls['Chargehorraire'].setValue(this.editData.Chargehorraire);
 
               this.enseignantForm.controls['nbrcrenauxp1'].setValue(this.editData.nbrcrenauxp1);
               this.enseignantForm.controls['nbrcrenauxp2'].setValue(this.editData.nbrcrenauxp2);
@@ -177,6 +166,10 @@ enseignant :Enseignant;
             (data: Competence[]) => {
                this.listecompetence = data;
             })
+            this.api.getType().subscribe(
+              (data: Type[]) => {
+                 this.listeType = data;
+              })
 
   }
   addEnseignant(){

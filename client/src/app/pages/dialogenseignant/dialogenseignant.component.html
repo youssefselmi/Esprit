@@ -58,10 +58,10 @@
  
 
       <mat-form-field appearance="outline">
-        <mat-label>Type enseignat</mat-label>
+        <mat-label>Type enseignant</mat-label>
         <mat-select   formControlName="type">
-          <mat-option *ngFor="let typeen of typess" [value]="typeen.valueen">
-            {{typeen.viewValueen}}
+          <mat-option *ngFor="let typeen of listeType" [value]="typeen.typeenseignement">
+            {{typeen.typeenseignement}}
           </mat-option>
         </mat-select>
       </mat-form-field>
