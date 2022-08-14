@@ -17,6 +17,7 @@ var Classe = new Schema({
     periode:[{
         type: String
     }],
+    nbreenseignant: Number,
 
 
 });

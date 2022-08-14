@@ -5,28 +5,18 @@ let cors = require("cors");
 const enseignant = require('../models/enseignant');
 const affectationcharge = require('../models/affectationTableauxChargeHorraire');
 
-const db = require('../database/mongodb');
-
-const type = require('../models/type');
-
 router.use(cors());
+
 
 
 
 router.all('/add', async(req, res, next) => {  
 
-
-   
      pass:String;
      num:Number;
 
-    let wakt;
-
-
-
-
-
-
+  
+    // console.log(req.body);
     const {nomenseignant,email,password,nomcompetence,type,chargehorraire,nbrcrenauxp1,nbrcrenauxp2,nbrcrenauxp3,nbrcrenauxp4} = req.body;
 
 
@@ -45,6 +35,7 @@ router.all('/add', async(req, res, next) => {
                 ///////////////////// generation mdp ////////////////////
                 num=(Math.random() * (8 - 1) + 1)*100;
                 pass=addenseignant.nomenseignant.substr(0,4)+Math.trunc(num);
+                console.log("passssssssss"+pass);
                 addenseignant.password=pass;
 
 
@@ -58,26 +49,7 @@ router.all('/add', async(req, res, next) => {
 ////////////////////////////////////////
 const nameens= req.body.nomenseignant;
 const typeens= req.body.type;
-//const chargehorraireens =addenseignant.chargehorraire;
-//const chargehorraireens =1200;
-
-
-
-
-/////////////////////////////////////////////////////////////////////////////////////////////////////
-var demo = fretoure(req.body.type);
-console.log("charge horraire   "+ demo );
-
-
-//////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-
-
-
-
-
-
+const chargehorraireens =addenseignant.chargehorraire;
 const nbrcrenauxp1ens= req.body.nbrcrenauxp1;
 const nbrcrenauxp2ens = req.body.nbrcrenauxp2;
 const nbrcrenauxp3ens = req.body.nbrcrenauxp3;
@@ -86,15 +58,13 @@ const p1 = req.body.nbrcrenauxp1*21;
 const p2 = req.body.nbrcrenauxp2*21;
 const p3 = req.body.nbrcrenauxp3*21;
 const p4 = req.body.nbrcrenauxp4*21;
+console.log("charrrrrrrrrrrrrrrrrrrge horraire     "+chargehorraireens);
 
 
-
-const addaffectation = new affectationcharge({nomenseignant:nameens,type:typeens,chargehorraire:demo,nbrcrenauxp1:nbrcrenauxp1ens,nbrcrenauxp2:nbrcrenauxp2ens,nbrcrenauxp3:nbrcrenauxp3ens,nbrcrenauxp4:nbrcrenauxp4ens,p1,p2,p3,p4});        
+const addaffectation = new affectationcharge({nomenseignant:nameens,type:typeens,chargehorraire:chargehorraireens,nbrcrenauxp1:nbrcrenauxp1ens,nbrcrenauxp2:nbrcrenauxp2ens,nbrcrenauxp3:nbrcrenauxp3ens,nbrcrenauxp4:nbrcrenauxp4ens,p1,p2,p3,p4});        
 maFonction(addaffectation);
 console.log(addaffectation);   
 
-
-    
 
 
 
@@ -123,60 +93,11 @@ console.log(addaffectation);
 
 
 
- 
 
 
-    function fretoure (typeens) {
-        var nume;
-        var val;
-         console.log("type de l'enseignant  "+typeens)
-     
-         type.find({}, (err, result) => {
-       
-             if (err) {
-                 console.log(err)
-             }
-             console.log("voici les typees elli mawjoudin lenna "+result)
 
 
-                 
-         for (let index = 0; index < result.length; index++) {
-     
-            if(result[index].typeenseignement==typeens)
-            {
-                  nume= result[index].nbreheures;
-        
-              console.log("hhhhhhhhhhhhhh"+nume);
-
-              val=nume;
-              
-            // return nume;
-            
-
-            }}
-
-     
-            }) 
-
-     
-
-
-            console.log("el valeur "+ val);
-           return val;
-
-
-      
-
-
-     
-     }
-     
     
-
-
-
-
- 
 router.get("/read", async(req, res) => {
     enseignant.find({}, (err, result) => {
   

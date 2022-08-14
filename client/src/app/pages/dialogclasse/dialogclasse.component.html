@@ -66,6 +66,11 @@
           <mat-option *ngFor="let mod of listModules" [value]="mod.nommodule">{{mod.nommodule}}</mat-option>
         </mat-select>
       </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Nombre d'enseignant </mat-label>
+        <input formControlName="nbreenseignant"  matInput placeholder="Nombre d'enseignant">
+      </mat-form-field>
+      <br>
 
 
 

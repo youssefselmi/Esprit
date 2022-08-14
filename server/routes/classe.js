@@ -44,18 +44,19 @@ router.use(cors());
     router.all('/add', async(req, res, next) => {  
   
         // console.log(req.body);
-        const {nomclasse,nomdepartement,nombreclasses,nommodules,semestre,periode} = req.body;
+        const {nomclasse,nomdepartement,nombreclasses,nommodules,semestre,periode,nbreenseignant} = req.body;
         const nbr= req.body.nombreclasses;
         const nom= req.body.nomclasse;
         const dep= req.body.nomdepartement;
         const mod= req.body.nommodules;
         const sem = req.body.semestre;
         const per = req.body.periode;
+        const nbre = req.body.nbreenseignant;
         
         
        
                 const addclasse = new classe({
-                    nomclasse,nomdepartement,nombreclasses,nommodules,semestre,periode});
+                    nomclasse,nomdepartement,nombreclasses,nommodules,semestre,periode,nbreenseignant});
                     
     
                     
@@ -72,6 +73,7 @@ router.use(cors());
                     const nommodule  =mod;
                     const semestre = sem;
                     const periode = per;
+                    
                     for (var i = 0; i < nommodule.length; i++) {
                         
                         const nommodules = nommodule[i];

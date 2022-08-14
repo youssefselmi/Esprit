@@ -8,6 +8,7 @@ export class Classe {
     nommodules!: String[];
     semestre!: String;
     periode! : String[];
+    nbreenseignant: Number;
 
 
 }

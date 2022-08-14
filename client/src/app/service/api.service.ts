@@ -10,22 +10,22 @@ import { Observable, throwError } from 'rxjs';
 })
 export class ApiService {
 
-  REST_API: string = 'http://localhost:3002/departement';
-  REST_APIC: string = 'http://localhost:3002/classe';
-  REST_APIU: string = 'http://localhost:3002/up';
-  REST_APIM: string = 'http://localhost:3002/module';
-  REST_APIL: string = 'http://localhost:3002/user/users';
-  REST_APICM: string = 'http://localhost:3002/competence';
-  REST_APIE: string = 'http://localhost:3002/enseignant';
+  REST_API: string = 'http://localhost:3001/departement';
+  REST_APIC: string = 'http://localhost:3001/classe';
+  REST_APIU: string = 'http://localhost:3001/up';
+  REST_APIM: string = 'http://localhost:3001/module';
+  REST_APIL: string = 'http://localhost:3001/user/users';
+  REST_APICM: string = 'http://localhost:3001/competence';
+  REST_APIE: string = 'http://localhost:3001/enseignant';
 
-  REST_APIA: string = 'http://localhost:3002/affectation';
-  REST_APIO: string = 'http://localhost:3002/optup';
-  REST_APID: string = 'http://localhost:3002/disponibilite';
-  REST_APIT: string = 'http://localhost:3002/type';
-  REST_APIH: string = 'http://localhost:3002/heuresup';
+  REST_APIA: string = 'http://localhost:3001/affectation';
+  REST_APIO: string = 'http://localhost:3001/optup';
+  REST_APID: string = 'http://localhost:3001/disponibilite';
+  REST_APIT: string = 'http://localhost:3001/type';
+  REST_APIH: string = 'http://localhost:3001/heuresup';
 
 
-  REST_APIAFFECTATIONTABLECHARGEHORRAIRE: string = 'http://localhost:3002/affectationtabchargehorraire';
+  REST_APIAFFECTATIONTABLECHARGEHORRAIRE: string = 'http://localhost:3001/affectationtabchargehorraire';
 
 
 
