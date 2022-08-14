@@ -20,8 +20,6 @@ router.all('/add', async(req, res, next) => {
      pass:String;
      num:Number;
 
-    let wakt;
-
 
 
 
@@ -125,10 +123,14 @@ console.log(addaffectation);
 
  
 
+    var val;
+    var val1;
+    var val2;
+    var val3;
+
+    var nume;
 
     function fretoure (typeens) {
-        var nume;
-        var val;
          console.log("type de l'enseignant  "+typeens)
      
          type.find({}, (err, result) => {
@@ -153,16 +155,21 @@ console.log(addaffectation);
             // return nume;
             
 
-            }}
+            }
+            val1=val;
+        }
 
-     
+        val2=val1;
+
             }) 
 
+            val3=val2;
+
      
 
 
-            console.log("el valeur "+ val);
-           return val;
+            console.log("el valeur "+ val3);
+           return val3;
 
 
       
