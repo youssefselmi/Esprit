@@ -15,8 +15,6 @@ router.all('/add', async(req, res, next) => {
      pass:String;
      num:Number;
 
-  
-    // console.log(req.body);
     const {nomenseignant,email,password,nomcompetence,type,chargehorraire,nbrcrenauxp1,nbrcrenauxp2,nbrcrenauxp3,nbrcrenauxp4} = req.body;
 
 
@@ -94,8 +92,62 @@ console.log(addaffectation);
 
 
 
+    var val;
+    var val1;
+    var val2;
+    var val3;
+
+    var nume;
 
 
+    function fretoure (typeens) {
+         console.log("type de l'enseignant  "+typeens)
+     
+         type.find({}, (err, result) => {
+       
+             if (err) {
+                 console.log(err)
+             }
+             console.log("voici les typees elli mawjoudin lenna "+result)
+
+
+                 
+         for (let index = 0; index < result.length; index++) {
+     
+            if(result[index].typeenseignement==typeens)
+            {
+                  nume= result[index].nbreheures;
+        
+              console.log("hhhhhhhhhhhhhh"+nume);
+
+              val=nume;
+              
+            // return nume;
+            
+
+            }
+            val1=val;
+        }
+
+        val2=val1;
+
+            }) 
+
+            val3=val2;
+
+     
+
+
+            console.log("el valeur "+ val3);
+           return val3;
+
+
+      
+
+
+     
+     }
+     
 
     
 router.get("/read", async(req, res) => {
