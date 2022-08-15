@@ -5,9 +5,10 @@ export class Classe {
     nomdepartement!: string;
 
     nombreclasses!: Number;
-    nommodules!: String[];
+    nommodules!: String;
     semestre!: String;
     periode! : String[];
+    nbreenseignant: Number;
 
 
 }

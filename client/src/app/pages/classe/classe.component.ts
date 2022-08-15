@@ -15,7 +15,7 @@ import { DialogclasseComponent } from '../dialogclasse/dialogclasse.component';
 })
 export class ClasseComponent implements OnInit {
 
-  displayedColumns: string[] = ['nomclasse','nomdepartement' ,'nombreclasses','nommodules','semestre','periode','actions'];
+  displayedColumns: string[] = ['nomclasse','nomdepartement' ,'nombreclasses','nommodules','semestre','periode','nbreenseignant','actions'];
   dataSource!: MatTableDataSource<any>;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;

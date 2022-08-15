@@ -11,6 +11,8 @@ var Affectation = new Schema({
     periode:[{
         type: String
     }],
+    nomenseignant1: String,
+    nomenseignant2: String,
 
     
 
