@@ -50,8 +50,8 @@ export class DialogclasseComponent implements OnInit {
       semestre : ['',Validators.required],
       periode : ['',Validators.required],
       nbreenseignant:['',Validators.required],
-      nomenseignant1:['',Validators.required],
-      nomenseignant2:['',Validators.required],
+      nomenseignant1:['',],
+      nomenseignant2:['',],
 
        })
 

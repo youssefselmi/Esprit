@@ -5,6 +5,9 @@ let cors = require("cors");
 const Departement = require('../models/classe');
 const classe = require('../models/classe');
 const affectation = require('../models/affectation');
+const type = require('../models/type');
+const enseignant = require('../models/enseignant');
+const modulee = require('../models/module');
 
 router.use(cors());
 
@@ -52,6 +55,7 @@ router.use(cors());
         const sem = req.body.semestre;
         const per = req.body.periode;
         const nbre = req.body.nbreenseignant;
+        var x = 1;
         
         
        
@@ -63,35 +67,98 @@ router.use(cors());
                 await addclasse.save();
                 res.status(201).json(addclasse);
                 console.log(addclasse);
+                   
 
 
 
 
                 for (let index = 1; index <= nbr; index++) {     
-                    const nomclasse=(nom+" "+  index);
+                    
                     const nomdepartement =dep;
-                    const nommodule  =mod;
+                    const nommodules  =mod;
                     const semestre = sem;
                     const periode = per;
+                    var bool = 0;
+//const nbrc=index;
+                   
                     
-                    for (var i = 0; i < nommodule.length; i++) {
-                        
-                        const nommodules = nommodule[i];
-                        console.log(nommodules);
+                         /***************************** ***************** */
+                enseignant.find({}, (err, result) => {
+       
+                    if (err) {
+                        console.log(err)
+                    }
+                    //console.log("************enseignant***************"+result)
+                    for (let index = 0; index < result.length; index++) { 
+                    modulee.find({}, (err1, result1) => {
+       
+                        if (err1) {
+                            console.log(err1)
+                        }
+                        else{
+                        for (let index1 = 0; index1 < result1.length; index1++) { 
+                            if ((JSON.stringify(result1[index1].nommodule) ===JSON.stringify(mod)) &&(JSON.stringify(result[index].nomcompetence) === JSON.stringify(result1[index1].nomcompetence))&&(bool<nbr)){
+                                console.log("bingooooooo  "+result[index].nomenseignant+" "+result[index].nomcompetence);
+                                const nomenseignant1 =result[index].nomenseignant;
+                                console.log(result[index].id)
+                                
+                                const nomclasse=(nom+" "+x );
+                                
+
+                                bool=bool+++1;
+                                console.log(bool);
+                                const addaffectation = new affectation({nomclasse,nomdepartement,nommodules,semestre,periode,nomenseignant1}); 
+                                maFonction(addaffectation);
+                                
+                                
+                                const value = periode.find(v => v.includes('P1'));
+                                const value1 = periode.find(v => v.includes('P2'));
+
+                                
+                                if((semestre==="S1")&&(value)){
+                                    console.log("P1");
+                                }
+                                if((semestre==="S1")&&(value1)){
+                                    console.log("P2");
+                                    
+                                }
+                                if((semestre==="S2")&&(value)){
+                                    console.log("P3");
+                                    
+                                }
+                                if((semestre==="S2")&&(value1)){
+                                    console.log("P4");
+                                    
+                                }
+                                x=x+++1;
+                                
+                               
+                                maFonction1(result[index].id);
+                               
+                            }
+                           
+                            
+                            }}
+                       });}
                     
-                    const addaffectation = new affectation({nomclasse,nomdepartement,nommodules,semestre,periode});        
+                    
+                    });
+                    /************************************ ******************/
+               
+                    
+                            
                   //  addaffectation.save();
 
 
-                    maFonction(addaffectation);
+                    
 
 
                     
 
 
                 //    res.status(201).json(addaffectation);                   
-                    console.log(addaffectation);   
-                }              
+                    //console.log(addaffectation);   
+                            
                 }
         
            
@@ -113,6 +180,18 @@ router.use(cors());
           function maFonction (addaffectation)
           {
                  addaffectation.save();  
+               // res.status(201).json(addaffectation);                   
+
+          }
+          function maFonction1 (id)
+          {
+            const updatecomposant= enseignant.findByIdAndUpdate(id,{
+                nbrcrenauxp1:2,
+
+
+                new: true
+            });  
+            console.log(updatecomposant);
                // res.status(201).json(addaffectation);                   
 
           }
