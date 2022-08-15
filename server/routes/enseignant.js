@@ -63,7 +63,7 @@ const typeens= req.body.type;
 
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////
-var demo = fretoure(req.body.type);
+var demo = fretoure(typeens);
 console.log("charge horraire   "+ demo );
 
 
@@ -120,25 +120,40 @@ console.log(addaffectation);
     }
 
 
+    function fval (vall)
+    {
+          return vall;                   
+    }
 
- 
+
+
+
+
+
+
+    function fretoure (typeens) {
 
     var val;
     var val1;
     var val2;
     var val3;
+    var nume; 
+    var result;
 
-    var nume;
-
-    function fretoure (typeens) {
+        
+        
          console.log("type de l'enseignant  "+typeens)
      
-         type.find({}, (err, result) => {
+         type.find ({}, (err, result) => {
        
              if (err) {
                  console.log(err)
              }
              console.log("voici les typees elli mawjoudin lenna "+result)
+
+
+
+            })
 
 
                  
@@ -148,35 +163,23 @@ console.log(addaffectation);
             {
                   nume= result[index].nbreheures;
         
-              console.log("hhhhhhhhhhhhhh"+nume);
-
-              val=nume;
-              
-            // return nume;
-            
-
-            }
-            val1=val;
+              console.log("hhhhhhhhhhhhhh"+nume);     
+           //    var demoo = fval(nume);
+             //  console.log("el valeur  mte l fonction "+demoo ) ;
+     
+               //out.println('Hello from JavaScript  '+nume);
+     
+            }    
         }
 
-        val2=val1;
-
-            }) 
-
-            val3=val2;
-
-     
-
-
-            console.log("el valeur "+ val3);
-           return val3;
-
-
+            return nume;                
+        
+        }
       
 
 
      
-     }
+     
      
     
 

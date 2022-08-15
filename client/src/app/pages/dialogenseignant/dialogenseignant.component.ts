@@ -130,9 +130,6 @@ enseignant :Enseignant;
       nbrcrenauxp2 : [''],
       nbrcrenauxp3 : [''],
       nbrcrenauxp4 : [''],
-
-
-
        })
 
 
