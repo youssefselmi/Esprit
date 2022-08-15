@@ -61,39 +61,47 @@ export class DialogenseignantComponent implements OnInit {
   
 
   nombrecrenaux: NombreCrenaux[] = [
-    {value: 0, viewValue: 0},
-    {value: 1, viewValue: 1},
-    {value: 2, viewValue: 2},
+  //  {value: 0, viewValue: 0},
+  //  {value: 1, viewValue: 1},
+  //  {value: 2, viewValue: 2},
     {value: 3, viewValue: 3},
     {value: 4, viewValue: 4},
     {value: 5, viewValue: 5},
+    {value: 6, viewValue: 6},
+
   ];
 
   nombrecrenaux2: NombreCrenaux2[] = [
-    {value2: 0, viewValue2: 0},
-    {value2: 1, viewValue2: 1},
-    {value2: 2, viewValue2: 2},
+  //  {value2: 0, viewValue2: 0},
+   // {value2: 1, viewValue2: 1},
+   // {value2: 2, viewValue2: 2},
     {value2: 3, viewValue2: 3},
     {value2: 4, viewValue2: 4},
     {value2: 5, viewValue2: 5},
+    {value2: 6, viewValue2: 6},
+
   ];
 
   nombrecrenaux3: NombreCrenaux3[] = [
-    {value3: 0, viewValue3: 0},
-    {value3: 1, viewValue3: 1},
-    {value3: 2, viewValue3: 2},
+ //   {value3: 0, viewValue3: 0},
+   // {value3: 1, viewValue3: 1},
+   // {value3: 2, viewValue3: 2},
     {value3: 3, viewValue3: 3},
     {value3: 4, viewValue3: 4},
     {value3: 5, viewValue3: 5},
+    {value3: 6, viewValue3: 6},
+
   ];
 
   nombrecrenaux4: NombreCrenaux4[] = [
-    {value4: 0, viewValue4: 0},
-    {value4: 1, viewValue4: 1},
-    {value4: 2, viewValue4: 2},
+   // {value4: 0, viewValue4: 0},
+   // {value4: 1, viewValue4: 1},
+   // {value4: 2, viewValue4: 2},
     {value4: 3, viewValue4: 3},
     {value4: 4, viewValue4: 4},
     {value4: 5, viewValue4: 5},
+    {value4: 6, viewValue4: 6},
+
   ];
 
 

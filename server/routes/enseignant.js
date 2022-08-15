@@ -153,9 +153,6 @@ console.log(addaffectation);
 
 
 
-            })
-
-
                  
          for (let index = 0; index < result.length; index++) {
      
@@ -171,6 +168,11 @@ console.log(addaffectation);
      
             }    
         }
+
+        
+
+    })
+
 
             return nume;                
         

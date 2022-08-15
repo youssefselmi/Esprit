@@ -97,7 +97,7 @@ router.use(cors());
                         }
                         else{
                         for (let index1 = 0; index1 < result1.length; index1++) { 
-                            if ((JSON.stringify(result1[index1].nommodule) ===JSON.stringify(mod)) &&(JSON.stringify(result[index].nomcompetence) === JSON.stringify(result1[index1].nomcompetence))&&(bool<nbr)){
+                            if ((JSON.stringify(result1[index1].nommodule) ===JSON.stringify(mod)) && (JSON.stringify(result[index].nomcompetence) === JSON.stringify(result1[index1].nomcompetence))&&(bool<nbr)){
                                 console.log("bingooooooo  "+result[index].nomenseignant+" "+result[index].nomcompetence);
                                 const nomenseignant1 =result[index].nomenseignant;
                                 console.log(result[index].id)
@@ -117,23 +117,27 @@ router.use(cors());
                                 
                                 if((semestre==="S1")&&(value)){
                                     console.log("P1");
+                                    var cr="crenaux1";
                                 }
                                 if((semestre==="S1")&&(value1)){
                                     console.log("P2");
-                                    
+                                    var cr="crenaux2";
+
                                 }
                                 if((semestre==="S2")&&(value)){
                                     console.log("P3");
-                                    
+                                    var cr="crenaux3";
+
                                 }
                                 if((semestre==="S2")&&(value1)){
                                     console.log("P4");
-                                    
+                                    var cr="crenaux4";
+
                                 }
                                 x=x+++1;
                                 
                                
-                                maFonction1(result[index].id);
+                               maFonction1(result[index].id,cr);
                                
                             }
                            
@@ -183,18 +187,93 @@ router.use(cors());
                // res.status(201).json(addaffectation);                   
 
           }
-          function maFonction1 (id)
+
+
+          function maFonction1 (id,cr)
           {
-            const updatecomposant= enseignant.findByIdAndUpdate(id,{
+            /*const updatecomposant= enseignant.findByIdAndUpdate(id,{
                 nbrcrenauxp1:2,
 
 
                 new: true
             });  
             console.log(updatecomposant);
-               // res.status(201).json(addaffectation);                   
+               // res.status(201).json(addaffectation);  */
+               
+               
 
-          }
+               enseignant.find ({}, (err, result) => {
+       
+                if (err) {
+                    console.log(err)
+                }
+                
+
+            })
+
+
+              //  console.log("aa"+result);
+
+         /*       for (let index = 0; index < result.length; index++) {
+
+                        if(result[index].id==id )
+                        {
+                            if(cr=="crenaux1")
+                            {
+                               // result[index].nbrcrenauxp1 --;
+                                var pp1=result[index].nbrcrenauxp1 --;
+
+                                console.log("nombre crenaux le9dim1    "+result[index].nbrcrenauxp1)
+                                console.log("nombre crenaux jdid1    "+pp1)
+                            }
+                             else if
+                            (cr=="crenaux2")
+                            {
+                              //  result[index].nbrcrenauxp2  --;
+                                var pp2=result[index].nbrcrenauxp2 --;
+
+                                console.log("nombre crenaux le9dim2    "+result[index].nbrcrenauxp2)
+                                console.log("nombre crenaux jdid2    "+pp2)
+                            }
+
+                            else if
+                            (cr=="crenaux3")
+                            {
+                              //  result[index].nbrcrenauxp3  --;
+
+                                var pp3=result[index].nbrcrenauxp3 --;
+
+                                console.log("nombre crenaux le9dim3  "+result[index].nbrcrenauxp3)
+
+                                console.log("nombre crenaux jdid3  "+pp3)
+                            }
+
+                            else  if
+                            (cr=="crenaux3")
+                            {
+                           // result[index].nbrcrenauxp4 --;
+
+                            var pp4=result[index].nbrcrenauxp4 --;
+
+                            console.log("nombre crenaux le9dim4  "+result[index].nbrcrenauxp4)
+                            console.log("nombre crenaux jdid4    "+pp4)
+                            }
+                        }
+                    
+                }
+
+                console.log("aa"+result);
+
+*/
+
+ 
+
+            }
+   
+   
+   
+
+          
         
         
 
