@@ -8,6 +8,7 @@ const affectation = require('../models/affectation');
 const type = require('../models/type');
 const enseignant = require('../models/enseignant');
 const modulee = require('../models/module');
+const { update } = require('../models/classe');
 
 router.use(cors());
 
@@ -44,7 +45,7 @@ router.use(cors());
 
 
 
-    router.all('/add', async(req, res, next) => {  
+    router.all('/add',(req, res) => {  
   
         // console.log(req.body);
         const {nomclasse,nomdepartement,nombreclasses,nommodules,semestre,periode,nbreenseignant} = req.body;
@@ -64,9 +65,9 @@ router.use(cors());
                     
     
                     
-                await addclasse.save();
+              /*   await addclasse.save();
                 res.status(201).json(addclasse);
-                console.log(addclasse);
+                console.log(addclasse); */
                    
 
 
@@ -107,10 +108,6 @@ router.use(cors());
 
                                 bool=bool+++1;
                                 console.log(bool);
-                                const addaffectation = new affectation({nomclasse,nomdepartement,nommodules,semestre,periode,nomenseignant1}); 
-                                maFonction(addaffectation);
-                                
-                                
                                 const value = periode.find(v => v.includes('P1'));
                                 const value1 = periode.find(v => v.includes('P2'));
 
@@ -131,9 +128,41 @@ router.use(cors());
                                     
                                 }
                                 x=x+++1;
+
                                 
-                               
-                                maFonction1(result[index].id);
+                               /*  try {
+                                    
+                                    console.log('iddddddd'+result[index].id);
+                                    const update = { nbrcrenauxp1: 1 };
+                                    const updatecomposant =  enseignant.findByIdAndUpdate(result[index].id,update);
+                            
+                                    console.log(updatecomposant);
+                                    res.status(201).json(updatecomposant);
+                            
+                                } catch (error) {
+                                    res.status(422).json(error);
+                                } */
+                                //updatee(result[index].nomenseignant,result[index].nbrcrenauxp1-1);
+                                const nbrcrenauxp1 = 1;
+                                enseignant.findOne(
+                                    {"nomenseignant":result[index].nomenseignant},
+                                   
+                                     function(err, element){
+                                    if(err){
+                                        console.log(err);
+                                    }
+                                    else{
+                                     
+                                        updatee(element)
+                                        console.log(element);
+                                    }
+                                   })
+                                const addaffectation = new affectation({nomclasse,nomdepartement,nommodules,semestre,periode,nomenseignant1}); 
+                                maFonction(addaffectation);
+                                
+                                
+                              
+                            
                                
                             }
                            
@@ -166,7 +195,9 @@ router.use(cors());
               
          
      
-        
+                addclasse.save();
+                res.status(201).json(addclasse);
+                console.log(addclasse);
         
         
         
@@ -183,18 +214,24 @@ router.use(cors());
                // res.status(201).json(addaffectation);                   
 
           }
-          function maFonction1 (id)
-          {
-            const updatecomposant= enseignant.findByIdAndUpdate(id,{
-                nbrcrenauxp1:2,
+         function updatee (element){
+           
+            console.log(element.id);
+            element.nbrcrenauxp1 = element.nbrcrenauxp1-1;
+            element.nbrcrenauxp2 = 2;
+            
+            element.save().then((result) => {
+                resolve(result)
+            }).catch((err) => {
+                reject(err)
+            });
+        
+                
 
 
-                new: true
-            });  
-            console.log(updatecomposant);
-               // res.status(201).json(addaffectation);                   
+              
 
-          }
+          }  
         
         
 
