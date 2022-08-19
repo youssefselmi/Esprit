@@ -114,4 +114,29 @@ export class EnseignantComponent implements OnInit {
     
   }
 
+
+
+
+
+  local(){
+
+
+      let initialValue = JSON.parse(localStorage.getItem('types'));
+      console.log(initialValue);
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

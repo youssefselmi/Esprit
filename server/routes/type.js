@@ -21,9 +21,13 @@ router.post('/add', async(req, res, next) => {
             res.status(201).json(addtype);
  
             console.log(addtype);
+
+
+      
     } catch (error) {
         res.status(422).json(error);
     }
+
     })
 
 
@@ -35,6 +39,13 @@ router.get("/read", async(req, res) => {
             res.send(err)
         }
         res.send(result)
+
+
+       // if (typeof localStorage === "undefined" || localStorage === null) {
+            var LocalStorage = require('node-localstorage').LocalStorage;
+             localStorage = new LocalStorage('./scratch');     
+      //  }
+        localStorage.setItem('types', JSON.stringify(result));
 
        // console.log("voici les departements"+result);
     })

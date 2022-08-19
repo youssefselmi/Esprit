@@ -11,9 +11,13 @@ const type = require('../models/type');
 
 router.use(cors());
 
+/*
+
+router.all('/add', async(req, res, next) => {
+    
 
 
-router.all('/add', async(req, res, next) => {  
+    
 
 
    
@@ -57,21 +61,7 @@ router.all('/add', async(req, res, next) => {
 const nameens= req.body.nomenseignant;
 const typeens= req.body.type;
 //const chargehorraireens =addenseignant.chargehorraire;
-//const chargehorraireens =1200;
-
-
-
-
-/////////////////////////////////////////////////////////////////////////////////////////////////////
-var demo = fretoure(typeens);
-console.log("charge horraire   "+ demo );
-
-
-//////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-
-
+const chargehorraireens =1200;
 
 
 
@@ -87,16 +77,47 @@ const p4 = req.body.nbrcrenauxp4*21;
 
 
 
-const addaffectation = new affectationcharge({nomenseignant:nameens,type:typeens,chargehorraire:demo,nbrcrenauxp1:nbrcrenauxp1ens,nbrcrenauxp2:nbrcrenauxp2ens,nbrcrenauxp3:nbrcrenauxp3ens,nbrcrenauxp4:nbrcrenauxp4ens,p1,p2,p3,p4});        
+const addaffectation = new affectationcharge({nomenseignant:nameens,type:typeens,chargehorraire:chargehorraireens,nbrcrenauxp1:nbrcrenauxp1ens,nbrcrenauxp2:nbrcrenauxp2ens,nbrcrenauxp3:nbrcrenauxp3ens,nbrcrenauxp4:nbrcrenauxp4ens,p1,p2,p3,p4});        
 maFonction(addaffectation);
 console.log(addaffectation);   
 
 
-    
-
-
 
 })
+
+*/
+
+
+
+router.post('/add', async(req, res, next) => {  
+  
+     console.log(req.body);
+   const {nomenseignant,email,password,nomcompetence,type,chargehorraire,nbrcrenauxp1,nbrcrenauxp2,nbrcrenauxp3,nbrcrenauxp4} = req.body;
+    
+
+ var num;
+ var pass;
+
+ num=(Math.random() * (8 - 1) + 1)*100;
+ pass=nomenseignant.substr(0,4)+Math.trunc(num);
+
+
+    try {   
+            const adddisponibilite = new enseignant({
+
+
+            
+
+                nomenseignant,email,password:pass,nomcompetence,type,chargehorraire,nbrcrenauxp1,nbrcrenauxp2,nbrcrenauxp3,nbrcrenauxp4});
+    
+            await adddisponibilite.save();
+            res.status(201).json(adddisponibilite);
+ 
+            console.log(adddisponibilite);
+    } catch (error) {
+        res.status(422).json(error);
+    }
+    })
 
 
 
@@ -131,54 +152,75 @@ console.log(addaffectation);
 
 
 
-    function fretoure (typeens) {
+
+
+   /* function fretoure () {
 
     var val;
     var val1;
     var val2;
     var val3;
     var nume; 
-    var result;
 
         
-        
-         console.log("type de l'enseignant  "+typeens)
-     
-         type.find ({}, (err, result) => {
+
+
+  
+ var les=[];
+
+       type.find ({}, (err, result) => {
        
              if (err) {
                  console.log(err)
              }
-             console.log("voici les typees elli mawjoudin lenna "+result)
+
+           //  console.log("eeee==>", result);
+           //  res(les);
+
+for (let index = 0; index < result.length; index++) {
+    les.push(result[index]);
+            
+} 
 
 
+     
+     les.push("ccc");
+     console.log("le tableau les ", les);
+
+
+    })
+
+
+   // console.log("le tableau les ",  express.static);
+
+      
 
                  
-         for (let index = 0; index < result.length; index++) {
+        for (let index = 0; index < result.length; index++) {
      
             if(result[index].typeenseignement==typeens)
             {
                   nume= result[index].nbreheures;
         
-              console.log("hhhhhhhhhhhhhh"+nume);     
-           //    var demoo = fval(nume);
-             //  console.log("el valeur  mte l fonction "+demoo ) ;
-     
-               //out.println('Hello from JavaScript  '+nume);
-     
-            }    
+              console.log("hhhhhhhhhhhhhh"+nume);  
+              
+              let xx=nume;
+              console.log("3asba "+xx);
+
+
+                 
+             }  
         }
 
+
+  
+            //  return nume; 
+
         
+    
+    //}
 
-    })
-
-
-            return nume;                
-        
-        }
-      
-
+*/
 
      
      
