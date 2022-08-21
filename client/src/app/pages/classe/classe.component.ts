@@ -93,13 +93,10 @@ export class ClasseComponent implements OnInit {
       }
     })
 
-
-
-
     ////// supprimer automatiquement les  classes i se trouvent dans ce niveau
     console.log( this.listeaffectation);
     alert("Les classes du niveau "+nom+"  vont etre supprimé automatiquement");
-    
+
     for (let index = 0; index < this.listeaffectation.length; index++) {
 
   

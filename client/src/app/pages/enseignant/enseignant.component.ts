@@ -8,6 +8,7 @@ import { Enseignant } from 'src/app/service/enseignant';
 import { Competence } from 'src/app/service/competence';
 import { ApiService } from 'src/app/service/api.service';
 import { DialogenseignantComponent } from  '../dialogenseignant/dialogenseignant.component';
+import { AffectationTablleHorraire } from 'src/app/service/affectationTableauxChargeHorraire';
 
 @Component({
   selector: 'app-enseignant',
@@ -24,6 +25,7 @@ export class EnseignantComponent implements OnInit {
 
   listenseignant: Enseignant[];
   listcompetence: Competence[];
+  listeaffectationchargehorraire : AffectationTablleHorraire[];
 
 
   constructor(private dialog : MatDialog,private api:ApiService) { }
@@ -71,13 +73,39 @@ export class EnseignantComponent implements OnInit {
   }
 
 
-  deleteEnseignant(_id:string){
+
+
+
+
+
+  deleteEnseignant(_id:string,nom:string){
     this.api.deleteEnseignant(_id).subscribe({
       next:(res)=>{
         alert("Deleted successfully");
         this.getAllEnseignants();
       }
     })
+
+
+
+
+  ////// supprimer automatiquement les  enseignant i se trouvent dans ce tableau
+  console.log( this.listeaffectationchargehorraire);
+  alert("L'enseiganat "+nom+"  var etre supprimé automatiquement avec le tableau de charge horraire");
+
+  for (let index = 0; index < this.listeaffectationchargehorraire.length; index++) {
+
+
+
+    if(this.listeaffectationchargehorraire[index].nomenseignant==nom)
+    {    
+      this.api.deleteAffectationTH(this.listeaffectationchargehorraire[index]._id).subscribe({
+        next:(res)=>{ } })
+
+   } 
+  }
+
+
   
   }
 
@@ -100,7 +128,21 @@ export class EnseignantComponent implements OnInit {
         (data: Competence[]) => {
            this.listcompetence = data;
         })
+
+
+
+
+        
+      this.api.getAffectationTH().subscribe(
+        (data: AffectationTablleHorraire[]) => {
+           this.listeaffectationchargehorraire = data;
+        })
   }
+
+
+
+
+
   editEnseignant(row :any){
     this.dialog.open(DialogenseignantComponent,{
       width: '30%',
