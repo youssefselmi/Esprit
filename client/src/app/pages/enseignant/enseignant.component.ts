@@ -10,6 +10,7 @@ import { ApiService } from 'src/app/service/api.service';
 import { DialogenseignantComponent } from  '../dialogenseignant/dialogenseignant.component';
 import { AffectationTablleHorraire } from 'src/app/service/affectationTableauxChargeHorraire';
 import { Disponibilite } from 'src/app/service/disponibilite';
+import { Heuresup } from 'src/app/service/heuresup';
 
 @Component({
   selector: 'app-enseignant',
@@ -28,6 +29,7 @@ export class EnseignantComponent implements OnInit {
   listcompetence: Competence[];
   listeaffectationchargehorraire : AffectationTablleHorraire[];
   listedisponibilite : Disponibilite[];
+  listeheuresup : Heuresup[];
 
 
   constructor(private dialog : MatDialog,private api:ApiService) { }
@@ -109,7 +111,6 @@ export class EnseignantComponent implements OnInit {
 
 
    ////// supprimer automatiquement les  enseignant i se trouvent dans ce tab disponiblilite
-   console.log( this.listeaffectationchargehorraire);
    alert("L'enseiganat "+nom+"  var etre supprimé automatiquement avec le tableau de disponibilite");
  
    for (let index = 0; index < this.listedisponibilite.length; index++) {
@@ -123,6 +124,27 @@ export class EnseignantComponent implements OnInit {
  
     } 
    }
+
+
+
+
+
+   
+   ////// supprimer automatiquement les  enseignant i se trouvent dans ce tab heure supp
+   alert("L'enseiganat "+nom+"  var etre supprimé automatiquement avec le tableau de heure supp");
+ 
+   for (let index = 0; index < this.listeheuresup.length; index++) {
+ 
+ 
+ 
+     if(this.listeheuresup[index].nomenseignant==nom)
+     {    
+       this.api.deleteHeuresup(this.listeheuresup[index]._id).subscribe({
+         next:(res)=>{ } })
+ 
+    } 
+   }
+ 
  
 
 
@@ -163,6 +185,15 @@ export class EnseignantComponent implements OnInit {
         (data: Disponibilite[]) => {
            this.listedisponibilite = data;
         })
+
+
+        
+        this.api.getHeuresup().subscribe(
+          (data: Heuresup[]) => {
+             this.listeheuresup = data;
+          })
+
+
   }
 
 
