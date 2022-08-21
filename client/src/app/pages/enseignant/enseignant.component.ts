@@ -9,6 +9,7 @@ import { Competence } from 'src/app/service/competence';
 import { ApiService } from 'src/app/service/api.service';
 import { DialogenseignantComponent } from  '../dialogenseignant/dialogenseignant.component';
 import { AffectationTablleHorraire } from 'src/app/service/affectationTableauxChargeHorraire';
+import { Disponibilite } from 'src/app/service/disponibilite';
 
 @Component({
   selector: 'app-enseignant',
@@ -26,6 +27,7 @@ export class EnseignantComponent implements OnInit {
   listenseignant: Enseignant[];
   listcompetence: Competence[];
   listeaffectationchargehorraire : AffectationTablleHorraire[];
+  listedisponibilite : Disponibilite[];
 
 
   constructor(private dialog : MatDialog,private api:ApiService) { }
@@ -106,6 +108,24 @@ export class EnseignantComponent implements OnInit {
   }
 
 
+   ////// supprimer automatiquement les  enseignant i se trouvent dans ce tab disponiblilite
+   console.log( this.listeaffectationchargehorraire);
+   alert("L'enseiganat "+nom+"  var etre supprimé automatiquement avec le tableau de disponibilite");
+ 
+   for (let index = 0; index < this.listedisponibilite.length; index++) {
+ 
+ 
+ 
+     if(this.listedisponibilite[index].nomenseignant==nom)
+     {    
+       this.api.deleteDisponibilite(this.listedisponibilite[index]._id).subscribe({
+         next:(res)=>{ } })
+ 
+    } 
+   }
+ 
+
+
   
   }
 
@@ -136,6 +156,12 @@ export class EnseignantComponent implements OnInit {
       this.api.getAffectationTH().subscribe(
         (data: AffectationTablleHorraire[]) => {
            this.listeaffectationchargehorraire = data;
+        })
+
+            
+      this.api.getDisponibilite().subscribe(
+        (data: Disponibilite[]) => {
+           this.listedisponibilite = data;
         })
   }
 
