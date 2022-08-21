@@ -135,6 +135,19 @@ addClasse(){
 
 
 
+
+
+
+
+
+
+
+
+
+    
+
+
+
     updateClasse(){
 
       this.api.putClasse(this.classeForm.value, this.editData._id)
