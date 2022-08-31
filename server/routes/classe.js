@@ -73,6 +73,26 @@ router.use(cors());
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                 for (let index = 1; index <= nbr; index++) {     
                     
                     const nomdepartement =dep;
@@ -80,9 +100,7 @@ router.use(cors());
                     const semestre = sem;
                     const periode = per;
                     var bool = 0;
-//const nbrc=index;
-                   
-                    
+                              
                          /***************************** ***************** */
                 enseignant.find({}, (err, result) => {
        
@@ -100,7 +118,23 @@ router.use(cors());
                         for (let index1 = 0; index1 < result1.length; index1++) { 
                             if ((JSON.stringify(result1[index1].nommodule) ===JSON.stringify(mod)) && (JSON.stringify(result[index].nomcompetence) === JSON.stringify(result1[index1].nomcompetence))&&(bool<nbr)){
                                 console.log("bingooooooo  "+result[index].nomenseignant+" "+result[index].nomcompetence);
+
+
+
                                 const nomenseignant1 =result[index].nomenseignant;
+
+
+         ///////////////// boucle pour affectation d 2 eme enseignant ////////////   
+                     for (let iindex = 0; iindex < result.length; iindex++) { 
+                      for (let iindex1 = 0; iindex1 < result1.length; iindex1++) { 
+                           if ((JSON.stringify(result1[iindex1].nommodule) ===JSON.stringify(mod)) && (JSON.stringify(result[iindex].nomcompetence) === JSON.stringify(result1[iindex1].nomcompetence))&&(bool<nbr)){
+                             if(result[iindex].nomenseignant != nomenseignant1){
+
+                         
+
+
+
+                   
                                 console.log(result[index].id)
                                 
                                 const nomclasse=(nom+" "+x );
@@ -135,7 +169,7 @@ router.use(cors());
 
                                 
                                
-                               maFonction1(result[index].id,cr);
+                            //   maFonction1(result[index].id,cr);
                                /*  try {
                                     
                                     console.log('iddddddd'+result[index].id);
@@ -149,21 +183,42 @@ router.use(cors());
                                     res.status(422).json(error);
                                 } */
                                 //updatee(result[index].nomenseignant,result[index].nbrcrenauxp1-1);
+
+
                                 const nbrcrenauxp1 = 1;
                                 enseignant.findOne(
                                     {"nomenseignant":result[index].nomenseignant},
                                    
-                                     function(err, element){
-                                    if(err){
-                                        console.log(err);
-                                    }
+                                    
+                                     function( err,element){
+                                       // console.log("aaaaaaaaaaa   "+element);
+
+
+                                        if(err){
+                                            console.log(err);
+                                        }
+                                 
                                     else{
                                      
                                         updatee(element)
                                         console.log(element);
-                                    }
+                                   }
                                    })
-                                const addaffectation = new affectation({nomclasse,nomdepartement,nommodules,semestre,periode,nomenseignant1}); 
+
+
+
+
+
+
+
+                                   
+                                   if(nbre==2){
+                                    var nomenseignant2 =result[iindex].nomenseignant;
+                                   }
+                                   
+      
+                   
+                                const addaffectation = new affectation({nomclasse,nomdepartement,nommodules,semestre,periode,nomenseignant1,nomenseignant2}); 
                                 maFonction(addaffectation);
                                 
                                 
@@ -174,40 +229,47 @@ router.use(cors());
                            
                             
                             }}
+
+                        ////////////// fermeture de la boucle de 2 eme enseignant //////////////   
+                        }}}}
+
+
+
                        });}
                     
                     
                     });
-                    /************************************ ******************/
-               
-                    
-                            
-                  //  addaffectation.save();
-
-
-                    
-
-
-                    
-
-
-                //    res.status(201).json(addaffectation);                   
-                    //console.log(addaffectation);   
+                   
                             
                 }
         
            
                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                
               
-         
-     
+
                 addclasse.save();
                 res.status(201).json(addclasse);
                 console.log(addclasse);
-        
-        
-        
-    
+
           })
 
 
@@ -222,87 +284,7 @@ router.use(cors());
           }
 
 
-          function maFonction1 (id,cr)
-          {
-            /*const updatecomposant= enseignant.findByIdAndUpdate(id,{
-                nbrcrenauxp1:2,
-
-
-                new: true
-            });  
-            console.log(updatecomposant);
-               // res.status(201).json(addaffectation);  */
-               
-               
-
-               enseignant.find ({}, (err, result) => {
-       
-                if (err) {
-                    console.log(err)
-                }
-                
-
-            })
-
-
-              //  console.log("aa"+result);
-
-         /*       for (let index = 0; index < result.length; index++) {
-
-                        if(result[index].id==id )
-                        {
-                            if(cr=="crenaux1")
-                            {
-                               // result[index].nbrcrenauxp1 --;
-                                var pp1=result[index].nbrcrenauxp1 --;
-
-                                console.log("nombre crenaux le9dim1    "+result[index].nbrcrenauxp1)
-                                console.log("nombre crenaux jdid1    "+pp1)
-                            }
-                             else if
-                            (cr=="crenaux2")
-                            {
-                              //  result[index].nbrcrenauxp2  --;
-                                var pp2=result[index].nbrcrenauxp2 --;
-
-                                console.log("nombre crenaux le9dim2    "+result[index].nbrcrenauxp2)
-                                console.log("nombre crenaux jdid2    "+pp2)
-                            }
-
-                            else if
-                            (cr=="crenaux3")
-                            {
-                              //  result[index].nbrcrenauxp3  --;
-
-                                var pp3=result[index].nbrcrenauxp3 --;
-
-                                console.log("nombre crenaux le9dim3  "+result[index].nbrcrenauxp3)
-
-                                console.log("nombre crenaux jdid3  "+pp3)
-                            }
-
-                            else  if
-                            (cr=="crenaux3")
-                            {
-                           // result[index].nbrcrenauxp4 --;
-
-                            var pp4=result[index].nbrcrenauxp4 --;
-
-                            console.log("nombre crenaux le9dim4  "+result[index].nbrcrenauxp4)
-                            console.log("nombre crenaux jdid4    "+pp4)
-                            }
-                        }
-                    
-                }
-
-                console.log("aa"+result);
-
-*/
-
- 
-
-            }
-   
+          
    
    
 
@@ -311,13 +293,15 @@ router.use(cors());
            
             console.log(element.id);
             element.nbrcrenauxp1 = element.nbrcrenauxp1-1;
-            element.nbrcrenauxp2 = 2;
+         //   element.nbrcrenauxp2 = 2;
             
-            element.save().then((result) => {
+            element.save();
+            
+            /*.then((result) => {
                 resolve(result)
             }).catch((err) => {
                 reject(err)
-            });
+            });*/
         
                 
 
