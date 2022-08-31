@@ -8,6 +8,8 @@ const affectation = require('../models/affectation');
 const type = require('../models/type');
 const enseignant = require('../models/enseignant');
 const modulee = require('../models/module');
+const disponibilite = require('../models/disponibilite');
+
 const { update } = require('../models/classe');
 
 router.use(cors());
@@ -107,6 +109,9 @@ router.use(cors());
                     if (err) {
                         console.log(err)
                     }
+
+
+
                     //console.log("************enseignant***************"+result)
                     for (let index = 0; index < result.length; index++) { 
                     modulee.find({}, (err1, result1) => {
@@ -116,18 +121,17 @@ router.use(cors());
                         }
                         else{
                         for (let index1 = 0; index1 < result1.length; index1++) { 
-                            if ((JSON.stringify(result1[index1].nommodule) ===JSON.stringify(mod)) && (JSON.stringify(result[index].nomcompetence) === JSON.stringify(result1[index1].nomcompetence))&&(bool<nbr)){
+                            if ((JSON.stringify(result1[index1].nommodule) ===JSON.stringify(mod)) && (JSON.stringify(result[index].nomcompetence) === JSON.stringify(result1[index1].nomcompetence)) && (JSON.stringify(result[index].disponibilite) != 0 ) &&(bool<nbr)){
                                 console.log("bingooooooo  "+result[index].nomenseignant+" "+result[index].nomcompetence);
+                                var nomenseignant1 =result[index].nomenseignant;
 
 
 
-                                const nomenseignant1 =result[index].nomenseignant;
-
-
+                                
          ///////////////// boucle pour affectation d 2 eme enseignant ////////////   
                      for (let iindex = 0; iindex < result.length; iindex++) { 
                       for (let iindex1 = 0; iindex1 < result1.length; iindex1++) { 
-                           if ((JSON.stringify(result1[iindex1].nommodule) ===JSON.stringify(mod)) && (JSON.stringify(result[iindex].nomcompetence) === JSON.stringify(result1[iindex1].nomcompetence))&&(bool<nbr)){
+                           if ((JSON.stringify(result1[iindex1].nommodule) ===JSON.stringify(mod)) && (JSON.stringify(result[iindex].nomcompetence) === JSON.stringify(result1[iindex1].nomcompetence)) && (JSON.stringify(result[iindex].disponibilite) != 0 )&&(bool<nbr)){
                              if(result[iindex].nomenseignant != nomenseignant1){
 
                          
@@ -215,6 +219,19 @@ router.use(cors());
                                    if(nbre==2){
                                     var nomenseignant2 =result[iindex].nomenseignant;
                                    }
+
+
+                               /* disponibilite.find({}, (errdispo, resultdispo) => {
+                                    if (errdispo) { console.log(errdispo) }
+
+                                    for (let i = 0; i < resultdispo.length; i++) {
+                                        
+                                        if(resultdispo[i].nomenseignant == nomenseignant2 &&  resultdispo[i].nomenseignant == nomenseignant1){
+                                            nomenseignant1="";
+                                            nomenseignant2="";
+
+                                        }}         
+                                })*/
                                    
       
                    

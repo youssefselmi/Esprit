@@ -18,6 +18,7 @@ var Enseignant = new Schema({
     nbrcrenauxp2: Number,
     nbrcrenauxp3: Number,
     nbrcrenauxp4: Number,
+    disponibilite: Number,
 
 
      

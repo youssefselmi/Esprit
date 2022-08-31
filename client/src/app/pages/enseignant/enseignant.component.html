@@ -143,7 +143,11 @@
               </ng-container>
           
               
-              
+              <ng-container matColumnDef="disponibilite">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Disponibilite </th>
+                <td mat-cell *matCellDef="let row"> {{row.disponibilite}}</td>
+              </ng-container>
+          
             
         
             
