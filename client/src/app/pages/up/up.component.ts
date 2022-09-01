@@ -82,7 +82,7 @@ export class UpComponent implements OnInit {
       }
     })
 
-
+ 
  ////// supprimer automatiquement les modules qui se trouvne t dans l 'up  déja supprimé 
     console.log( this.listemodules);
     for (let index = 0; index < this.listemodules.length; index++) {

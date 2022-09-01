@@ -8,6 +8,9 @@ import { Enseignant } from 'src/app/service/enseignant';
 import { Competence } from 'src/app/service/competence';
 import { ApiService } from 'src/app/service/api.service';
 import { DialogenseignantComponent } from  '../dialogenseignant/dialogenseignant.component';
+import { AffectationTablleHorraire } from 'src/app/service/affectationTableauxChargeHorraire';
+import { Disponibilite } from 'src/app/service/disponibilite';
+import { Heuresup } from 'src/app/service/heuresup';
 
 @Component({
   selector: 'app-enseignant',
@@ -15,7 +18,7 @@ import { DialogenseignantComponent } from  '../dialogenseignant/dialogenseignant
   styleUrls: ['./enseignant.component.scss']
 })
 export class EnseignantComponent implements OnInit { 
-  displayedColumns: string[] = ['nomenseignant', 'email','password' ,'nomcompetence','type','nbrcrenauxp1','nbrcrenauxp2','nbrcrenauxp3','nbrcrenauxp4','actions'];
+  displayedColumns: string[] = ['nomenseignant', 'email','password' ,'nomcompetence','type','nbrcrenauxp1','nbrcrenauxp2','nbrcrenauxp3','nbrcrenauxp4','disponibilite','actions'];
   dataSource!: MatTableDataSource<any>;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
@@ -24,6 +27,9 @@ export class EnseignantComponent implements OnInit {
 
   listenseignant: Enseignant[];
   listcompetence: Competence[];
+  listeaffectationchargehorraire : AffectationTablleHorraire[];
+  listedisponibilite : Disponibilite[];
+  listeheuresup : Heuresup[];
 
 
   constructor(private dialog : MatDialog,private api:ApiService) { }
@@ -71,13 +77,77 @@ export class EnseignantComponent implements OnInit {
   }
 
 
-  deleteEnseignant(_id:string){
+
+
+
+
+
+  deleteEnseignant(_id:string,nom:string){
     this.api.deleteEnseignant(_id).subscribe({
       next:(res)=>{
         alert("Deleted successfully");
         this.getAllEnseignants();
       }
     })
+
+
+
+
+  ////// supprimer automatiquement les  enseignant i se trouvent dans ce tableau
+  console.log( this.listeaffectationchargehorraire);
+  alert("L'enseiganat "+nom+"  var etre supprimé automatiquement avec le tableau de charge horraire");
+
+  for (let index = 0; index < this.listeaffectationchargehorraire.length; index++) {
+
+
+
+    if(this.listeaffectationchargehorraire[index].nomenseignant==nom)
+    {    
+      this.api.deleteAffectationTH(this.listeaffectationchargehorraire[index]._id).subscribe({
+        next:(res)=>{ } })
+
+   } 
+  }
+
+
+   ////// supprimer automatiquement les  enseignant i se trouvent dans ce tab disponiblilite
+   alert("L'enseiganat "+nom+"  var etre supprimé automatiquement avec le tableau de disponibilite");
+ 
+   for (let index = 0; index < this.listedisponibilite.length; index++) {
+ 
+ 
+ 
+     if(this.listedisponibilite[index].nomenseignant==nom)
+     {    
+       this.api.deleteDisponibilite(this.listedisponibilite[index]._id).subscribe({
+         next:(res)=>{ } })
+ 
+    } 
+   }
+
+
+
+
+
+   
+   ////// supprimer automatiquement les  enseignant i se trouvent dans ce tab heure supp
+   alert("L'enseiganat "+nom+"  var etre supprimé automatiquement avec le tableau de heure supp");
+ 
+   for (let index = 0; index < this.listeheuresup.length; index++) {
+ 
+ 
+ 
+     if(this.listeheuresup[index].nomenseignant==nom)
+     {    
+       this.api.deleteHeuresup(this.listeheuresup[index]._id).subscribe({
+         next:(res)=>{ } })
+ 
+    } 
+   }
+ 
+ 
+
+
   
   }
 
@@ -100,7 +170,36 @@ export class EnseignantComponent implements OnInit {
         (data: Competence[]) => {
            this.listcompetence = data;
         })
+
+
+
+
+        
+      this.api.getAffectationTH().subscribe(
+        (data: AffectationTablleHorraire[]) => {
+           this.listeaffectationchargehorraire = data;
+        })
+
+            
+      this.api.getDisponibilite().subscribe(
+        (data: Disponibilite[]) => {
+           this.listedisponibilite = data;
+        })
+
+
+        
+        this.api.getHeuresup().subscribe(
+          (data: Heuresup[]) => {
+             this.listeheuresup = data;
+          })
+
+
   }
+
+
+
+
+
   editEnseignant(row :any){
     this.dialog.open(DialogenseignantComponent,{
       width: '30%',
@@ -113,5 +212,30 @@ export class EnseignantComponent implements OnInit {
     })
     
   }
+
+
+
+
+
+  local(){
+
+
+      let initialValue = JSON.parse(localStorage.getItem('types'));
+      console.log(initialValue);
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 }

@@ -3,6 +3,8 @@ var router = express.Router();
 const app = express();
 let cors = require("cors");
 const disponibilite = require('../models/disponibilite');
+const enseignant = require('../models/enseignant');
+
 router.use(cors());
 
 
@@ -24,7 +26,43 @@ router.post('/add', async(req, res, next) => {
     } catch (error) {
         res.status(422).json(error);
     }
+
+
+
+
+    enseignant.findOne(
+        {"nomenseignant":nomenseignant},
+       
+        
+         function( err,element){
+
+
+            if(err){
+                console.log(err);
+            }
+     
+        else{
+         
+            updatee(element)
+            console.log(element);
+       }
+       })
+
+
+
     })
+
+
+
+    function updatee (element){
+           
+        console.log(element.id);
+        element.disponibilite = 0;
+        
+        element.save();
+        
+      }  
+    
 
 
     
@@ -51,7 +89,31 @@ router.get("/read", async(req, res) => {
     res.send("deleted");
 
 
+
+
+
+
+
+
+
 });
+
+
+
+function updateens (element){
+           
+    console.log(element.id);
+    element.disponibilite = 1; 
+    element.save();
+    
+  }  
+
+
+
+
+
+
+
 
 
 

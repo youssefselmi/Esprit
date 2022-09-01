@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { Affectation } from 'src/app/service/affectation';
 import { ApiService } from 'src/app/service/api.service';
 import { Classe } from 'src/app/service/classe';
 import { Departement } from 'src/app/service/departement';
@@ -24,6 +25,7 @@ export class ClasseComponent implements OnInit {
 
   listclasse: Classe[];
   listdepartement: Departement[];
+  listeaffectation : Affectation[];
 
 
   constructor( private dialog : MatDialog,private api:ApiService) { }
@@ -79,13 +81,33 @@ export class ClasseComponent implements OnInit {
 
 
   
-  deleteClasse(_id:string){
+  deleteClasse(_id:string,nom:string){
+
+    alert(nom);
+    ch:String;
+    
     this.api.deleteClasse(_id).subscribe({
       next:(res)=>{
         alert("Deleted successfully");
         this.getAllClasses();
       }
     })
+
+    ////// supprimer automatiquement les  classes i se trouvent dans ce niveau
+    console.log( this.listeaffectation);
+    alert("Les classes du niveau "+nom+"  vont etre supprimé automatiquement");
+
+    for (let index = 0; index < this.listeaffectation.length; index++) {
+
+  
+
+      if(this.listeaffectation[index].nomclasse.substring(0,nom.length)==nom)
+      {    
+        this.api.deleteAffectation(this.listeaffectation[index]._id).subscribe({
+          next:(res)=>{ } })
+
+     } 
+    }
   
   }
   
@@ -113,7 +135,19 @@ export class ClasseComponent implements OnInit {
            this.listdepartement = data;
         })
 
-  }
+        
+        this.api.getAffectation().subscribe(
+          (data: Affectation[]) => {
+             this.listeaffectation = data;
+          })
+    
+
+
+
+      }
+    
+
+  
 
 
 
