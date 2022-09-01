@@ -45,7 +45,7 @@ router.use(cors());
 
 
 
-    router.all('/add',(req, res) => {  
+    router.all('/add',async(req, res,next) => {  
   
         // console.log(req.body);
         const {nomclasse,nomdepartement,nombreclasses,nommodules,semestre,periode,nbreenseignant} = req.body;
@@ -57,6 +57,7 @@ router.use(cors());
         const per = req.body.periode;
         const nbre = req.body.nbreenseignant;
         var x = 1;
+        var enseignants=[];
         
         
        
@@ -80,6 +81,7 @@ router.use(cors());
                     const semestre = sem;
                     const periode = per;
                     var bool = 0;
+                  
 //const nbrc=index;
                    
                     
@@ -88,10 +90,10 @@ router.use(cors());
        
                     if (err) {
                         console.log(err)
-                    }
+                    }else{
                     //console.log("************enseignant***************"+result)
                     for (let index = 0; index < result.length; index++) { 
-                    modulee.find({}, (err1, result1) => {
+                     modulee.find({}, (err1, result1) => {
        
                         if (err1) {
                             console.log(err1)
@@ -108,7 +110,7 @@ router.use(cors());
 
                                 bool=bool+++1;
                                 console.log(bool);
-                                const value = periode.find(v => v.includes('P1'));
+                                  const value = periode.find(v => v.includes('P1'));
                                 const value1 = periode.find(v => v.includes('P2'));
 
                                 
@@ -143,9 +145,9 @@ router.use(cors());
                                     res.status(422).json(error);
                                 } */
                                 //updatee(result[index].nomenseignant,result[index].nbrcrenauxp1-1);
-                                const nbrcrenauxp1 = 1;
-                                enseignant.findOne(
-                                    {"nomenseignant":result[index].nomenseignant},
+                            
+                            /*     enseignant.findOne(
+                                    {"nomenseignant":"arij manjouri"},
                                    
                                      function(err, element){
                                     if(err){
@@ -156,9 +158,78 @@ router.use(cors());
                                         updatee(element)
                                         console.log(element);
                                     }
-                                   })
+                                   }, {new: true,
+                                   upsert: true,
+                                   rawResult: true }) */
+                                   
+                                    /* try {
+                                       console.log(result[index].id);
+                                         console.log(id); 
+                                        console.log("pffff")
+                                        const nbrcrenauxp1=66;
+                                        console.log(nbrcrenauxp1);
+                                        const updatecomposant =  enseignant.findByIdAndUpdate(result[index].id, nbrcrenauxp1, {
+                                            new: true
+                                        });
+                                
+                                        console.log(updatecomposant);
+                                        res.status(201).json(updatecomposant);
+                                
+                                    } catch (error) {
+                                        res.status(422).json(error);
+                                    }
+                                 */
+                                
+                               
                                 const addaffectation = new affectation({nomclasse,nomdepartement,nommodules,semestre,periode,nomenseignant1}); 
                                 maFonction(addaffectation);
+                                
+                               const ide=result[index].id;
+                               var x=result[index].nbrcrenauxp1-1;
+                               console.log(x);
+                               var data={nbrcrenauxp1:x};
+                               
+                        
+                              enseignant.updateMany({_id:ide}, 
+                                    data, function (err, docs) {
+                                    if (err){
+                                        console.log(err)
+                                    }
+                                    else{
+                                        console.log("Updated Docs : ", docs);
+                                    }
+                                }); 
+                               /* console.log( enseignant.Updat(result[index].id,data)); */
+                               // updatee(result[index].id,result[index].nbrcrenauxp1)
+                             /*   enseignants.push( result[index].id);
+                               if (bool==nbr){ 
+                                var nbre=enseignants.length;
+                                for(var i=0;i<nbre;i++){
+                                    const ide=enseignants[i];
+                                    var nbrc=1;    
+                                for(var j=i+1;j<nbre;j++){
+                                    if (enseignants[j]==enseignants[i]){
+                                        nbrc=nbrc+1;
+                                        console.log(j+"****"+enseignants[j]);
+                                        enseignants.splice(j,1);
+                                        nbre=nbre-1;
+                                        console.log(nbre);
+                                    }
+                                    updatee(ide,nbrc);
+
+                                }
+                                console.log(enseignants);
+                               
+                                
+                                    
+                                    
+                                    
+                                 
+                                    //enseignant.findOneAndUpdate({nomenseignant:ens}, {nbrcrenauxp1:6 });
+                                    
+                                } 
+                               } */
+                             
                                 
                                 
                               
@@ -170,7 +241,7 @@ router.use(cors());
                             }}
                        });}
                     
-                    
+                    }  
                     });
                     /************************************ ******************/
                
@@ -187,6 +258,7 @@ router.use(cors());
 
                 //    res.status(201).json(addaffectation);                   
                     //console.log(addaffectation);   
+                    
                             
                 }
         
@@ -194,15 +266,18 @@ router.use(cors());
                
               
          
-     
+                
                 addclasse.save();
                 res.status(201).json(addclasse);
                 console.log(addclasse);
+               
         
         
-        
+                
+                
     
           })
+         
 
 
 
@@ -214,24 +289,20 @@ router.use(cors());
                // res.status(201).json(addaffectation);                   
 
           }
-         function updatee (element){
-           
-            console.log(element.id);
-            element.nbrcrenauxp1 = element.nbrcrenauxp1-1;
-            element.nbrcrenauxp2 = 2;
+           /* function updatee(ide,nbrc){
+             enseignant.findByIdAndUpdate(ide,  {
+                nbrcrenauxp1:nbrc
+                
+            } ).exec();
+          } */
+       
             
-            element.save().then((result) => {
-                resolve(result)
-            }).catch((err) => {
-                reject(err)
-            });
-        
                 
 
 
               
 
-          }  
+          
         
         
 
