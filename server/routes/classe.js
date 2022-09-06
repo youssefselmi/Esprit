@@ -17,25 +17,6 @@ router.use(cors());
 
 
 
-/*router.post('/add', async(req, res, next) => {  
-  
-    // console.log(req.body);
-    const {nomclasse,nomdepartement,nombreclasses,nommodules} = req.body;
-    
-    try {   
-            const addclasse = new classe({
-                nomclasse,nomdepartement,nombreclasses,nommodules});
-    
-            await addclasse.save();
-            res.status(201).json(addclasse);
- 
-            console.log(addclasse);
-    } catch (error) {
-        res.status(422).json(error);
-    }
-    })*/
-
-
 
 
 
@@ -59,7 +40,10 @@ router.use(cors());
         const per = req.body.periode;
         const nbre = req.body.nbreenseignant;
         var x = 1;
-        
+
+        var ensiegnanttab =[];
+        var ensiegnanttab2 =[];
+
         
        
                 const addclasse = new classe({
@@ -122,9 +106,11 @@ router.use(cors());
                         else{
                         for (let index1 = 0; index1 < result1.length; index1++) { 
                             if ((JSON.stringify(result1[index1].nommodule) ===JSON.stringify(mod)) && (JSON.stringify(result[index].nomcompetence) === JSON.stringify(result1[index1].nomcompetence)) && (JSON.stringify(result[index].disponibilite) != 0 ) &&(bool<nbr)){
-                                console.log("bingooooooo  "+result[index].nomenseignant+" "+result[index].nomcompetence);
+                             //   console.log("bingooooooo  "+result[index].nomenseignant+" "+result[index].nomcompetence);
                                 var nomenseignant1 =result[index].nomenseignant;
 
+
+                              //  console.log('enseignant 1111111' +result[index].id);
 
 
                                 
@@ -134,8 +120,9 @@ router.use(cors());
                            if ((JSON.stringify(result1[iindex1].nommodule) ===JSON.stringify(mod)) && (JSON.stringify(result[iindex].nomcompetence) === JSON.stringify(result1[iindex1].nomcompetence)) && (JSON.stringify(result[iindex].disponibilite) != 0 )&&(bool<nbr)){
                              if(result[iindex].nomenseignant != nomenseignant1){
 
-                         
 
+
+                      //    console.log('enseignant 1111111' +result[iindex].id);
 
 
                    
@@ -166,27 +153,35 @@ router.use(cors());
                                 }
                                 if((semestre==="S2")&&(value1)){
                                     console.log("P4");
-                                    var cr="crenaux4";
+                                        var cr="crenaux4";
 
                                 }
                                 x=x+++1;
 
                                 
-                               
-                            //   maFonction1(result[index].id,cr);
-                               /*  try {
-                                    
-                                    console.log('iddddddd'+result[index].id);
-                                    const update = { nbrcrenauxp1: 1 };
-                                    const updatecomposant =  enseignant.findByIdAndUpdate(result[index].id,update);
-                            
-                                    console.log(updatecomposant);
-                                    res.status(201).json(updatecomposant);
-                            
-                                } catch (error) {
-                                    res.status(422).json(error);
-                                } */
-                                //updatee(result[index].nomenseignant,result[index].nbrcrenauxp1-1);
+                    
+
+                        //    const outputArray = filterArray(ensiegnanttab);
+                          //  console.log("Original Array",ensiegnanttab);
+                           // console.log("Filtered Array",outputArray);
+
+
+                          /*  const occ = {};
+                            for (const n of ensiegnanttab) {
+                                occ[n] = occ[n] ? occ[n] + 1 : 1;
+                              }*/
+                            //  console.log(outputArray[0]+"  9adeh m3awed men marra==========>"+occ[outputArray[0]]);
+                             // console.log(outputArray[1]+"  9adeh m3awed men marra==========>"+occ[outputArray[1]]);
+                             // console.log(outputArray[2]+"   m3awed men marra==========>"+occ[outputArray[2]]);
+
+
+                          //  console.log(" Array desenseignant ",ensiegnanttab);
+
+
+
+
+
+
 
 
                                 const nbrcrenauxp1 = 1;
@@ -195,7 +190,6 @@ router.use(cors());
                                    
                                     
                                      function( err,element){
-                                       // console.log("aaaaaaaaaaa   "+element);
 
 
                                         if(err){
@@ -221,19 +215,6 @@ router.use(cors());
                                    }
 
 
-                               /* disponibilite.find({}, (errdispo, resultdispo) => {
-                                    if (errdispo) { console.log(errdispo) }
-
-                                    for (let i = 0; i < resultdispo.length; i++) {
-                                        
-                                        if(resultdispo[i].nomenseignant == nomenseignant2 &&  resultdispo[i].nomenseignant == nomenseignant1){
-                                            nomenseignant1="";
-                                            nomenseignant2="";
-
-                                        }}         
-                                })*/
-                                   
-      
                    
                                 const addaffectation = new affectation({nomclasse,nomdepartement,nommodules,semestre,periode,nomenseignant1,nomenseignant2}); 
                                 maFonction(addaffectation);
@@ -265,23 +246,7 @@ router.use(cors());
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                
-              
+ 
 
                 addclasse.save();
                 res.status(201).json(addclasse);
@@ -289,6 +254,33 @@ router.use(cors());
 
           })
 
+
+
+
+
+
+
+
+          function filterArray(inputArr){
+            var found ={};
+            var out = inputArr.filter(function(element){
+                return found.hasOwnProperty(element)? false : (found[element]=true);
+            });
+            return out;
+        }
+
+
+     /*   function onlyUnique(value, index, self) {
+            return self.indexOf(value) === index;
+          }
+          
+          // usage example:
+          var a = ['a', 1, 'a', 2, '1'];
+          var unique = a.filter(onlyUnique);
+          
+          console.log(unique); // ['a', 1, 2, '1']
+        */
+        
 
 
 

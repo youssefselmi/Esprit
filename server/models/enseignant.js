@@ -19,6 +19,9 @@ var Enseignant = new Schema({
     nbrcrenauxp3: Number,
     nbrcrenauxp4: Number,
     disponibilite: Number,
+    
+    rep: Number,
+
 
 
      
