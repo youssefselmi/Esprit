@@ -11,6 +11,7 @@ import { DialogenseignantComponent } from  '../dialogenseignant/dialogenseignant
 import { AffectationTablleHorraire } from 'src/app/service/affectationTableauxChargeHorraire';
 import { Disponibilite } from 'src/app/service/disponibilite';
 import { Heuresup } from 'src/app/service/heuresup';
+import { Affectation } from 'src/app/service/affectation';
 
 @Component({
   selector: 'app-enseignant',
@@ -30,6 +31,7 @@ export class EnseignantComponent implements OnInit {
   listeaffectationchargehorraire : AffectationTablleHorraire[];
   listedisponibilite : Disponibilite[];
   listeheuresup : Heuresup[];
+  listeaffectationtab : Affectation[];
 
 
   constructor(private dialog : MatDialog,private api:ApiService) { }
@@ -148,6 +150,34 @@ export class EnseignantComponent implements OnInit {
  
 
 
+
+
+  
+   ////// supprimer automatiquement les  enseignant i se trouvent dans ce tab d'affectation
+   alert("L'enseiganat "+nom+"  var etre supprimé automatiquement avec le tableau de heure supp");
+ 
+   for (let index = 0; index < this.listeaffectationtab.length; index++) {
+ 
+ 
+ 
+     if(this.listeaffectationtab[index].nomenseignant1==nom || this.listeaffectationtab[index].nomenseignant2==nom)
+     {    
+       this.api.deleteAffectation(this.listeaffectationtab[index]._id).subscribe({
+         next:(res)=>{ } })
+ 
+    } 
+   }
+ 
+
+
+
+
+
+
+
+
+
+
   
   }
 
@@ -193,6 +223,11 @@ export class EnseignantComponent implements OnInit {
              this.listeheuresup = data;
           })
 
+
+          this.api.getAffectation().subscribe(
+            (data: Affectation[]) => {
+               this.listeaffectationtab = data;
+            })
 
   }
 

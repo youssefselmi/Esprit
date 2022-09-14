@@ -5,4 +5,7 @@ export class Affectation {
     nommodules!: String;
     semestre!: String;
     periode! : String[];
+    nomenseignant1!: String;
+    nomenseignant2!: String;
+
 }
