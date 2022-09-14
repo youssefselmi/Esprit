@@ -28,6 +28,8 @@ import { AffectationTableauCHComponent } from 'src/app/pages/affectation-tableau
 import { DisponibiliteComponent } from 'src/app/pages/disponibilite/disponibilite.component';
 import { TypeComponent } from 'src/app/pages/type/type.component';
 import { HeuresupComponent } from 'src/app/pages/heuresup/heuresup.component';
+import { ForgetpwComponent } from 'src/app/pages/forgetpw/forgetpw.component';
+import { ResetpwComponent } from 'src/app/pages/resetpw/resetpw.component';
 
 export const AdminLayoutRoutes: Routes = [
     { path: 'dashboard',      component: DashboardComponent },
@@ -58,6 +60,8 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'disponibilite',    component: DisponibiliteComponent},
     { path: 'type',    component: TypeComponent},
     { path: 'heuresup',    component: HeuresupComponent},
+    { path: 'resetpw',    component: ForgetpwComponent},
+    { path: 'newpw', component: ResetpwComponent}
 
 
 

@@ -10,7 +10,11 @@ var Optup = new Schema({
     up: String,
     
     creneaux: Number,
-    periode:String
+    periode:String,
+    _userId:{
+        type:mongoose.Types.ObjectId,
+        required: true
+    }
 
 
 

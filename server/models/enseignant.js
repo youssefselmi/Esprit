@@ -19,7 +19,10 @@ var Enseignant = new Schema({
     nbrcrenauxp3: Number,
     nbrcrenauxp4: Number,
     disponibilite: Number,
-
+    _userId:{
+        type:mongoose.Types.ObjectId,
+        required: true
+    }
 
      
 
@@ -27,4 +30,3 @@ var Enseignant = new Schema({
 
 });
 module.exports = mongoose.model('enseignants', Enseignant);
-

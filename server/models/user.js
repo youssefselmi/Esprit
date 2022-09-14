@@ -21,6 +21,13 @@ var User = new Schema({
         required: true,
         minlength: 8
     },
+    userType:{
+        type: String,
+
+    },
+    userName:{
+        type: String,
+    },
     sessions: [{
         token:{
             type: String,
@@ -47,7 +54,7 @@ User.methods.generateAccessAuthToken = function(){
     const user = this;
     return new Promise((resolve, reject)=>{
         //create the JSON Web Token and return that 
-        jwt.sign({ _id: user._id.toHexString()}, jwtSecret, {expiresIn:"15m" },(err,token)=>{
+        jwt.sign({ _id: user._id.toHexString()}, jwtSecret, {expiresIn:"30m" },(err,token)=>{
             if (!err){
                 resolve(token);
             }else{
@@ -82,6 +89,9 @@ User.methods.createSession = function(){
     })
 }
 /*model methods */
+User.statics.getJWTSecret=()=>{
+    return jwtSecret;
+}
 User.statics.findByIdAndToken = function(_id,token){
     const User = this;
     return User.findOne({

@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Departement } from './departement';
 import { catchError, map } from 'rxjs/operators';
 import { Observable, throwError } from 'rxjs';
+import { resetFakeAsyncZone } from '@angular/core/testing';
  
 
 @Injectable({
@@ -23,6 +24,7 @@ export class ApiService {
   REST_APID: string = 'http://localhost:3001/disponibilite';
   REST_APIT: string = 'http://localhost:3001/type';
   REST_APIH: string = 'http://localhost:3001/heuresup';
+
 
 
   REST_APIAFFECTATIONTABLECHARGEHORRAIRE: string = 'http://localhost:3001/affectationtabchargehorraire';
@@ -374,5 +376,12 @@ deleteHeuresup( _id : string){
 putHeuresup(data : any, _id : string){
   let API_URL = `${this.REST_APIH}/update/${_id}`;
   return this.http.put<any>(API_URL,data);
+}
+
+/********* Reset Password *************/
+resetpw(data:any){
+  let API_URL = `${this.REST_APIL}/forgetpassword`;
+  return this.http.put<any>(API_URL,data)
+
 }
 }

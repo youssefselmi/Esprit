@@ -8,9 +8,26 @@ const affectation = require('../models/affectation');
 const type = require('../models/type');
 const enseignant = require('../models/enseignant');
 const modulee = require('../models/module');
+const disponibilite = require('../models/disponibilite');
+const User = require('../models/user');
+const jwt = require('jsonwebtoken');
+
 const { update } = require('../models/classe');
 
 router.use(cors());
+let authenticate=(req,res,next)=>{
+    let token=req.header('x-access-token');
+    jwt.verify(token,User.getJWTSecret(),(err,decoded)=>{
+        if(err){
+            res.status(401).send(err);
+        }
+        else{
+            req.user_id=decoded._id;
+            next(); 
+        }
+
+    });
+}
 
 
 
@@ -45,7 +62,7 @@ router.use(cors());
 
 
 
-    router.all('/add',async(req, res,next) => {  
+    router.all('/add',authenticate,(req, res) => {  
   
         // console.log(req.body);
         const {nomclasse,nomdepartement,nombreclasses,nommodules,semestre,periode,nbreenseignant} = req.body;
@@ -57,12 +74,14 @@ router.use(cors());
         const per = req.body.periode;
         const nbre = req.body.nbreenseignant;
         var x = 1;
-        var enseignants=[];
+        var n = 0;
+       
         
         
        
                 const addclasse = new classe({
-                    nomclasse,nomdepartement,nombreclasses,nommodules,semestre,periode,nbreenseignant});
+                    nomclasse,nomdepartement,nombreclasses,nommodules,semestre,periode,nbreenseignant,_userId:req.user_id    });
+                
                     
     
                     
@@ -74,6 +93,26 @@ router.use(cors());
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                 for (let index = 1; index <= nbr; index++) {     
                     
                     const nomdepartement =dep;
@@ -81,57 +120,82 @@ router.use(cors());
                     const semestre = sem;
                     const periode = per;
                     var bool = 0;
-                  
-//const nbrc=index;
-                   
-                    
+                              
                          /***************************** ***************** */
-                enseignant.find({}, (err, result) => {
+                enseignant.find({
+                    _userId:req.user_id
+                }, (err, result) => {
        
                     if (err) {
                         console.log(err)
-                    }else{
+                    }
+
+
+
                     //console.log("************enseignant***************"+result)
                     for (let index = 0; index < result.length; index++) { 
-                     modulee.find({}, (err1, result1) => {
+                    modulee.find({}, (err1, result1) => {
        
                         if (err1) {
                             console.log(err1)
                         }
                         else{
                         for (let index1 = 0; index1 < result1.length; index1++) { 
-                            if ((JSON.stringify(result1[index1].nommodule) ===JSON.stringify(mod)) &&(JSON.stringify(result[index].nomcompetence) === JSON.stringify(result1[index1].nomcompetence))&&(bool<nbr)){
+                            if ((JSON.stringify(result1[index1].nommodule) ===JSON.stringify(mod)) && (JSON.stringify(result[index].nomcompetence) === JSON.stringify(result1[index1].nomcompetence)) && (JSON.stringify(result[index].disponibilite) != 0 ) &&(bool<nbr)){
                                 console.log("bingooooooo  "+result[index].nomenseignant+" "+result[index].nomcompetence);
-                                const nomenseignant1 =result[index].nomenseignant;
-                                console.log(result[index].id)
+                                var nomenseignant1 =result[index].nomenseignant;
+                               
+
+
+
                                 
+         ///////////////// boucle pour affectation d 2 eme enseignant ////////////   
+                     for (let iindex = 0; iindex < result.length; iindex++) { 
+                      for (let iindex1 = 0; iindex1 < result1.length; iindex1++) { 
+                           if ((JSON.stringify(result1[iindex1].nommodule) ===JSON.stringify(mod)) && (JSON.stringify(result[iindex].nomcompetence) === JSON.stringify(result1[iindex1].nomcompetence)) && (JSON.stringify(result[iindex].disponibilite) != 0 )&&(bool<nbr)){
+                             if(result[iindex].nomenseignant != nomenseignant1){
+
+                         
+
+
+
+                   
+                               // console.log(result[index].id)
+                              ;
+                              
                                 const nomclasse=(nom+" "+x );
                                 
 
                                 bool=bool+++1;
-                                console.log(bool);
-                                  const value = periode.find(v => v.includes('P1'));
+                              //  console.log(bool);
+                                const value = periode.find(v => v.includes('P1'));
                                 const value1 = periode.find(v => v.includes('P2'));
 
                                 
                                 if((semestre==="S1")&&(value)){
                                     console.log("P1");
+                                    var cr="crenaux1";
                                 }
                                 if((semestre==="S1")&&(value1)){
                                     console.log("P2");
-                                    
+                                    var cr="crenaux2";
+
                                 }
                                 if((semestre==="S2")&&(value)){
                                     console.log("P3");
-                                    
+                                    var cr="crenaux3";
+
                                 }
                                 if((semestre==="S2")&&(value1)){
                                     console.log("P4");
-                                    
+                                    var cr="crenaux4";
+
                                 }
                                 x=x+++1;
 
                                 
+                               
+                            //   maFonction1(result[index].id,cr);
                                /*  try {
                                     
                                     console.log('iddddddd'+result[index].id);
@@ -145,91 +209,56 @@ router.use(cors());
                                     res.status(422).json(error);
                                 } */
                                 //updatee(result[index].nomenseignant,result[index].nbrcrenauxp1-1);
-                            
-                            /*     enseignant.findOne(
-                                    {"nomenseignant":"arij manjouri"},
+
+
+                                var nbrc1 = result[index].nbrcrenauxp1;
+                                n=n+++1;
+                              updatee(result[index].id,nbrc1,n);
+                                /* enseignant.findOne(
+                                    {"nomenseignant":result[index].nomenseignant},
                                    
-                                     function(err, element){
-                                    if(err){
-                                        console.log(err);
-                                    }
+                                    
+                                     function( err,element){
+                                       // console.log("aaaaaaaaaaa   "+element);
+
+
+                                        if(err){
+                                            console.log(err);
+                                        }
+                                 
                                     else{
                                      
                                         updatee(element)
                                         console.log(element);
-                                    }
-                                   }, {new: true,
-                                   upsert: true,
-                                   rawResult: true }) */
-                                   
-                                    /* try {
-                                       console.log(result[index].id);
-                                         console.log(id); 
-                                        console.log("pffff")
-                                        const nbrcrenauxp1=66;
-                                        console.log(nbrcrenauxp1);
-                                        const updatecomposant =  enseignant.findByIdAndUpdate(result[index].id, nbrcrenauxp1, {
-                                            new: true
-                                        });
-                                
-                                        console.log(updatecomposant);
-                                        res.status(201).json(updatecomposant);
-                                
-                                    } catch (error) {
-                                        res.status(422).json(error);
-                                    }
-                                 */
-                                
-                               
-                                const addaffectation = new affectation({nomclasse,nomdepartement,nommodules,semestre,periode,nomenseignant1}); 
-                                maFonction(addaffectation);
-                                
-                               const ide=result[index].id;
-                               var x=result[index].nbrcrenauxp1-1;
-                               console.log(x);
-                               var data={nbrcrenauxp1:x};
-                               
-                        
-                              enseignant.updateMany({_id:ide}, 
-                                    data, function (err, docs) {
-                                    if (err){
-                                        console.log(err)
-                                    }
-                                    else{
-                                        console.log("Updated Docs : ", docs);
-                                    }
-                                }); 
-                               /* console.log( enseignant.Updat(result[index].id,data)); */
-                               // updatee(result[index].id,result[index].nbrcrenauxp1)
-                             /*   enseignants.push( result[index].id);
-                               if (bool==nbr){ 
-                                var nbre=enseignants.length;
-                                for(var i=0;i<nbre;i++){
-                                    const ide=enseignants[i];
-                                    var nbrc=1;    
-                                for(var j=i+1;j<nbre;j++){
-                                    if (enseignants[j]==enseignants[i]){
-                                        nbrc=nbrc+1;
-                                        console.log(j+"****"+enseignants[j]);
-                                        enseignants.splice(j,1);
-                                        nbre=nbre-1;
-                                        console.log(nbre);
-                                    }
-                                    updatee(ide,nbrc);
+                                   }
+                                   }) */
 
-                                }
-                                console.log(enseignants);
-                               
-                                
-                                    
-                                    
-                                    
-                                 
-                                    //enseignant.findOneAndUpdate({nomenseignant:ens}, {nbrcrenauxp1:6 });
-                                    
-                                } 
-                               } */
-                             
+
+
+
+
+
+
+                                   
+                                   if(nbre==2){
+                                    var nomenseignant2 =result[iindex].nomenseignant;
+                                   }
+
+
+                               /* disponibilite.find({}, (errdispo, resultdispo) => {
+                                    if (errdispo) { console.log(errdispo) }
+                                    for (let i = 0; i < resultdispo.length; i++) {
+                                        
+                                        if(resultdispo[i].nomenseignant == nomenseignant2 &&  resultdispo[i].nomenseignant == nomenseignant1){
+                                            nomenseignant1="";
+                                            nomenseignant2="";
+                                        }}         
+                                })*/
+                                   
+      
+                   
+                                const addaffectation = new affectation({nomclasse,nomdepartement,nommodules,semestre,periode,nomenseignant1,nomenseignant2,_userId:req.user_id}); 
+                                maFonction(addaffectation);
                                 
                                 
                               
@@ -239,45 +268,49 @@ router.use(cors());
                            
                             
                             }}
+
+                        ////////////// fermeture de la boucle de 2 eme enseignant //////////////   
+                        }}}}
+
+
+
                        });}
                     
-                    }  
+                    
                     });
-                    /************************************ ******************/
-               
-                    
-                            
-                  //  addaffectation.save();
-
-
-                    
-
-
-                    
-
-
-                //    res.status(201).json(addaffectation);                   
-                    //console.log(addaffectation);   
-                    
+                   
                             
                 }
         
            
                
-              
-         
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                 
+              
+
                 addclasse.save();
                 res.status(201).json(addclasse);
                 console.log(addclasse);
                
-        
-        
-                
-                
-    
+
           })
-         
 
 
 
@@ -289,20 +322,37 @@ router.use(cors());
                // res.status(201).json(addaffectation);                   
 
           }
-           /* function updatee(ide,nbrc){
-             enseignant.findByIdAndUpdate(ide,  {
-                nbrcrenauxp1:nbrc
-                
-            } ).exec();
-          } */
-       
+
+
+          
+   
+   
+
+          
+         async function updatee (ide,nbrc1,n){
+            console.log("nnnnnnnn",n)
+            //console.log(nbrc1-1);
+            //console.log(ide);
+            try {
+                var enseignants = await enseignant.findOneAndUpdate(
+                    
+                {_id:ide},
+                    {$set: {nbrcrenauxp1:nbrc1-1}},
+                    {new : true}
+                );
+               
+               // console.log(enseignants);
+            } catch (error) {
+                console.log(error);
+            }
             
+        
                 
 
 
               
 
-          
+          }  
         
         
 
@@ -320,8 +370,10 @@ router.use(cors());
 
 
     
-router.get("/read", async(req, res) => {
-    classe.find({}, (err, result) => {
+router.get("/read",authenticate, async(req, res) => {
+    classe.find({
+        _userId:req.user_id
+    }, (err, result) => {
   
         if (err) {
             res.send(err)
@@ -336,10 +388,10 @@ router.get("/read", async(req, res) => {
 
   
    
-  router.delete('/:id', async(req, res) => {
+  router.delete('/:id',authenticate, async(req, res) => {
 
     const id = req.params.id;
-    await classe.findByIdAndRemove(id).exec();
+    await classe.findByIdAndRemove({_id:id,user_id:req.user_id}).exec();
     res.send("deleted");
 
 
@@ -353,7 +405,7 @@ router.get("/read", async(req, res) => {
 router.put("/update/:id", async(req, res) => {
     try {
         const { id } = req.params;
-        const updatecomposant = await classe.findByIdAndUpdate(id, req.body, {
+        const updatecomposant = await classe.findOneAndUpdate({_id:id,user_id:req.user_id}, req.body, {
             new: true
         });
 
@@ -392,6 +444,7 @@ let informatique='informatique'
         res.send(result_filter)
 
     })
+    
 })
 
 

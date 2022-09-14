@@ -11,6 +11,10 @@ var Disponibilite = new Schema({
         type:String
     }],
     motif:String,
+    _userId:{
+        type:mongoose.Types.ObjectId,
+        required: true
+    }
 
 
 });

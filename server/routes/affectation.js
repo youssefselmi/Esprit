@@ -6,6 +6,8 @@ const Affectation = require('../models/affectation');
 const Classe = require('../models/classe');
 const classe = require('../models/classe');
 const affectation = require('../models/affectation');
+const User = require('../models/user');
+const jwt = require('jsonwebtoken');
 
 router.use(cors());
 
@@ -13,16 +15,29 @@ router.use(cors());
   let listeaffectation = [];
   let listeaffectationfinal  = [];
 
+  let authenticate=(req,res,next)=>{
+    let token=req.header('x-access-token');
+    jwt.verify(token,User.getJWTSecret(),(err,decoded)=>{
+        if(err){
+            res.status(401).send(err);
+        }
+        else{
+            req.user_id=decoded._id;
+            next(); 
+        }
+
+    });
+}
 
 
-router.post('/add', async(req) => {  
+router.post('/add',  authenticate,async(req) => {  
   
     // console.log(req.body);
     const {nomclasse,nomdepartement,nommodules,semestre,periode,nomenseignant1,nomenseignant2} = req.body;
     
    
             const addclasse = new Affectation({
-                nomclasse,nomdepartement,nommodules,semestre,periode,nomenseignant1,nomenseignant2});
+                nomclasse,nomdepartement,nommodules,semestre,periode,nomenseignant1,nomenseignant2,_userId:req.user_id});
     
              addclasse.save();
            // res.status(201).json(addclasse);
@@ -33,8 +48,10 @@ router.post('/add', async(req) => {
 
 
     
-router.get("/read", async(req, res) => {
-    Affectation.find({}, (err, result) => {
+router.get("/read",authenticate,  async(req, res) => {
+    Affectation.find({
+      /* _userId:req.user_id */
+    }, (err, result) => {
   
         if (err) {
             res.send(err)
@@ -49,8 +66,8 @@ router.get("/read", async(req, res) => {
 
 
 
-  router.get("/readclasses", async (req, res) => {
-    classe.find({}, (err, result) => {
+  router.get("/readclasses",authenticate, async (req, res) => {
+    classe.find({_userId:req.user_id}, (err, result) => {
   
         if (err) {
             res.send(err)
@@ -162,7 +179,7 @@ router.get("/read", async(req, res) => {
           
           try {   
                   const addclasse = new Affectation({
-                      nameclasse,namedep,namemodules});
+                      nameclasse,namedep,namemodules,_userId:req.user_id });
           
                    addclasse.save();
                   res.status(201).json(addclasse);
@@ -191,10 +208,10 @@ router.get("/read", async(req, res) => {
 
 
 
- router.delete('/:id', async(req, res) => {
+ router.delete('/:id', authenticate,async(req, res) => {
 
     const id = req.params.id;
-    await Affectation.findByIdAndRemove(id).exec();
+    await Affectation.findByIdAndRemove({_id:id,user_id:req.user_id}).exec();
     res.send("deleted");
 
 
@@ -205,12 +222,13 @@ router.get("/read", async(req, res) => {
 
 
 
-router.put("/update/:id", async(req, res) => {
+router.put("/update/:id",authenticate,  async(req, res) => {
     try {
         const { id } = req.params;
-        const updatecomposant = await Affectation.findByIdAndUpdate(id, req.body, {
-            new: true
-        });
+        const updatecomposant = await Affectation.findOneAndUpdate({_id:id,user_id:req.user_id}, req.body, {
+          new: true
+      });
+
 
         console.log(updatecomposant);
         res.status(201).json(updatecomposant);
