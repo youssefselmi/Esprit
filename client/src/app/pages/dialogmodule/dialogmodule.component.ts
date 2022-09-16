@@ -43,7 +43,6 @@ export class DialogmoduleComponent implements OnInit {
       nommodule: ['',Validators.required],
       coefficient: ['',Validators.required],
       nbrheures : ['',Validators.required],
-      attribut : ['',Validators.required],
       nomup : ['',Validators.required],
       nomcompetence : ['',Validators.required],
 
@@ -63,7 +62,6 @@ export class DialogmoduleComponent implements OnInit {
           this.moduleForm.controls['nommodule'].setValue(this.editData.nommodule);
           this.moduleForm.controls['coefficient'].setValue(this.editData.coefficient);
           this.moduleForm.controls['nbrheures'].setValue(this.editData.nbrheures);
-          this.moduleForm.controls['attribut'].setValue(this.editData.attribut);
           this.moduleForm.controls['nomup'].setValue(this.editData.nomup);
           this.moduleForm.controls['nomcompetence'].setValue(this.editData.nomcompetence);
           

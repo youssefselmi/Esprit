@@ -3,7 +3,6 @@ export class Module {
     nommodule!: string;
     coefficient!: Number;   
     nbrheures!: Number;
-    attribut!: string;
     nomup!: string;
     nomcompetence :[];
 
