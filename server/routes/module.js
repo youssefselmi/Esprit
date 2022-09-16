@@ -28,11 +28,13 @@ let authenticate=(req,res,next)=>{
 router.post('/add', authenticate,async(req, res, next) => {  
   
     // console.log(req.body);
-    const {nommodule,coefficient,nbrheures,attribut,nomup,nomcompetence} = req.body;
+    const {nommodule,coefficient,nbrheures,nomup,nomcompetence} = req.body;
     
     try {   
             const addclasse = new modules({
+
                 nommodule,coefficient,nbrheures,attribut,nomup,nomcompetence,_userId:req.user_id    });
+
     
             await addclasse.save();
             res.status(201).json(addclasse);

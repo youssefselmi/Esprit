@@ -4,8 +4,12 @@ const app = express();
 let cors = require("cors");
 const optup = require('../models/optup');
 router.use(cors());
+
 const User = require('../models/user');
 const jwt = require('jsonwebtoken');
+
+const enseignant = require('../models/enseignant');
+
 
 
 
@@ -39,14 +43,99 @@ router.post('/add', authenticate, async(req, res, next) => {
     } catch (error) {
         res.status(422).json(error);
     }
+
+
+
+
+    enseignant.findOne(
+        {"nomenseignant":nomenseignant},
+       
+        
+         function( err,element){
+
+
+            if(err){
+                console.log(err);
+            }
+     
+        else{
+         
+            updatee(element,periode,creneaux)
+            console.log(element);
+       }
+       })
+
+
+
+
+
+
+
     })
 
 
+
+
+
+
+    function updatee (element,periode,creneaux){
+           
+       
+      if(periode=="P1")
+      {
+        element.nbrcrenauxp1 = element.nbrcrenauxp1- creneaux;
+
+      }
+      else if(periode=="P2")
+      {
+        element.nbrcrenauxp2 = element.nbrcrenauxp2- creneaux;
+
+      }
+
+      else if(periode=="P3")
+      {
+        element.nbrcrenauxp3 = element.nbrcrenauxp3- creneaux;
+
+      }
+
+      else if(periode=="P4")
+      {
+        element.nbrcrenauxp4 = element.nbrcrenauxp4- creneaux;
+
+      }
+        
+        element.save();
+        
+      }  
     
+
 router.get("/read",authenticate, async(req, res) => {
     optup.find({
         _userId:req.user_id
     }, (err, result) => {
+
+
+
+
+  
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   
         if (err) {
             res.send(err)
