@@ -24,7 +24,7 @@ export class RegisterComponent implements OnInit {
       let user = {
        name: "test 11",
         email:email,
-        sujet: "Bienvnu cher fournisseur a notre magasin",
+        sujet: "Welcome ",
         html : "Hi   This is your password  "+password+"  thank you for joining us"+ `
             <!DOCTYPE html>
         <html>

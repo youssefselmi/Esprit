@@ -24,6 +24,9 @@ export class LoginComponent implements OnInit, OnDestroy {
     register(){
       this.router.navigate(['/register']);
     }
+    forget(){
+      this.router.navigate(['/resetpw']);
+    }
   
   ngOnDestroy() {
   }

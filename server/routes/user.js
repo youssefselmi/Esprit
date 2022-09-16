@@ -145,18 +145,20 @@ router.get('/users/getbyid/:id',async(req, res) => {
 router.put("/users/forgetpassword",async(req,res)=>{
     const emaill = req.body.email;
     var passwordd= req.body.password;
-   /*  let constFactor = 10;
-    bcrypt.genSalt(constFactor,(err,salt)=>{
-        bcrypt.hash(passwordd, salt, (err, hash)=>{
-           passwordd=hash;
-           
-            
-        })
-        
-    }) */
+    let constFactor = 10;
+   
+    /* bcrypt.genSalt(10).then(salt => {
+        return bcrypt.hash(password,salt); 
+    }).then(hash => {
+        console.log(hash);
+    }, err => {
+        console.log(err);
+    });
+
+    console.log(passwordd); */
     
-    try {
         
+    try {
         
         
         const updatecomposant = await User.findOneAndUpdate({email:emaill},{password:passwordd},{

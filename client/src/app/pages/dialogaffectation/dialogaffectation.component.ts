@@ -4,6 +4,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ApiService } from 'src/app/service/api.service';
 import { Classe } from 'src/app/service/classe';
 import { Departement } from 'src/app/service/departement';
+import { Enseignant } from 'src/app/service/enseignant';
 import { Module } from 'src/app/service/modulee';
 
 @Component({
@@ -17,6 +18,8 @@ export class DialogaffectationComponent implements OnInit {
   actionButton : string = "Save";
   listdepartement: Departement[];
   listModules: Module[];
+  listenseignant :Enseignant[];
+ 
 
 
   nommodules = new FormControl('');
@@ -76,6 +79,13 @@ export class DialogaffectationComponent implements OnInit {
         (data: Departement[]) => {
            this.listdepartement = data;
         })
+        //////// liste des enseignants
+       
+      this.api.getEnseignants(this.classeForm.value).subscribe(
+        (data: Enseignant[]) => {
+             this.listenseignant = data;
+          })
+
   
 
 

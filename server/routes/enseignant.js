@@ -109,13 +109,12 @@ router.post('/add', authenticate,async(req, res, next) => {
   
      console.log(req.body);
    const {nomenseignant,email,password,nomcompetence,type,chargehorraire,nbrcrenauxp1,nbrcrenauxp2,nbrcrenauxp3,nbrcrenauxp4,disponibilite} = req.body;
-   
     
 
  var num;
  var pass;
 
- num=(Math.random() * (8 - 1) + 1)*1000;
+ num=(Math.random() * (8 - 1) + 1)*100;
  pass=nomenseignant.substr(0,4)+Math.trunc(num);
 
 
@@ -126,8 +125,7 @@ router.post('/add', authenticate,async(req, res, next) => {
             
 
                 nomenseignant,email,password:pass,nomcompetence,type,chargehorraire,nbrcrenauxp1,nbrcrenauxp2,nbrcrenauxp3,nbrcrenauxp4,disponibilite:1,_userId:req.user_id   });
-         
-                   
+                
 
     
             await adddisponibilite.save();
@@ -137,11 +135,6 @@ router.post('/add', authenticate,async(req, res, next) => {
     } catch (error) {
         res.status(422).json(error);
     }
-    let typee="enseignant";
-    
-    
-    const newUser = new User({email,password:pass,userType:typee,userName:nomenseignant});
-    newUser.save();
     })
 
 

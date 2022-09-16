@@ -52,15 +52,31 @@
           <mat-option >P2</mat-option>
         </mat-select>
       </mat-form-field>
-      <mat-form-field appearance="outline">
+     <!--  <mat-form-field appearance="outline">
         <mat-label>Nom enseignant 1</mat-label>
         <input formControlName="nomenseignant1"  matInput placeholder="Nom enseignant 1" >
-      </mat-form-field>
+      </mat-form-field> -->
+      <mat-form-field appearance="outline">
+        <mat-label>Nom enseignant 1</mat-label>
+        <mat-select formControlName="nomenseignant1">
+          <mat-option *ngFor="let u of listenseignant" [value]="u.nomenseignant1">
+            {{u.nomenseignant1}}
+          </mat-option>
+        </mat-select>
+        </mat-form-field>
       <br>
       <mat-form-field appearance="outline">
         <mat-label>Nom enseignant 2</mat-label>
+        <mat-select formControlName="nomenseignant2">
+          <mat-option *ngFor="let u of listenseignant" [value]="u.nomenseignant2">
+            {{u.nomenseignant2}}
+          </mat-option>
+        </mat-select>
+        </mat-form-field>
+      <!-- <mat-form-field appearance="outline">
+        <mat-label>Nom enseignant 2</mat-label>
         <input formControlName="nomenseignant2"  matInput placeholder="Nom enseignant 2" >
-      </mat-form-field>
+      </mat-form-field> -->
       <br>
 
 
