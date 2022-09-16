@@ -51,10 +51,7 @@ router.post('/add', async(req, res, next) => {
 
     function updatee (element,periodes,nbreheures){
            
-        console.log("ahayya l 5anfoussa  "+element);
-
-        console.log("hedhi l periode elli 5taretha  "+periodes);
-        console.log("hedhi l nbreheures elli 5taretha  "+nbreheures);
+      
       if(periodes=="P1")
       {
         element.nbrcrenauxp1 = element.nbrcrenauxp1- nbreheures;
