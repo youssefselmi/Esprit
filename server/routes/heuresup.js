@@ -5,12 +5,12 @@ let cors = require("cors");
 const heuresup = require('../models/heuresup');
 router.use(cors());
 
+const enseignant = require('../models/enseignant');
 
 
 
 router.post('/add', async(req, res, next) => {  
   
-    // console.log(req.body);
     const {idenseignant,nomenseignant,periodes,nbreheures} = req.body;
     
     try {   
@@ -24,7 +24,82 @@ router.post('/add', async(req, res, next) => {
     } catch (error) {
         res.status(422).json(error);
     }
+
+
+
+    enseignant.findOne(
+        {"nomenseignant":nomenseignant},
+       
+        
+         function( err,element){
+
+
+            if(err){
+                console.log(err);
+            }
+     
+        else{
+         
+            updatee(element,periodes,nbreheures)
+            console.log(element);
+       }
+       })
+
+
     })
+
+
+    function updatee (element,periodes,nbreheures){
+           
+        console.log("ahayya l 5anfoussa  "+element);
+
+        console.log("hedhi l periode elli 5taretha  "+periodes);
+        console.log("hedhi l nbreheures elli 5taretha  "+nbreheures);
+      if(periodes=="P1")
+      {
+        element.nbrcrenauxp1 = element.nbrcrenauxp1- nbreheures;
+
+      }
+      else if(periodes=="P2")
+      {
+        element.nbrcrenauxp2 = element.nbrcrenauxp2- nbreheures;
+
+      }
+
+      else if(periodes=="P3")
+      {
+        element.nbrcrenauxp3 = element.nbrcrenauxp3- nbreheures;
+
+      }
+
+      else if(periodes=="P4")
+      {
+        element.nbrcrenauxp4 = element.nbrcrenauxp4- nbreheures;
+
+      }
+        
+        element.save();
+        
+      }  
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     

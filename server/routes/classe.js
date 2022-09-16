@@ -109,8 +109,8 @@ router.use(cors());
                              //   console.log("bingooooooo  "+result[index].nomenseignant+" "+result[index].nomcompetence);
                                 var nomenseignant1 =result[index].nomenseignant;
 
+                                ensiegnanttab.push(nomenseignant1);
 
-                              //  console.log('enseignant 1111111' +result[index].id);
 
 
                                 
@@ -122,17 +122,15 @@ router.use(cors());
 
 
 
-                      //    console.log('enseignant 1111111' +result[iindex].id);
 
 
-                   
-                                console.log(result[index].id)
+                
                                 
                                 const nomclasse=(nom+" "+x );
                                 
 
                                 bool=bool+++1;
-                                console.log(bool);
+                           //     console.log(bool);
                                 const value = periode.find(v => v.includes('P1'));
                                 const value1 = periode.find(v => v.includes('P2'));
 
@@ -159,25 +157,7 @@ router.use(cors());
                                 x=x+++1;
 
                                 
-                    
-
-                        //    const outputArray = filterArray(ensiegnanttab);
-                          //  console.log("Original Array",ensiegnanttab);
-                           // console.log("Filtered Array",outputArray);
-
-
-                          /*  const occ = {};
-                            for (const n of ensiegnanttab) {
-                                occ[n] = occ[n] ? occ[n] + 1 : 1;
-                              }*/
-                            //  console.log(outputArray[0]+"  9adeh m3awed men marra==========>"+occ[outputArray[0]]);
-                             // console.log(outputArray[1]+"  9adeh m3awed men marra==========>"+occ[outputArray[1]]);
-                             // console.log(outputArray[2]+"   m3awed men marra==========>"+occ[outputArray[2]]);
-
-
-                          //  console.log(" Array desenseignant ",ensiegnanttab);
-
-
+                  
 
 
 
@@ -199,7 +179,7 @@ router.use(cors());
                                     else{
                                      
                                         updatee(element)
-                                        console.log(element);
+                                       // console.log(element);
                                    }
                                    })
 
@@ -228,16 +208,27 @@ router.use(cors());
                             
                             }}
 
-                        ////////////// fermeture de la boucle de 2 eme enseignant //////////////   
+                        ////////////// fermeture de la boucle de 2 eme enseignant //////////////
+                        
+
+                        
+                
+
                         }}}}
 
 
+                   
+
+
+                        
 
                        });}
-                    
+
                     
                     });
                    
+
+
                             
                 }
         
