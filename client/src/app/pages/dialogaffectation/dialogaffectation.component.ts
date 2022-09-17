@@ -104,7 +104,7 @@ export class DialogaffectationComponent implements OnInit {
           this.classeForm.controls['nommodules'].setValue(this.editData.nommodules);
           this.classeForm.controls['semestre'].setValue(this.editData.semestre);
           this.classeForm.controls['periode'].setValue(this.editData.periode);
-          this.classeForm.controls['nomenseignant2'].setValue(this.editData.nomenseignant2);
+          this.classeForm.controls['nomenseignant1'].setValue(this.editData.nomenseignant1);
           this.classeForm.controls['nomenseignant2'].setValue(this.editData.nomenseignant2);
 
     
