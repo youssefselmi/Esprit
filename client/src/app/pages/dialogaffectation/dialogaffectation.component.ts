@@ -4,13 +4,29 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ApiService } from 'src/app/service/api.service';
 import { Classe } from 'src/app/service/classe';
 import { Departement } from 'src/app/service/departement';
+import { Enseignant } from 'src/app/service/enseignant';
 import { Module } from 'src/app/service/modulee';
+
+interface ListeSemesre {
+  value: string;
+  viewValue: string;
+}
+
+
+interface Listep {
+  value: string;
+  viewValue: string;
+}
+
+
 
 @Component({
   selector: 'app-dialogaffectation',
   templateUrl: './dialogaffectation.component.html',
   styleUrls: ['./dialogaffectation.component.css']
 })
+
+
 export class DialogaffectationComponent implements OnInit {
 
   classeForm !: FormGroup;
@@ -21,7 +37,27 @@ export class DialogaffectationComponent implements OnInit {
 
   nommodules = new FormControl('');
 
+  listenseigant: Enseignant[];
 
+
+  
+  ListeSemesre: ListeSemesre[] = [
+   
+      {value: "S1" , viewValue: "S1"},
+      {value: "S2" , viewValue: "S2"},
+  
+    ];
+
+
+
+    
+  
+    Listep: Listep[] = [
+   
+    {value: "P1" , viewValue: "P1"},
+    {value: "P2" , viewValue: "P2"},
+
+  ];
 
   constructor(private formbuilder : FormBuilder, private api : ApiService,
     private dialogRef : MatDialogRef<DialogaffectationComponent>,
@@ -46,6 +82,9 @@ export class DialogaffectationComponent implements OnInit {
       semestre : ['',Validators.required],
       periode : ['',Validators.required],
 
+      nomenseignant1 : ['',Validators.required],
+      nomenseignant2 : ['',Validators.required],
+
        })
 
 
@@ -65,6 +104,8 @@ export class DialogaffectationComponent implements OnInit {
           this.classeForm.controls['nommodules'].setValue(this.editData.nommodules);
           this.classeForm.controls['semestre'].setValue(this.editData.semestre);
           this.classeForm.controls['periode'].setValue(this.editData.periode);
+          this.classeForm.controls['nomenseignant2'].setValue(this.editData.nomenseignant2);
+          this.classeForm.controls['nomenseignant2'].setValue(this.editData.nomenseignant2);
 
     
         }
@@ -84,6 +125,15 @@ export class DialogaffectationComponent implements OnInit {
       this.api.getModule().subscribe(
         (data: Module[]) => {
            this.listModules = data;
+        })
+
+
+
+        
+  ////////// liste des enseignat//////////////          
+      this.api.getEnseignant().subscribe(
+        (data: Enseignant[]) => {
+           this.listenseigant = data;
         })
 
 }

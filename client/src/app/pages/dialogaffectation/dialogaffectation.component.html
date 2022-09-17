@@ -38,31 +38,66 @@
           <mat-option *ngFor="let mod of listModules" [value]="mod.nommodule">{{mod.nommodule}}</mat-option>
         </mat-select>
       </mat-form-field>
+
+
+
+
+
+
+
+
+
+      
       <mat-form-field appearance="outline">
         <mat-label>Semestre</mat-label>
         <mat-select formControlName="semestre" >
-          <mat-option>S1</mat-option>
-          <mat-option>S2</mat-option>
+          <mat-option *ngFor="let nb1 of ListeSemesre" [value]="nb1.value">
+            {{nb1.viewValue}}
+          </mat-option>
         </mat-select>
       </mat-form-field>
+
+
+
+   
+    
+
+
       <mat-form-field appearance="outline">
         <mat-label>Periode</mat-label>
         <mat-select formControlName="periode" multiple >
-          <mat-option >P1</mat-option>
-          <mat-option >P2</mat-option>
+          <mat-option *ngFor="let nb1 of Listep" [value]="nb1.value">
+            {{nb1.viewValue}}
+          </mat-option>
         </mat-select>
       </mat-form-field>
-      <mat-form-field appearance="outline">
-        <mat-label>Nom enseignant 1</mat-label>
-        <input formControlName="nomenseignant1"  matInput placeholder="Nom enseignant 1" >
-      </mat-form-field>
-      <br>
-      <mat-form-field appearance="outline">
-        <mat-label>Nom enseignant 2</mat-label>
-        <input formControlName="nomenseignant2"  matInput placeholder="Nom enseignant 2" >
-      </mat-form-field>
-      <br>
 
+
+
+
+      <mat-form-field appearance="outline">
+        <mat-label>Choose enseignat</mat-label>
+        <mat-select formControlName="nomenseignant1">
+          <mat-option *ngFor="let u of listenseigant" [value]="u.nomenseignant">
+            {{u.nomenseignant}}
+          </mat-option>
+        </mat-select>
+     
+      </mat-form-field>
+
+
+   
+
+
+      <mat-form-field appearance="outline">
+        <mat-label>Choose enseignat 2</mat-label>
+        <mat-select formControlName="nomenseignant2">
+          <mat-option *ngFor="let u of listenseigant" [value]="u.nomenseignant">
+            {{u.nomenseignant}}
+          </mat-option>
+        </mat-select>
+     
+      </mat-form-field>
 
 
        
