@@ -6,6 +6,10 @@ var Departement = new Schema({
 
     nomdepartement: String,
     location: String,
+    _userId:{
+        type:mongoose.Types.ObjectId,
+        required: true
+    }
 
 
 

@@ -6,6 +6,10 @@ var Up = new Schema({
 
     nomup: String,
     nomdepartement: String,
+    _userId:{
+        type:mongoose.Types.ObjectId,
+        required: true
+    }
 
 
 

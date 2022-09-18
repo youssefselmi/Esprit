@@ -11,6 +11,11 @@ var Heuresup = new Schema({
         type:String
     }],
     nbreheures:Number,
+    _userId:{
+        type:mongoose.Types.ObjectId,
+        required: true
+    }
+    
 
 
 });

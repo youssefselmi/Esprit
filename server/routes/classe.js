@@ -9,10 +9,25 @@ const type = require('../models/type');
 const enseignant = require('../models/enseignant');
 const modulee = require('../models/module');
 const disponibilite = require('../models/disponibilite');
+const User = require('../models/user');
+const jwt = require('jsonwebtoken');
 
-const { update } = require('../models/classe');
+
 
 router.use(cors());
+let authenticate=(req,res,next)=>{
+    let token=req.header('x-access-token');
+    jwt.verify(token,User.getJWTSecret(),(err,decoded)=>{
+        if(err){
+            res.status(401).send(err);
+        }
+        else{
+            req.user_id=decoded._id;
+            next(); 
+        }
+
+    });
+}
 
 
 
@@ -28,9 +43,7 @@ router.use(cors());
 
 
 
-    router.all('/add',(req, res) => {  
-  
-        // console.log(req.body);
+    router.all('/add',authenticate,(req, res) => {  
         const {nomclasse,nomdepartement,nombreclasses,nommodules,semestre,periode,nbreenseignant} = req.body;
         const nbr= req.body.nombreclasses;
         const nom= req.body.nomclasse;
@@ -41,43 +54,16 @@ router.use(cors());
         const nbre = req.body.nbreenseignant;
         var x = 1;
 
-        var ensiegnanttab =[];
-        var ensiegnanttab2 =[];
+       
+
+       
+
 
         
        
                 const addclasse = new classe({
-                    nomclasse,nomdepartement,nombreclasses,nommodules,semestre,periode,nbreenseignant});
-                    
-    
-                    
-              /*   await addclasse.save();
-                res.status(201).json(addclasse);
-                console.log(addclasse); */
-                   
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+                    nomclasse,nomdepartement,nombreclasses,nommodules,semestre,periode,nbreenseignant,_userId:req.user_id    });
+                
 
                 for (let index = 1; index <= nbr; index++) {     
                     
@@ -86,117 +72,18 @@ router.use(cors());
                     const semestre = sem;
                     const periode = per;
                     var bool = 0;
+                    const nomclasse=(nom+" "+x );
                               
-                         /***************************** ***************** */
-                enseignant.find({}, (err, result) => {
-       
-                    if (err) {
-                        console.log(err)
-                    }
-
-
-
-                    //console.log("************enseignant***************"+result)
-                    for (let index = 0; index < result.length; index++) { 
-                    modulee.find({}, (err1, result1) => {
-       
-                        if (err1) {
-                            console.log(err1)
-                        }
-                        else{
-                        for (let index1 = 0; index1 < result1.length; index1++) { 
-                            if ((JSON.stringify(result1[index1].nommodule) ===JSON.stringify(mod)) && (JSON.stringify(result[index].nomcompetence) === JSON.stringify(result1[index1].nomcompetence)) && (JSON.stringify(result[index].disponibilite) != 0 ) &&(bool<nbr)){
-                             //   console.log("bingooooooo  "+result[index].nomenseignant+" "+result[index].nomcompetence);
-                                var nomenseignant1 =result[index].nomenseignant;
-
-                                ensiegnanttab.push(nomenseignant1);
-
-
-
-                                
-         ///////////////// boucle pour affectation d 2 eme enseignant ////////////   
-                     for (let iindex = 0; iindex < result.length; iindex++) { 
-                      for (let iindex1 = 0; iindex1 < result1.length; iindex1++) { 
-                           if ((JSON.stringify(result1[iindex1].nommodule) ===JSON.stringify(mod)) && (JSON.stringify(result[iindex].nomcompetence) === JSON.stringify(result1[iindex1].nomcompetence)) && (JSON.stringify(result[iindex].disponibilite) != 0 )&&(bool<nbr)){
-                             if(result[iindex].nomenseignant != nomenseignant1){
-
-
-
-
-
                 
-                                
-                                const nomclasse=(nom+" "+x );
-                                
-
-                                bool=bool+++1;
-                           //     console.log(bool);
-                                const value = periode.find(v => v.includes('P1'));
-                                const value1 = periode.find(v => v.includes('P2'));
-
-                                
-                                if((semestre==="S1")&&(value)){
-                                    console.log("P1");
-                                    var cr="crenaux1";
-                                }
-                                if((semestre==="S1")&&(value1)){
-                                    console.log("P2");
-                                    var cr="crenaux2";
-
-                                }
-                                if((semestre==="S2")&&(value)){
-                                    console.log("P3");
-                                    var cr="crenaux3";
-
-                                }
-                                if((semestre==="S2")&&(value1)){
-                                    console.log("P4");
-                                        var cr="crenaux4";
-
-                                }
-                                x=x+++1;
-
-                                
-                  
 
 
 
-
-
-
-                                const nbrcrenauxp1 = 1;
-                                enseignant.findOne(
-                                    {"nomenseignant":result[index].nomenseignant},
+                        
                                    
-                                    
-                                     function( err,element){
-
-
-                                        if(err){
-                                            console.log(err);
-                                        }
-                                 
-                                    else{
-                                     
-                                        updatee(element)
-                                       // console.log(element);
-                                   }
-                                   })
-
-
-
-
-
-
-
-                                   
-                                   if(nbre==2){
-                                    var nomenseignant2 =result[iindex].nomenseignant;
-                                   }
-
+      
 
                    
-                                const addaffectation = new affectation({nomclasse,nomdepartement,nommodules,semestre,periode,nomenseignant1,nomenseignant2}); 
+                                const addaffectation = new affectation({nomclasse,nomdepartement,nommodules,semestre,periode,_userId:req.user_id}); 
                                 maFonction(addaffectation);
                                 
                                 
@@ -204,33 +91,11 @@ router.use(cors());
                             
                                
                             }
-                           
+                            addclasse.save();
+                            res.status(201).json(addclasse);
+                            console.log(addclasse);
                             
-                            }}
-
-                        ////////////// fermeture de la boucle de 2 eme enseignant //////////////
-                        
-
-                        
-                
-
-                        }}}}
-
-
-                   
-
-
-                        
-
-                       });}
-
-                    
-                    });
-                   
-
-
-                            
-                }
+                            });
         
            
                
@@ -239,12 +104,10 @@ router.use(cors());
 
  
 
-                addclasse.save();
-                res.status(201).json(addclasse);
-                console.log(addclasse);
+                
+               
 
-          })
-
+    
 
 
 
@@ -252,26 +115,10 @@ router.use(cors());
 
 
 
-          function filterArray(inputArr){
-            var found ={};
-            var out = inputArr.filter(function(element){
-                return found.hasOwnProperty(element)? false : (found[element]=true);
-            });
-            return out;
-        }
 
 
-     /*   function onlyUnique(value, index, self) {
-            return self.indexOf(value) === index;
-          }
-          
-          // usage example:
-          var a = ['a', 1, 'a', 2, '1'];
-          var unique = a.filter(onlyUnique);
-          
-          console.log(unique); // ['a', 1, 2, '1']
-        */
-        
+
+    
 
 
 
@@ -289,26 +136,7 @@ router.use(cors());
    
 
           
-         function updatee (element){
-           
-            console.log(element.id);
-            element.nbrcrenauxp1 = element.nbrcrenauxp1-1;
-         //   element.nbrcrenauxp2 = 2;
-            
-            element.save();
-            
-            /*.then((result) => {
-                resolve(result)
-            }).catch((err) => {
-                reject(err)
-            });*/
-        
-                
-
-
-              
-
-          }  
+         
         
         
 
@@ -326,8 +154,10 @@ router.use(cors());
 
 
     
-router.get("/read", async(req, res) => {
-    classe.find({}, (err, result) => {
+router.get("/read",authenticate, async(req, res) => {
+    classe.find({
+        _userId:req.user_id
+    }, (err, result) => {
   
         if (err) {
             res.send(err)
@@ -342,10 +172,10 @@ router.get("/read", async(req, res) => {
 
   
    
-  router.delete('/:id', async(req, res) => {
+  router.delete('/:id',authenticate, async(req, res) => {
 
     const id = req.params.id;
-    await classe.findByIdAndRemove(id).exec();
+    await classe.findByIdAndRemove({_id:id,user_id:req.user_id}).exec();
     res.send("deleted");
 
 
@@ -359,7 +189,7 @@ router.get("/read", async(req, res) => {
 router.put("/update/:id", async(req, res) => {
     try {
         const { id } = req.params;
-        const updatecomposant = await classe.findByIdAndUpdate(id, req.body, {
+        const updatecomposant = await classe.findOneAndUpdate({_id:id,user_id:req.user_id}, req.body, {
             new: true
         });
 
@@ -398,6 +228,7 @@ let informatique='informatique'
         res.send(result_filter)
 
     })
+    
 })
 
 

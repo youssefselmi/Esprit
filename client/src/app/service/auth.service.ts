@@ -7,12 +7,14 @@ import { LoginComponent } from '../pages/login/login.component';
 import { ApiService } from './api.service';
 
 
+
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+  test = "How r u?";
 
-  constructor(private ApiService :ApiService, private router: Router) {}
+  constructor(private ApiService :ApiService, private router: Router,private http: HttpClient) {}
 
     login(email : string,password : string){
       return this.ApiService.login(email,password).pipe(
@@ -32,6 +34,7 @@ export class AuthService {
         //the auth tokens will be in the header of this response
         this.setSession(res.body._id,res.headers.get('x-access-token'),res.headers.get('x-refresh-token'));
         console.log('SUCCESSFULY SIGNED UP AND NOW LOGGED IN');
+        //this.router.navigate(['/dashbord']);
       
       })
     )  
@@ -39,6 +42,7 @@ export class AuthService {
   logout(){
     this.removeSession();
     console.log('LOGGED OUT');
+    this.router.navigate(['/login']);
   }
   getAccessToken(){
     return localStorage.getItem('x-access-token');
@@ -51,17 +55,46 @@ export class AuthService {
     localStorage.setItem('x-access-token',accessToken)
 
   }
+  reset(email:string,password:string){
+    let data={email,password};
+    this.router.navigate(['/login']);
+    return this.ApiService.resetpw(data);
+    
+
+  }
   
   private setSession(userId:string,accessToken : string,refreshToken:string){
     localStorage.setItem('user-id',userId);
-    localStorage.setItem('access-token',accessToken);
-    localStorage.setItem('refresh-token',refreshToken);
+    localStorage.setItem('x-access-token',accessToken);
+    localStorage.setItem('x-refresh-token',refreshToken);
   }
   private removeSession(){
     localStorage.removeItem('user-id');
-    localStorage.removeItem('access-token');
-    localStorage.removeItem('refresh-token');
+    localStorage.removeItem('x-access-token');
+    localStorage.removeItem('x-refresh-token');
   }
+ 
+  
+
+ 
+    
+  
+    httpGet(url) {
+      return this.http.get(url);
+    }
+  
+    httpPost(url, {}) {
+      return this.http.post(url, { name: "Subrat" });
+    }
+  
+    sendEmail(url, data) {
+      return this.http.post(url, data);
+    }
+  
+  
+    sendEmaildelete(url, data) {
+      return this.http.post(url, data);
+    }
   
       
 }

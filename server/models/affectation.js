@@ -13,6 +13,10 @@ var Affectation = new Schema({
     }],
     nomenseignant1: String,
     nomenseignant2: String,
+    _userId:{
+        type:mongoose.Types.ObjectId,
+        required: true
+    }
 
     
 

@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 import { Classe } from 'src/app/service/classe';
 
 
+
 @Component({
   selector: 'app-departement',
   templateUrl: './departement.component.html',

@@ -16,6 +16,10 @@ var Classe = new Schema({
         type: String
     }],
     nbreenseignant: Number,
+    _userId:{
+        type:mongoose.Types.ObjectId,
+        required: true
+    }
     
 
 

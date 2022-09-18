@@ -11,6 +11,10 @@ var Module = new Schema({
     nomcompetence :[{
         type:String
     }],
+    _userId:{
+        type:mongoose.Types.ObjectId,
+        required: true
+    }
 
 
 

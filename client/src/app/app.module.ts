@@ -1,7 +1,7 @@
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
@@ -60,6 +60,9 @@ import { HeuresupComponent } from './pages/heuresup/heuresup.component';
 import { DialogheuresupComponent } from './pages/dialogheuresup/dialogheuresup.component';
 import { TypeComponent } from './pages/type/type.component';
 import { DialogtypeComponent } from './pages/dialogtype/dialogtype.component';
+import { WebReqInterceptor } from './service/web-req.interceptor';
+import { ForgetpwComponent } from './pages/forgetpw/forgetpw.component';
+import { ResetpwComponent } from './pages/resetpw/resetpw.component';
 
 
 @NgModule({
@@ -122,8 +125,10 @@ import { DialogtypeComponent } from './pages/dialogtype/dialogtype.component';
     DialogheuresupComponent,
     TypeComponent,
     DialogtypeComponent,
+    ForgetpwComponent,
+    ResetpwComponent,
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [{provide:HTTP_INTERCEPTORS, useClass: WebReqInterceptor,multi:true}],
+  bootstrap: [AppComponent]  
 })
 export class AppModule { }

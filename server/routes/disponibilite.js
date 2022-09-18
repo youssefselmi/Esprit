@@ -4,20 +4,35 @@ const app = express();
 let cors = require("cors");
 const disponibilite = require('../models/disponibilite');
 const enseignant = require('../models/enseignant');
+const User = require('../models/user');
+const jwt = require('jsonwebtoken');
 
 router.use(cors());
+let authenticate=(req,res,next)=>{
+    let token=req.header('x-access-token');
+    jwt.verify(token,User.getJWTSecret(),(err,decoded)=>{
+        if(err){
+            res.status(401).send(err);
+        }
+        else{
+            req.user_id=decoded._id;
+            next(); 
+        }
+
+    });
+}
 
 
 
 
-router.post('/add', async(req, res, next) => {  
+router.post('/add',  authenticate,async(req, res, next) => {  
   
     // console.log(req.body);
     const {idenseignant,nomenseignant,periodes,motif} = req.body;
     
     try {   
             const adddisponibilite = new disponibilite({
-                idenseignant,nomenseignant,periodes,motif});
+                idenseignant,nomenseignant,periodes,motif,_userId:req.user_id  });
     
             await adddisponibilite.save();
             res.status(201).json(adddisponibilite);
@@ -31,7 +46,7 @@ router.post('/add', async(req, res, next) => {
 
 
     enseignant.findOne(
-        {"nomenseignant":nomenseignant},
+        {"nomenseignant":nomenseignant,user_id:req.user_id},
        
         
          function( err,element){
@@ -66,8 +81,10 @@ router.post('/add', async(req, res, next) => {
 
 
     
-router.get("/read", async(req, res) => {
-    disponibilite.find({}, (err, result) => {
+router.get("/read",authenticate, async(req, res) => {
+    disponibilite.find({
+        _userId:req.user_id
+    }, (err, result) => {
   
         if (err) {
             res.send(err)
@@ -82,10 +99,10 @@ router.get("/read", async(req, res) => {
 
   
    
-  router.delete('/:id', async(req, res) => {
+  router.delete('/:id',authenticate, async(req, res) => {
 
     const id = req.params.id;
-    await disponibilite.findByIdAndRemove(id).exec();
+    await disponibilite.findByIdAndRemove({_id:id,user_id:req.user_id}).exec();
     res.send("deleted");
 
 
@@ -120,13 +137,12 @@ function updateens (element){
 
 
 
-router.put("/update/:id", async(req, res) => {
+router.put("/update/:id",authenticate, async(req, res) => {
     try {
         const { id } = req.params;
-        const updatecomposant = await disponibilite.findByIdAndUpdate(id, req.body, {
+        const updatecomposant = await disponibilite.findOneAndUpdate({_id:id,user_id:req.user_id}, req.body, {
             new: true
         });
-
         console.log(updatecomposant);
         res.status(201).json(updatecomposant);
 

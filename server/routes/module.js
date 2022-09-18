@@ -3,19 +3,38 @@ var router = express.Router();
 const app = express();
 let cors = require("cors");
 const modules = require('../models/module');
+const user = require('../routes/user');
+const User = require('../models/user');
+const jwt = require('jsonwebtoken');
+
 router.use(cors());
 
+let authenticate=(req,res,next)=>{
+    let token=req.header('x-access-token');
+    jwt.verify(token,User.getJWTSecret(),(err,decoded)=>{
+        if(err){
+            res.status(401).send(err);
+        }
+        else{
+            req.user_id=decoded._id;
+            next(); 
+        }
+
+    });
+}
 
 
 
-router.post('/add', async(req, res, next) => {  
+router.post('/add', authenticate,async(req, res, next) => {  
   
     // console.log(req.body);
     const {nommodule,coefficient,nbrheures,nomup,nomcompetence} = req.body;
     
     try {   
             const addclasse = new modules({
-                nommodule,coefficient,nbrheures,nomup,nomcompetence});
+
+                nommodule,coefficient,nbrheures,attribut,nomup,nomcompetence,_userId:req.user_id    });
+
     
             await addclasse.save();
             res.status(201).json(addclasse);
@@ -28,8 +47,10 @@ router.post('/add', async(req, res, next) => {
 
 
     
-router.get("/read", async(req, res) => {
-    modules.find({}, (err, result) => {
+router.get("/read",authenticate, async(req, res) => {
+    modules.find({
+        _userId:req.user_id
+    }, (err, result) => {
   
         if (err) {
             res.send(err)
@@ -44,10 +65,10 @@ router.get("/read", async(req, res) => {
 
   
    
-  router.delete('/:id', async(req, res) => {
+  router.delete('/:id',authenticate, async(req, res) => {
 
     const id = req.params.id;
-    await modules.findByIdAndRemove(id).exec();
+    await modules.findByIdAndRemove({_id:id,user_id:req.user_id}).exec();
     res.send("deleted");
 
 
@@ -55,10 +76,10 @@ router.get("/read", async(req, res) => {
 
 
 
-router.put("/update/:id", async(req, res) => {
+router.put("/update/:id",authenticate, async(req, res) => {
     try {
         const { id } = req.params;
-        const updatecomposant = await modules.findByIdAndUpdate(id, req.body, {
+        const updatecomposant = await modules.findOneAndUpdate({_id:id,user_id:req.user_id}, req.body, {
             new: true
         });
 

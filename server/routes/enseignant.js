@@ -10,6 +10,22 @@ const db = require('../database/mongodb');
 const type = require('../models/type');
 
 router.use(cors());
+const User = require('../models/user');
+const jwt = require('jsonwebtoken');
+let authenticate=(req,res,next)=>{
+    let token=req.header('x-access-token');
+    jwt.verify(token,User.getJWTSecret(),(err,decoded)=>{
+        if(err){
+            res.status(401).send(err);
+        }
+        else{
+            req.user_id=decoded._id;
+            next(); 
+        }
+
+    });
+}
+
 
 /*
 
@@ -89,7 +105,7 @@ console.log(addaffectation);
 
 
 
-router.post('/add', async(req, res, next) => {  
+router.post('/add', authenticate,async(req, res, next) => {  
   
      console.log(req.body);
    const {nomenseignant,email,password,nomcompetence,type,chargehorraire,nbrcrenauxp1,nbrcrenauxp2,nbrcrenauxp3,nbrcrenauxp4,disponibilite} = req.body;
@@ -108,7 +124,9 @@ router.post('/add', async(req, res, next) => {
 
             
 
-                nomenseignant,email,password:pass,nomcompetence,type,chargehorraire,nbrcrenauxp1,nbrcrenauxp2,nbrcrenauxp3,nbrcrenauxp4,disponibilite:1});
+                nomenseignant,email,password:pass,nomcompetence,type,chargehorraire,nbrcrenauxp1,nbrcrenauxp2,nbrcrenauxp3,nbrcrenauxp4,disponibilite:1,_userId:req.user_id   });
+                
+
     
             await adddisponibilite.save();
             res.status(201).json(adddisponibilite);
@@ -231,8 +249,10 @@ for (let index = 0; index < result.length; index++) {
 
 
  
-router.get("/read", async(req, res) => {
-    enseignant.find({}, (err, result) => {
+router.get("/read",authenticate, async(req, res) => {
+    enseignant.find({
+        _userId:req.user_id
+    }, (err, result) => {
   
         if (err) {
             res.send(err)
@@ -247,10 +267,10 @@ router.get("/read", async(req, res) => {
 
   
    
-  router.delete('/:id', async(req, res) => {
+  router.delete('/:id',authenticate, async(req, res) => {
 
     const id = req.params.id;
-    await enseignant.findByIdAndRemove(id).exec();
+    await enseignant.findByIdAndRemove({_id:id,user_id:req.user_id}).exec();
     res.send("deleted");
 
 
@@ -264,9 +284,7 @@ router.get("/read", async(req, res) => {
 router.put("/update/:id", async(req, res) => {
     try {
         const { id } = req.params;
-        const updatecomposant = await enseignant.findByIdAndUpdate(id, req.body, {
-
-              
+        const updatecomposant = await enseignant.findOneAndUpdate({_id:id,user_id:req.user_id}, req.body, {
             new: true
         });
    

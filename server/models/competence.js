@@ -6,6 +6,10 @@ var Competence = new Schema({
 
     nomcompetence: String,
     niveau: String,
+    _userId:{
+        type:mongoose.Types.ObjectId,
+        required: true
+    }
     
 
 

@@ -3,7 +3,16 @@ var router = express.Router();
 const app = express();
 let cors = require("cors");
 const User = require('../models/user');
+const jwt = require('jsonwebtoken');
 router.use(cors());
+const crypto = require('crypto');
+const bcrypt = require('bcryptjs');
+
+
+
+
+/**check wether the request has a valid JWT access token */
+
 
 /** verify refresh token middleware(wich will be verifying the session) */
 let verifySession = (req, res, next)=>{
@@ -81,6 +90,7 @@ router.post('/users', async(req, res)=>{
 })
 
 
+
 /* USER ROUTES*/
 /*
 *POST /users/login
@@ -106,6 +116,7 @@ router.post('/users/login', async(req, res)=>{
         })
      }).catch((e)=>{
          res.status(400).send(2);
+         
      })
 })
 /**
@@ -130,6 +141,41 @@ router.get('/users/getbyid/:id',async(req, res) => {
         res.send(result)
 })
 })
+
+router.put("/users/forgetpassword",async(req,res)=>{
+    const emaill = req.body.email;
+    var passwordd= req.body.password;
+    let constFactor = 10;
+   
+    /* bcrypt.genSalt(10).then(salt => {
+        return bcrypt.hash(password,salt); 
+    }).then(hash => {
+        console.log(hash);
+    }, err => {
+        console.log(err);
+    });
+
+    console.log(passwordd); */
+    
+        
+    try {
+        
+        
+        const updatecomposant = await User.findOneAndUpdate({email:emaill},{password:passwordd},{
+            new: true
+        });
+
+        console.log(updatecomposant);
+        res.status(201).json(updatecomposant);
+
+    } catch (error) {
+        res.status(422).json(error);
+    }
+})
+
+
+
+
 
 
 

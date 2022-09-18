@@ -17,7 +17,18 @@ const routes: Routes =[
     path: '',
     redirectTo: 'dashboard',
     pathMatch: 'full',
-  }, {
+  },
+  {
+    path: 'resetpw',
+    redirectTo: 'resetpw',
+    
+  } ,
+  {
+    path: 'newpw',
+    redirectTo: 'newpw',
+    
+  } 
+  ,{
     path: '',
     component: AdminLayoutComponent,
     children: [

@@ -33,6 +33,8 @@ export class DialogaffectationComponent implements OnInit {
   actionButton : string = "Save";
   listdepartement: Departement[];
   listModules: Module[];
+  listenseignant :Enseignant[];
+ 
 
 
   nommodules = new FormControl('');
@@ -117,6 +119,13 @@ export class DialogaffectationComponent implements OnInit {
         (data: Departement[]) => {
            this.listdepartement = data;
         })
+        //////// liste des enseignants
+       
+      this.api.getEnseignants(this.classeForm.value).subscribe(
+        (data: Enseignant[]) => {
+             this.listenseignant = data;
+          })
+
   
 
 
