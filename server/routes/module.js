@@ -33,7 +33,7 @@ router.post('/add', authenticate,async(req, res, next) => {
     try {   
             const addclasse = new modules({
 
-                nommodule,coefficient,nbrheures,attribut,nomup,nomcompetence,_userId:req.user_id    });
+                nommodule,coefficient,nbrheures,nomup,nomcompetence,_userId:req.user_id    });
 
     
             await addclasse.save();

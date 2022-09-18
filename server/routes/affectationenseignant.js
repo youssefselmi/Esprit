@@ -23,11 +23,14 @@ let authenticate=(req,res,next)=>{
 
     });
 }
-    router.get('/read',authenticate,(req, res) => {  
-  
+    router.post('/read',authenticate,(req, res) => {  
+        
         const nommodules= req.body.nommodules;
         const semestre = req.body.semestre;
-        const periode = req.body.periode;
+        const periode = req.body.periode; 
+        console.log(req.body);
+    
+        console.log(req.body);
         var x = 1;
         var n = 0;          
         var bool = 0;
@@ -146,16 +149,13 @@ let authenticate=(req,res,next)=>{
                                      
                     });
                          
-                   /*  if(index===result.length-1){
-                                  
-                        res.status(201).json(nomenseignants);
-                     } */
+                  
                      }
                       })
                      // console.log(nomenseignants);
                      
  
-     } );
+      } );
      function mafonction(res,index,result,nomenseignants,index1,result1){
         //console.log(index1);
         //console.log("dkhal");
@@ -164,7 +164,8 @@ let authenticate=(req,res,next)=>{
          if((index==result.length-1)&&(index1==result1.length-1) ){
            // console.log(index);
            
-           console.log(nomenseignants);   
+           console.log(nomenseignants);  
+
            res.send(nomenseignants);
                      
                       
