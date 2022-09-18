@@ -1,131 +1,122 @@
 <div class="dia">
 
-    <h1 mat-dialog-title >Update Classe</h1>
-    <div mat-dialog-content  >
-    
-     <form #f="ngForm" [formGroup]="classeForm" >
-    
-      <mat-form-field appearance="outline">
-        <mat-label>Classe Name</mat-label>
-        <input formControlName="nomclasse"  matInput placeholder="Classe Name" >
-      </mat-form-field>
-      <br>
+  <h1 mat-dialog-title >Update Classe</h1>
+  <div mat-dialog-content  >
+  
+   <form #f="ngForm" [formGroup]="classeForm" >
+  
+    <mat-form-field appearance="outline">
+      <mat-label>Classe Name</mat-label>
+      <input formControlName="nomclasse"  matInput placeholder="Classe Name" >
+    </mat-form-field>
+    <br>
+
 
 
 
 
  
-   
 
-  <mat-form-field appearance="outline">
-  <mat-label>Choose Departement</mat-label>
-  <mat-select formControlName="nomdepartement">
-    <mat-option *ngFor="let u of listdepartement" [value]="u.nomdepartement">
-      {{u.nomdepartement}}
-    </mat-option>
-  </mat-select>
-  </mat-form-field>
+<mat-form-field appearance="outline">
+<mat-label>Choose Departement</mat-label>
+<mat-select formControlName="nomdepartement">
+  <mat-option *ngFor="let u of listdepartement" [value]="u.nomdepartement">
+    {{u.nomdepartement}}
+  </mat-option>
+</mat-select>
+</mat-form-field>
 
-      <br>
-
-
-
-     
-
-      <mat-form-field appearance="outline">
-        <mat-label>Les modules à enseigné</mat-label>
-        <mat-select formControlName="nommodules" >
-          <mat-option *ngFor="let mod of listModules" [value]="mod.nommodule">{{mod.nommodule}}</mat-option>
-        </mat-select>
-      </mat-form-field>
-
-
-
-
-
-
-
-
-
-      
-      <mat-form-field appearance="outline">
-        <mat-label>Semestre</mat-label>
-        <mat-select formControlName="semestre" >
-          <mat-option *ngFor="let nb1 of ListeSemesre" [value]="nb1.value">
-            {{nb1.viewValue}}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
+    <br>
 
 
 
    
+
+    <mat-form-field appearance="outline">
+      <mat-label>Les modules à enseigné</mat-label>
+      <mat-select formControlName="nommodules" >
+        <mat-option *ngFor="let mod of listModules" [value]="mod.nommodule">{{mod.nommodule}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+
+
     
+    <mat-form-field appearance="outline">
+      <mat-label>Semestre</mat-label>
+      <mat-select formControlName="semestre" >
+        <mat-option>S1</mat-option>
+        <mat-option>S2</mat-option>
+      </mat-select>
+    </mat-form-field>
 
 
-      <mat-form-field appearance="outline">
-        <mat-label>Periode</mat-label>
-        <mat-select formControlName="periode" multiple >
-          <mat-option *ngFor="let nb1 of Listep" [value]="nb1.value">
-            {{nb1.viewValue}}
-          </mat-option>
-        </mat-select>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Periode</mat-label>
+      <mat-select formControlName="periode" multiple >
+        <mat-option >P1</mat-option>
+        <mat-option >P2</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+
+
+   <!--  <mat-form-field appearance="outline">
+      <mat-label>Nom enseignant 1</mat-label>
+      <input formControlName="nomenseignant1"  matInput placeholder="Nom enseignant 1" >
+    </mat-form-field> -->
+    <mat-form-field appearance="outline">
+      <mat-label>Nom enseignant 1</mat-label>
+      <mat-select formControlName="nomenseignant">
+        <mat-option *ngFor="let u of listenseignant" [value]="u.nomenseignant">
+          {{u.nomenseignant}}
+        </mat-option>
+      </mat-select>
       </mat-form-field>
+    <br>
+    <mat-form-field appearance="outline">
+      <mat-label>Nom enseignant 2</mat-label>
+      <mat-select formControlName="nomenseignant2">
+        <mat-option *ngFor="let u of listenseignant" [value]="u.nomenseignant">
+          {{u.nomenseignant}}
+        </mat-option>
+      </mat-select>
+      </mat-form-field>
+    <!-- <mat-form-field appearance="outline">
+      <mat-label>Nom enseignant 2</mat-label>
+      <input formControlName="nomenseignant2"  matInput placeholder="Nom enseignant 2" >
+    </mat-form-field> -->
+    <br>
 
 
 
-
-      <mat-form-field appearance="outline">
-        <mat-label>Choose enseignat</mat-label>
-        <mat-select formControlName="nomenseignant1">
-          <mat-option *ngFor="let u of listenseigant" [value]="u.nomenseignant">
-            {{u.nomenseignant}}
-          </mat-option>
-        </mat-select>
      
-      </mat-form-field>
+    
 
 
-   
+    
 
-
-      <mat-form-field appearance="outline">
-        <mat-label>Choose enseignat 2</mat-label>
-        <mat-select formControlName="nomenseignant2">
-          <mat-option *ngFor="let u of listenseigant" [value]="u.nomenseignant">
-            {{u.nomenseignant}}
-          </mat-option>
-        </mat-select>
-     
-      </mat-form-field>
-
-
-       
+  
+  
+  
+   </form>
       
-
-
-      
- 
+   <br>
+  </div>
+  
+  
+  
+  
+  
+  
+  
+  <div mat-dialog-action [align]="'end'">
+    <button mat-raised-button color="warn" mat-dialog-close>Close</button>
     
-    
-    
-     </form>
-        
-     <br>
-    </div>
-    
-    
-    
-    
-    
-    
-    
-    <div mat-dialog-action [align]="'end'">
-      <button mat-raised-button color="warn" mat-dialog-close>Close</button>
-      
-      <button [disabled]="f.invalid" style="margin-left: 8px;" mat-raised-button color="primary" mat-dialog-close (click)="addClasse()">{{actionButton}}</button>
-      
-      </div>
-    
+    <button [disabled]="f.invalid" style="margin-left: 8px;" mat-raised-button color="primary" mat-dialog-close (click)="addClasse()">{{actionButton}}</button>
     
     </div>
+  
+  
+  </div>
