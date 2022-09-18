@@ -80,13 +80,25 @@ export class DialogaffectationComponent implements OnInit {
            this.listdepartement = data;
         })
         //////// liste des enseignants
+         var datae = { 
+          nommodules:this.editData.nommodules, 
+          semestre:this.editData.semestre,
+          periode:this.editData.periode
+
+      } 
+      
+      //console.log(datae);
+      
        
-      this.api.getEnseignants(this.classeForm.value).subscribe(
-        (data: Enseignant[]) => {
+      this.api.getEnseignantss(datae).subscribe(
+         (data:any) => {
              this.listenseignant = data;
-          })
+             console.log(this.listenseignant);
+          } )
+        // console.log(this.classeForm.value);
 
   
+
 
 
 

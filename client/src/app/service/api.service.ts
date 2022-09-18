@@ -43,14 +43,16 @@ REST_APIAE: string = 'http://localhost:3001/affectationenseignant';
   getDepartement(){
      return this.http.get<any>(`${this.REST_API}/read`);
    }
-  getEnseignants(data : Enseignant){
-    return this.http.get<Enseignant>(`${this.REST_APIAE}/read`,data);
+  getEnseignantss(data : any){
+    return this.http.post<any>(`${this.REST_APIAE}/read`,data);
+    
   }
 
    postProduct(data : any ){
     return this.http.post<any>(`${this.REST_API}/add`,data);
   }
 
+7
 
   deleteDepartement( _id : string){
     let API_URL = `${this.REST_API}/${_id}`;
