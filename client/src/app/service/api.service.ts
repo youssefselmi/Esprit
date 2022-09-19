@@ -222,9 +222,20 @@ REST_APIAE: string = 'http://localhost:3001/affectationenseignant';
   }
 
 
+
+
   putEnseignant(data : any, _id : string){
     let API_URL = `${this.REST_APIE}/update/${_id}`;
     return this.http.put<any>(API_URL,data);
+
+  }
+
+
+
+
+  putEnseignant2(data : any){
+
+    return this.http.put<any>(`${this.REST_APIAE}/update`,data);
 
   }
 

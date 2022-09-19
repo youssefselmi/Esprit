@@ -14,6 +14,8 @@ import { Module } from 'src/app/service/modulee';
 })
 export class DialogaffectationComponent implements OnInit {
 
+
+  
   classeForm !: FormGroup;
   actionButton : string = "Save";
   listdepartement: Departement[];
@@ -43,7 +45,6 @@ export class DialogaffectationComponent implements OnInit {
    
     this.classeForm = this.formbuilder.group({
       nomclasse: ['',Validators.minLength(4)],
-    //  nbretudiant: ['',Validators.required],
       nomdepartement : ['',Validators.required],
       nommodules : ['',Validators.required],
       semestre : ['',Validators.required],
@@ -65,13 +66,17 @@ export class DialogaffectationComponent implements OnInit {
     this.actionButton = "Update"
     
           this.classeForm.controls['nomclasse'].setValue(this.editData.nomclasse);
-        //  this.classeForm.controls['nbretudiant'].setValue(this.editData.nbretudiant);
           this.classeForm.controls['nomdepartement'].setValue(this.editData.nomdepartement);
           this.classeForm.controls['nommodules'].setValue(this.editData.nommodules);
           this.classeForm.controls['semestre'].setValue(this.editData.semestre);
           this.classeForm.controls['periode'].setValue(this.editData.periode);
+
           this.classeForm.controls['nomenseignant1'].setValue(this.editData.nomenseignant1);
           this.classeForm.controls['nomenseignant2'].setValue(this.editData.nomenseignant2);
+
+
+     
+
     
         }
 
@@ -92,6 +97,7 @@ export class DialogaffectationComponent implements OnInit {
       
       //console.log(datae);
       
+
        
       this.api.getEnseignantss(datae).subscribe(
          (data:any) => {
@@ -149,7 +155,54 @@ addClasse(){
 
 
 
+
+    updateens(){
+
+      var datae1 = { 
+        nomenseignant:this.classeForm.controls['nomenseignant1'], 
+        semestre:this.classeForm.controls['semestre'],
+        periode:this.classeForm.controls['periode']
+
+
+
+    } 
+
+
+    var datae2 = { 
+      nomenseignant:this.classeForm.controls['nomenseignant2'], 
+      semestre:this.classeForm.controls['semestre'],
+      periode:this.classeForm.controls['periode']
+
+
+  } 
+    
+
+      this.api.putEnseignant2(datae1)
+      .subscribe({
+      
+      })
+
+
+      this.api.putEnseignant2(datae2)
+      .subscribe({
+       
+      })
+
+    }
+
+
+
+
+
+
+
+
     updateClasse(){
+
+
+
+
+
 
       this.api.putAffectation(this.classeForm.value, this.editData._id)
       .subscribe({
@@ -159,6 +212,11 @@ addClasse(){
           this.dialogRef.close('update');
         }
       })
+
+
+
+ 
+
   
   
     }

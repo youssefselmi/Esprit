@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var Module = new Schema({
 
+    
 
     nommodule: String,
     coefficient: Number,

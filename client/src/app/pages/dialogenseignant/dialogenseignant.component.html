@@ -22,30 +22,13 @@
 
 
 
-      <!--
-      <mat-form-field appearance="outline">
-        <mat-label>password</mat-label>
-        <input formControlName="password"  matInput placeholder="Password">
-      </mat-form-field>
-      <br>
-
--->
-
-
-
-      
-     <!-- <mat-form-field appearance="outline">
-        <mat-label>Departement Name</mat-label>
-        <input formControlName="nomdepartement"  matInput placeholder="Departement Name">
-      </mat-form-field>-->
-
 
 
    
 
-  <mat-form-field appearance="outline">
+  <mat-form-field appearance="fill">
   <mat-label>Choisir competences</mat-label>
-  <mat-select formControlName="nomcompetence" multiple>
+  <mat-select formControlName="nomcompetence" multiple > 
     <mat-option *ngFor="let c of listecompetence" [value]="c.nomcompetence">
       {{c.nomcompetence}}
     </mat-option>
@@ -57,7 +40,7 @@
 
  
 
-      <mat-form-field appearance="outline">
+      <mat-form-field appearance="fill">
         <mat-label>Type enseignant</mat-label>
         <mat-select   formControlName="type" [(ngModel)]="enseignant.type">
           <mat-option *ngFor="let typeen of listeType" [value]="typeen.typeenseignement" >
@@ -67,6 +50,9 @@
       </mat-form-field>
 
 
+
+  
+      
 
       <br>
 

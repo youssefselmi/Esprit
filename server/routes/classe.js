@@ -84,6 +84,9 @@ let authenticate=(req,res,next)=>{
 
                    
                                 const addaffectation = new affectation({nomclasse,nomdepartement,nommodules,semestre,periode,_userId:req.user_id}); 
+
+                                x=x+++1;
+
                                 maFonction(addaffectation);
                                 
                                 

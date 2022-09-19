@@ -172,4 +172,214 @@ let authenticate=(req,res,next)=>{
                      } 
 
      }
+
+
+
+
+
+
+
+
+
+
+
+     router.put("/update",  async(req, res) => {
+
+console.log("bingoooooooooooooooooooooooooo");
+
+
+        try {
+      
+            const nomenseignant=req.body.nomenseignant;
+            const periode=req.body.periode;
+            const semestre=req.body.semestre;
+      
+
+            const value = periode.find(v => v.includes('P1'));
+            const value1 = periode.find(v => v.includes('P2'));  
+
+
+            if((semestre==="S1")&&(value)){
+
+                enseignant.findOne(
+                    {"nomenseignant":nomenseignant},
+                   
+                    
+                     function( err,element){
+            
+            
+                        if(err){
+                            console.log(err);
+                        }
+                 
+                    else{
+                     
+                        updatee1(element)
+                        console.log(element);
+                   }
+                   })
+            
+            
+            }
+
+
+
+
+
+
+
+
+
+            
+            if((semestre==="S1")&&(value1)){
+
+                enseignant.findOne(
+                    {"nomenseignant":nomenseignant},
+                   
+                    
+                     function( err,element){
+            
+            
+                        if(err){
+                            console.log(err);
+                        }
+                 
+                    else{
+                     
+                        updatee2(element)
+                        console.log(element);
+                   }
+                   })
+            
+            
+            }
+
+
+
+
+            if((semestre==="S2")&&(value)){
+
+                enseignant.findOne(
+                    {"nomenseignant":nomenseignant},
+                   
+                    
+                     function( err,element){
+            
+            
+                        if(err){
+                            console.log(err);
+                        }
+                 
+                    else{
+                     
+                        updatee3(element)
+                        console.log(element);
+                   }
+                   })
+            
+            
+            }
+
+
+
+
+
+
+
+
+
+
+            if((semestre==="S2")&&(value1)){
+
+                enseignant.findOne(
+                    {"nomenseignant":nomenseignant},
+                   
+                    
+                     function( err,element){
+            
+            
+                        if(err){
+                            console.log(err);
+                        }
+                 
+                    else{
+                     
+                        updatee4(element)
+                        console.log(element);
+                   }
+                   })
+            
+            
+            }
+
+
+
+      
+          
+      
+      
+            console.log(updatecomposant);
+            res.status(201).json(updatecomposant);
+      
+        } catch (error) {
+            res.status(422).json(error);
+        }
+      })
+      
+
+
+
+
+
+
+
+      function updatee1 (element){
+              
+          element.nbrcrenauxp1 = element.nbrcrenauxp1- 1;
+        element.save();
+          
+        }  
+      
+      
+
+
+        function updatee2 (element){
+              
+            element.nbrcrenauxp2 = element.nbrcrenauxp2- 1;
+          element.save();
+            
+          }  
+        
+
+
+
+          function updatee3 (element){
+              
+            element.nbrcrenauxp3 = element.nbrcrenauxp3- 1;
+          element.save();
+            
+          }  
+        
+
+
+          
+      function updatee4 (element){
+              
+        element.nbrcrenauxp4 = element.nbrcrenauxp4- 1;
+      element.save();
+        
+      }  
+    
+
+
+
+
+
+
+
+
+
+
+
+
      module.exports = router;

@@ -173,9 +173,11 @@ ngOnInit(): void {
         
               this.enseignantForm.controls['nomenseignant'].setValue(this.editData.nomenseignant);
               this.enseignantForm.controls['email'].setValue(this.editData.email);
-              this.enseignantForm.controls['password'].setValue(this.editData.password);
-              this.enseignantForm.controls['nomcompetence'].setValue(this.editData.nomcompetence);
-              this.enseignantForm.controls['type'].setValue(this.editData.type);
+              //this.enseignantForm.controls['password'].setValue(this.editData.password);
+
+
+              this.enseignantForm.controls['nomcompetence'].setValue(this.editData.nomcompetence);;
+               this.enseignantForm.controls['type'].setValue(this.editData.type);
               //this.enseignantForm.controls['Chargehorraire'].setValue(this.editData.Chargehorraire);
 
               this.enseignantForm.controls['nbrcrenauxp1'].setValue(this.editData.nbrcrenauxp1);
@@ -294,23 +296,6 @@ ngOnInit(): void {
 
         ////////////////////////////////////////////////
       
-    /*    this.api.getType().subscribe(
-              (data: Type[]) => {
-                 this.listeType = data;
-              })
-
-
-              if (typeof localStorage === "undefined" || localStorage === null) {
-                var LocalStorage = require('node-localstorage').LocalStorage;
-                localStorage = new LocalStorage('./scratch');
-              }
-              
-              localStorage.setItem('types', 'myFirstValue');
-        
-      }*/
-
-
-
 
 
 
