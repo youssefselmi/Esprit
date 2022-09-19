@@ -241,6 +241,17 @@ REST_APIAE: string = 'http://localhost:3001/affectationenseignant';
 
 
 
+  incrementenseignant(data : any){
+
+    console.log("pssssst   "+data.nomenseignant1 +data.nomenseignant2+data.periode+data.semestre );
+
+    return this.http.put<any>(`${this.REST_APIAE}/increment`,data);
+
+  }
+
+
+
+
 
 
   /////////////////////////// Affectation //////////////////////////

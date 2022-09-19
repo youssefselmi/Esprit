@@ -382,4 +382,366 @@ console.log("bingoooooooooooooooooooooooooo");
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      router.put("/increment",  async(req, res) => {
+
+        
+
+        console.log("bingoooooooooooooooooooooooooo"+req.body.nomenseignant1);
+        console.log("bingoooooooooooooooooooooooooo"+req.body.nomenseignant2);
+        console.log("bingoooooooooooooooooooooooooo"+req.body.periode);
+        console.log("bingoooooooooooooooooooooooooo"+req.body.semestre);
+
+        
+                try {
+              
+                    console.log("1");
+  
+                    const nomenseignant1=req.body.nomenseignant1;
+                    console.log("2");
+
+                    const nomenseignant2=req.body.nomenseignant2;
+                    console.log("3");
+
+                    const periode=req.body.periode;
+                    console.log("4");
+
+                    const semestre=req.body.semestre;
+                    console.log("5");
+
+                    console.log(typeof periode);
+
+                    console.log("aymen ",periode);
+      
+        console.log("hoohhohohohoho"+nomenseignant1+nomenseignant2+periode+semestre)
+        console.log("6");
+        
+        const valuep1 = periode.includes('P1');
+        console.log("7",valuep1);
+
+        const valuep2 = periode.includes('P2');  
+        console.log("8",valuep2);
+
+        const valuep3 = periode.includes('P3');  
+        console.log("9",valuep3);
+
+        const valuep4 = periode.includes('P4');  
+        console.log("10",valuep4);
+
+        
+        
+            
+            if((semestre==="S1")&&(valuep1)){
+
+                enseignant.findOne(
+                    {"nomenseignant":nomenseignant1},
+                   
+                    
+                     function( err,element){
+            
+            
+                        if(err){
+                            console.log(err);
+                        }
+                 
+                    else{
+                     
+                        modifier1(element)
+                        console.log(element);
+                   }
+                   })  
+            }
+
+
+            console.log("11");
+
+        
+            if((semestre==="S1")&&(valuep1)){
+
+                enseignant.findOne(
+                    {"nomenseignant":nomenseignant2},
+                   
+                    
+                     function( err,element){
+            
+            
+                        if(err){
+                            console.log(err);
+                        }
+                 
+                    else{
+                     
+                        modifier1(element)
+                        console.log(element);
+                   }
+                   })  
+            }
+        
+        
+        
+        
+                 
+        
+        
+
+            if((semestre==="S1")&&(valuep2)){
+
+                enseignant.findOne(
+                    {"nomenseignant":nomenseignant1},
+                   
+                    
+                     function( err,element){
+            
+            
+                        if(err){
+                            console.log(err);
+                        }
+                 
+                    else{
+                     
+                        modifier2(element)
+                        console.log(element);
+                   }
+                   })
+            
+            
+            }
+
+
+
+
+            if((semestre==="S1")&&(valuep2)){
+
+                enseignant.findOne(
+                    {"nomenseignant":nomenseignant2},
+                   
+                    
+                     function( err,element){
+            
+            
+                        if(err){
+                            console.log(err);
+                        }
+                 
+                    else{
+                     
+                        modifier2(element)
+                        console.log(element);
+                   }
+                   })
+            
+            
+            }
+
+
+
+        
+        
+        
+        
+        
+
+
+
+            
+            if((semestre==="S2")&&(valuep3)){
+
+                enseignant.findOne(
+                    {"nomenseignant":nomenseignant1},
+                   
+                    
+                     function( err,element){
+            
+            
+                        if(err){
+                            console.log(err);
+                        }
+                 
+                    else{
+                     
+                        modifier3(element)
+                        console.log(element);
+                   }
+                   })
+            
+            
+            }
+
+
+
+  
+            if((semestre==="S2")&&(valuep3)){
+
+                enseignant.findOne(
+                    {"nomenseignant":nomenseignant2},
+                   
+                    
+                     function( err,element){
+            
+            
+                        if(err){
+                            console.log(err);
+                        }
+                 
+                    else{
+                     
+                        modifier3(element)
+                        console.log(element);
+                   }
+                   })
+            
+            
+            }
+
+
+
+
+
+
+
+
+
+
+
+
+            if((semestre==="S2")&&(valuep4)){
+
+                enseignant.findOne(
+                    {"nomenseignant":nomenseignant1},
+                   
+                    
+                     function( err,element){
+            
+            
+                        if(err){
+                            console.log(err);
+                        }
+                 
+                    else{
+                     
+                        modifier4(element)
+                        console.log(element);
+                   }
+                   })
+            
+            
+            }
+
+
+
+
+            if((semestre==="S2")&&(valuep4)){
+
+                enseignant.findOne(
+                    {"nomenseignant":nomenseignant2},
+                   
+                    
+                     function( err,element){
+            
+            
+                        if(err){
+                            console.log(err);
+                        }
+                 
+                    else{
+                     
+                        modifier4(element)
+                        console.log(element);
+                   }
+                   })
+            
+            
+            }
+
+
+              
+              
+                    console.log(updatecomposant);
+                    res.status(201).json(updatecomposant);
+              
+                } catch (error) {
+                    res.status(422).json(error);
+                }
+              })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+              function modifier1 (element){
+              
+                element.nbrcrenauxp1 = element.nbrcrenauxp1 + 1;
+                  element.save();
+                
+              }  
+
+
+              function modifier2 (element){
+              
+                element.nbrcrenauxp2 = element.nbrcrenauxp2 + 1;
+              element.save();
+                
+              }  
+
+
+              function modifier3 (element){
+              
+                element.nbrcrenauxp3 = element.nbrcrenauxp3 + 1;
+              element.save();
+                
+              }  
+
+
+              function modifier4 (element){
+              
+                element.nbrcrenauxp4 = element.nbrcrenauxp4 + 1;
+              element.save();
+                
+              }  
+
+
+
+
+
+
+
+
+
+
      module.exports = router;
