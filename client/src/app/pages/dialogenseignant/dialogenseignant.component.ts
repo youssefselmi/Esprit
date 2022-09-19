@@ -151,21 +151,13 @@ ngOnInit(): void {
     this.enseignantForm = this.formbuilder.group({
       nomenseignant: ['',Validators.required],
       email: ['',Validators.required],
-    //  password : ['',Validators.required],
       nomcompetence : ['',Validators.required],
       type : ['',Validators.required],
-
-      //Chargehorraire : ['',Validators.required],
-
-      nbrcrenauxp1 : [''],
-      nbrcrenauxp2 : [''],
-      nbrcrenauxp3 : [''],
-      nbrcrenauxp4 : [''],
+      nbrcrenauxp1 : ['',Validators.required],
+      nbrcrenauxp2 : ['',Validators.required],
+      nbrcrenauxp3 : ['',Validators.required],
+      nbrcrenauxp4 : ['',Validators.required],
        })
-
-
-
-
 
 
        if(this.editData){
@@ -173,13 +165,8 @@ ngOnInit(): void {
         
               this.enseignantForm.controls['nomenseignant'].setValue(this.editData.nomenseignant);
               this.enseignantForm.controls['email'].setValue(this.editData.email);
-              //this.enseignantForm.controls['password'].setValue(this.editData.password);
-
-
               this.enseignantForm.controls['nomcompetence'].setValue(this.editData.nomcompetence);;
-               this.enseignantForm.controls['type'].setValue(this.editData.type);
-              //this.enseignantForm.controls['Chargehorraire'].setValue(this.editData.Chargehorraire);
-
+              this.enseignantForm.controls['type'].setValue(this.editData.type);
               this.enseignantForm.controls['nbrcrenauxp1'].setValue(this.editData.nbrcrenauxp1);
               this.enseignantForm.controls['nbrcrenauxp2'].setValue(this.editData.nbrcrenauxp2);
               this.enseignantForm.controls['nbrcrenauxp3'].setValue(this.editData.nbrcrenauxp3);
@@ -247,7 +234,7 @@ ngOnInit(): void {
             this.p3=nbrcrenaux3*21;
             this.p4=nbrcrenaux4*21;
             this.password="lqldsdk5qsd";
-            console.log("nom  "+ nom);
+          /*  console.log("nom  "+ nom);
             console.log("type  "+ type);
             console.log("nbrcrenaux1  "+ nbrcrenaux1);
             console.log("nbrcrenaux2  "+ nbrcrenaux2);
@@ -257,7 +244,7 @@ ngOnInit(): void {
             console.log("p1  "+ this.p1);
             console.log("p2  "+ this.p2);
             console.log("p3  "+ this.p3);
-            console.log("p4  "+ this.p4);
+            console.log("p4  "+ this.p4);*/
 
 
             this.affectation.nomenseignant=nom;

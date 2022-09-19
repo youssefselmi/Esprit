@@ -172,8 +172,6 @@ addClasse(){
     
 
 
-
-
       this.api.putEnseignant2(datae1)
       .subscribe({
       
@@ -195,10 +193,6 @@ addClasse(){
 
 
     updateClasse(){
-
-
-
-
 
 
       this.api.putAffectation(this.classeForm.value, this.editData._id)
