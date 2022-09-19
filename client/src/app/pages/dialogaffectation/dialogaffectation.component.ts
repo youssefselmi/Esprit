@@ -156,24 +156,23 @@ addClasse(){
 
     updateens(){
 
-      var datae1 = { 
-        nomenseignant:this.classeForm.controls['nomenseignant1'], 
-        semestre:this.classeForm.controls['semestre'],
-        periode:this.classeForm.controls['periode']
-
-
+      let datae1 = { 
+        nomenseignant:this.classeForm.controls['nomenseignant1'].value, 
+        semestre:this.classeForm.controls['semestre'].value,
+        periode:this.classeForm.controls['periode'].value
 
     } 
 
 
-    var datae2 = { 
-      nomenseignant:this.classeForm.controls['nomenseignant2'], 
-      semestre:this.classeForm.controls['semestre'],
-      periode:this.classeForm.controls['periode']
-
-
+    let datae2 = { 
+      nomenseignant:this.classeForm.controls['nomenseignant2'].value, 
+      semestre:this.classeForm.controls['semestre'].value,
+      periode:this.classeForm.controls['periode'].value
   } 
     
+
+
+
 
       this.api.putEnseignant2(datae1)
       .subscribe({
