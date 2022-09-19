@@ -96,9 +96,13 @@
       <mat-form-field appearance="outline">
         <mat-label>Nombre Crénaux Periode 4</mat-label>
         <mat-select   formControlName="nbrcrenauxp4"   [(ngModel)]="enseignant.nbrcrenauxp4">
+
+
           <mat-option *ngFor="let nb4 of nombrecrenaux4" [value]="nb4.value4">
             {{nb4.viewValue4}}
           </mat-option>
+
+
         </mat-select>
       </mat-form-field>
 
@@ -133,7 +137,7 @@
     <div mat-dialog-action [align]="'end'">
       <button mat-raised-button color="warn" mat-dialog-close>Close</button>
       
-      <button [disabled]="f.invalid" style="margin-left: 8px;" mat-raised-button color="primary" mat-dialog-close (click)="addEnseignant(enseignant.nomenseignant,enseignant.type,enseignant.nbrcrenauxp1,enseignant.nbrcrenauxp2,enseignant.nbrcrenauxp3,enseignant.nbrcrenauxp4)">{{actionButton}}</button>
+      <button [disabled]="f.invalid" style="margin-left: 8px;" mat-raised-button color="primary" mat-dialog-close     (click)="addEnseignant(enseignant.nomenseignant,enseignant.type,enseignant.nbrcrenauxp1,enseignant.nbrcrenauxp2,enseignant.nbrcrenauxp3,enseignant.nbrcrenauxp4)">{{actionButton}}</button>
       
       </div>
     

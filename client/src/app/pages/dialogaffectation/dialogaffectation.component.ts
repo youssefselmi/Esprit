@@ -159,35 +159,24 @@ addClasse(){
     updateens(){
       console.log("updaaaaaaaaaaaaaaaaaaate");
 
-      var datae1 = { 
-        nomenseignant:this.classeForm.controls['nomenseignant1'], 
-        semestre:this.classeForm.controls['semestre'],
-        periode:this.classeForm.controls['periode']
-
-
+      let datae1 = { 
+        nomenseignant:this.classeForm.controls['nomenseignant1'].value, 
+        semestre:this.classeForm.controls['semestre'].value,
+        periode:this.classeForm.controls['periode'].value
 
     } 
 
 
-    var datae2 = { 
-      nomenseignant:this.classeForm.controls['nomenseignant2'], 
-      semestre:this.classeForm.controls['semestre'],
-      periode:this.classeForm.controls['periode']
-
-
+    let datae2 = { 
+      nomenseignant:this.classeForm.controls['nomenseignant2'].value, 
+      semestre:this.classeForm.controls['semestre'].value,
+      periode:this.classeForm.controls['periode'].value
   } 
     
 
-      //this.api.putEnseignant2(datae1);
-      
-      this.api.putEnseignant2(datae2)
-      .subscribe({
-        next:(res)=>{
-          alert("affectation updated !!");
-          this.classeForm.reset();
-          this.dialogRef.close('update');
-        }
-      })
+
+
+      this.api.putEnseignant2(datae1);
 
 
       this.api.putEnseignant2(datae2);
@@ -202,10 +191,6 @@ addClasse(){
 
 
     updateClasse(){
-
-
-
-
 
 
       this.api.putAffectation(this.classeForm.value, this.editData._id)
