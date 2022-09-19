@@ -45,8 +45,8 @@
     <mat-form-field appearance="outline">
       <mat-label>Semestre</mat-label>
       <mat-select formControlName="semestre" >
-        <mat-option>S1</mat-option>
-        <mat-option>S2</mat-option>
+        <mat-option value="S1">S1</mat-option>
+        <mat-option value="S2">S2</mat-option>
       </mat-select>
     </mat-form-field>
 
@@ -55,26 +55,24 @@
     <mat-form-field appearance="outline">
       <mat-label>Periode</mat-label>
       <mat-select formControlName="periode" multiple >
-        <mat-option >P1</mat-option>
-        <mat-option >P2</mat-option>
+        <mat-option value="P1" >P1</mat-option>
+        <mat-option  value="P2">P2</mat-option>
       </mat-select>
     </mat-form-field>
 
 
 
-   <!--  <mat-form-field appearance="outline">
-      <mat-label>Nom enseignant 1</mat-label>
-      <input formControlName="nomenseignant1"  matInput placeholder="Nom enseignant 1" >
-    </mat-form-field> -->
     <mat-form-field appearance="outline">
       <mat-label>Nom enseignant 1</mat-label>
-      <mat-select formControlName="nomenseignant">
+      <mat-select formControlName="nomenseignant1">
         <mat-option *ngFor="let u of listenseignant" [value]="u.nomenseignant">
           {{u.nomenseignant}}
         </mat-option>
       </mat-select>
       </mat-form-field>
     <br>
+
+
     <mat-form-field appearance="outline">
       <mat-label>Nom enseignant 2</mat-label>
       <mat-select formControlName="nomenseignant2">
@@ -83,10 +81,7 @@
         </mat-option>
       </mat-select>
       </mat-form-field>
-    <!-- <mat-form-field appearance="outline">
-      <mat-label>Nom enseignant 2</mat-label>
-      <input formControlName="nomenseignant2"  matInput placeholder="Nom enseignant 2" >
-    </mat-form-field> -->
+
     <br>
 
 
@@ -114,7 +109,7 @@
   <div mat-dialog-action [align]="'end'">
     <button mat-raised-button color="warn" mat-dialog-close>Close</button>
     
-    <button [disabled]="f.invalid" style="margin-left: 8px;" mat-raised-button color="primary" mat-dialog-close (click)="addClasse()">{{actionButton}}</button>
+    <button [disabled]="f.invalid" style="margin-left: 8px;" mat-raised-button color="primary" mat-dialog-close (click)="addClasse()"  (click)="updateens()">{{actionButton}}</button>
     
     </div>
   
