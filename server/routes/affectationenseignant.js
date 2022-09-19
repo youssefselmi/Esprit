@@ -183,7 +183,7 @@ let authenticate=(req,res,next)=>{
 
 
 
-     router.put("/update",  async(req, res) => {
+     router.put("/updatee",  async(req, res,next) => {
 
 console.log("bingoooooooooooooooooooooooooo");
 

@@ -15,7 +15,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     onLoginButtonClicked(email: string,password:string){
       this.authService.login(email,password).subscribe((res:HttpResponse<any>)=>{
         if(res.status ===200){
-          this.router.navigate(['/dashboard']);
+          this.router.navigate(['/affectation']);
         }
         console.log(res);
         

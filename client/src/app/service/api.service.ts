@@ -234,8 +234,9 @@ REST_APIAE: string = 'http://localhost:3001/affectationenseignant';
 
 
   putEnseignant2(data : any){
-
-    return this.http.put<any>(`${this.REST_APIAE}/update`,data);
+    console.log("1111111111111111111");
+    let API_URL = `http://localhost:3001/affectationenseignant/updatee`;
+    return this.http.put<any>(API_URL,data);
 
   }
 

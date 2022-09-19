@@ -134,7 +134,7 @@ addClasse(){
               alert("Classe added!!");
            //   this.notifier.notify('success', 'Classe Addes with Sucess');
               this.classeForm.reset();
-              this.dialogRef.close('save');
+              //this.dialogRef.close('save');
             },
             error:()=>{
     
@@ -157,6 +157,7 @@ addClasse(){
 
 
     updateens(){
+      console.log("updaaaaaaaaaaaaaaaaaaate");
 
       var datae1 = { 
         nomenseignant:this.classeForm.controls['nomenseignant1'], 
@@ -177,16 +178,19 @@ addClasse(){
   } 
     
 
-      this.api.putEnseignant2(datae1)
-      .subscribe({
+      //this.api.putEnseignant2(datae1);
       
-      })
-
-
       this.api.putEnseignant2(datae2)
       .subscribe({
-       
+        next:(res)=>{
+          alert("affectation updated !!");
+          this.classeForm.reset();
+          this.dialogRef.close('update');
+        }
       })
+
+
+      this.api.putEnseignant2(datae2);
 
     }
 
