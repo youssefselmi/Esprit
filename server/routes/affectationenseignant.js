@@ -1037,16 +1037,15 @@ router.put("/updatecrenaux",  async(req, res) => {
 
 
           function updatenb1 (element){         
-          element.nbrcrenauxp1 = element.nbrcrenauxp1 - 1;
-                  
-          element.p1 = element.p1 - 21;
+          element.nbrcrenauxp1 = element.nbrcrenauxp1 + 1;        
+          element.p1 = element.p1 + 21;
           element.save();           
           } 
           
 
           function updatenb2 (element){         
-            element.nbrcrenauxp2 = element.nbrcrenauxp2 - 1;
-            element.p2 = element.p2 - 21;
+            element.nbrcrenauxp2 = element.nbrcrenauxp2 + 1;
+            element.p2 = element.p2 + 21;
             element.save();           
             } 
             
@@ -1054,16 +1053,16 @@ router.put("/updatecrenaux",  async(req, res) => {
 
             
           function updatenb3 (element){         
-            element.nbrcrenauxp3 = element.nbrcrenauxp3 - 1;
-            element.p3 = element.p3 - 21;
+            element.nbrcrenauxp3 = element.nbrcrenauxp3 + 1;
+            element.p3 = element.p3 + 21;
             element.save();           
             } 
             
 
 
             function updatenb4 (element){         
-                element.nbrcrenauxp4 = element.nbrcrenauxp4 - 1;
-                element.p4 = element.p4 - 21;
+                element.nbrcrenauxp4 = element.nbrcrenauxp4 + 1;
+                element.p4 = element.p4 + 21;
                 element.save();           
                 } 
                 
@@ -1331,16 +1330,16 @@ router.put("/updatecrenaux",  async(req, res) => {
         
         
                   function mupdatenb1 (element){         
-                  element.nbrcrenauxp1 = element.nbrcrenauxp1 + 1;
+                  element.nbrcrenauxp1 = element.nbrcrenauxp1 - 1;
                           
-                  element.p1 = element.p1 + 21;
+                  element.p1 = element.p1 - 21;
                   element.save();           
                   } 
                   
         
                   function mupdatenb2 (element){         
-                    element.nbrcrenauxp2 = element.nbrcrenauxp2 + 1;
-                    element.p2 = element.p2 + 21;
+                    element.nbrcrenauxp2 = element.nbrcrenauxp2 - 1;
+                    element.p2 = element.p2 - 21;
                     element.save();           
                     } 
                     
@@ -1348,16 +1347,16 @@ router.put("/updatecrenaux",  async(req, res) => {
         
                     
                   function mupdatenb3 (element){         
-                    element.nbrcrenauxp3 = element.nbrcrenauxp3 + 1;
-                    element.p3 = element.p3 + 21;
+                    element.nbrcrenauxp3 = element.nbrcrenauxp3 - 1;
+                    element.p3 = element.p3 - 21;
                     element.save();           
                     } 
                     
         
         
                     function mupdatenb4 (element){         
-                        element.nbrcrenauxp4 = element.nbrcrenauxp4 + 1;
-                        element.p4 = element.p4 + 21;
+                        element.nbrcrenauxp4 = element.nbrcrenauxp4 - 1;
+                        element.p4 = element.p4 - 21;
                         element.save();           
                         } 
                         

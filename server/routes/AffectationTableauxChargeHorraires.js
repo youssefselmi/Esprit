@@ -30,7 +30,7 @@ router.post('/add', authenticate,async(req, res, next) => {
     
     try {   
             const addenseignant = new affectaiontab({
-                nomenseignant,type,chargehorraire,nbrcrenauxp1,nbrcrenauxp2,nbrcrenauxp3,nbrcrenauxp4,p1,p2,p3,p4,_userId:req.user_id  });
+                nomenseignant,type,chargehorraire,nbrcrenauxp1:0,nbrcrenauxp2:0,nbrcrenauxp3:0,nbrcrenauxp4:0,p1:0,p2:0,p3:0,p4:0,_userId:req.user_id  });
 
 
 
