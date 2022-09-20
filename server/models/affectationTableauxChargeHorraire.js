@@ -18,7 +18,10 @@ var AffectationTableauxChargeHorraire = new Schema({
     p4: Number,
     _userId:{
         type:mongoose.Types.ObjectId,
-    }
+    },
+
+    charges1: Number,
+    charges2: Number
 
 
     

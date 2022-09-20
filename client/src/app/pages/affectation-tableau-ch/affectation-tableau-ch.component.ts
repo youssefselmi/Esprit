@@ -13,7 +13,7 @@ import { DialogaffectationTableauCHComponent } from '../dialogaffectation-tablea
 })
 export class AffectationTableauCHComponent implements OnInit {
 
-  displayedColumns: string[] = ['nomenseignant','type' ,'chargehorraire','nbrcrenauxp1','nbrcrenauxp2','nbrcrenauxp3','nbrcrenauxp4','p1','p2','p3','p4','actions'];
+  displayedColumns: string[] = ['nomenseignant','type' ,'chargehorraire','nbrcrenauxp1','nbrcrenauxp2','nbrcrenauxp3','nbrcrenauxp4','p1','p2','p3','p4','charges1','charges2','actions'];
   dataSource!: MatTableDataSource<any>;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
@@ -24,6 +24,8 @@ export class AffectationTableauCHComponent implements OnInit {
 
 
   constructor( private dialog : MatDialog,private api:ApiService) { }
+
+  
 
   openDialog() {
     this.dialog.open(DialogaffectationTableauCHComponent,{
