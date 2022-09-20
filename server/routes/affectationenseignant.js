@@ -72,7 +72,7 @@ let authenticate=(req,res,next)=>{
                                 const value1 = periode.find(v => v.includes('P2'));  
                                 if((semestre==="S1")&&(value)){
                                     console.log("P1");
-                                    if(result[index].nbrcrenauxp1){
+                                    if(result[index].nbrcrenauxp1 && result[index].disponibilite1!=0 ){
                                         nomenseignants.push(result[index]);
                                         //console.log(nomenseignants)
                                        // res.status(201).json(nomenseignants);
@@ -90,7 +90,7 @@ let authenticate=(req,res,next)=>{
                                 }
                                 if((semestre==="S1")&&(value1)){
                                     console.log("P2");
-                                    if(result[index].nbrcrenauxp2!=0){
+                                    if(result[index].nbrcrenauxp2!=0 &&  result[index].disponibilite2!=0 ){
                                         nomenseignants.push(result[index]);
                                     }
                                   
@@ -98,14 +98,14 @@ let authenticate=(req,res,next)=>{
                                 }
                                 if((semestre==="S2")&&(value)){
                                     console.log("P3"); 
-                                    if(result[index].nbrcrenauxp3!=0){
+                                    if(result[index].nbrcrenauxp3!=0 && result[index].disponibilite3!=0 ){
                                         nomenseignants.push(result[index]);
                                     }
 
                                 }
                                 if((semestre==="S2")&&(value1)){
                                     console.log("P4");
-                                    if(result[index].nbrcrenauxp4!=0){
+                                    if(result[index].nbrcrenauxp4!=0 &&   result[index].disponibilite4!=0 ){
                                         nomenseignants.push(result[index]);
                                     }
                                         
@@ -114,7 +114,7 @@ let authenticate=(req,res,next)=>{
                             
                               
                                 
-                               
+
                                 
                                 
 
@@ -162,18 +162,47 @@ let authenticate=(req,res,next)=>{
        // console.log(result);
         //console.log(index);
          if((index==result.length-1)&&(index1==result1.length-1) ){
-           // console.log(index);
            
-           //console.log(nomenseignants);  
 
-           let nomenseignantss = [...new Set(nomenseignants)];
-          // console.log(nomenseignantss); 
 
-           res.send(nomenseignantss);
+            let nomenseignantss = [...new Set(nomenseignants)];
+
+            res.send(nomenseignantss);
+
                       
                      } 
 
      }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

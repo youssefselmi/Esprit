@@ -83,13 +83,50 @@ export class AffectationComponent implements OnInit {
 
 
   
-  deleteAffectation(_id:string){
+  deleteAffectation(_id:string,nomenseignant1:string,nomenseignant2:string,periode:string,semestre:string){
+
+
+
+    let datae1 = { 
+      nomenseignant1:nomenseignant1, 
+      nomenseignant2:nomenseignant2,
+      semestre:semestre,
+      periode:periode,
+  } 
+
+  console.log("pssssst "+datae1.nomenseignant1 +datae1.nomenseignant2+datae1.periode+datae1.semestre );
+
+
+  this.api.incrementenseignant(datae1)
+  .subscribe({
+  
+  })
+
+
+
+
+
+
+
+
+
+    ///////////////////////////////////////////////////
     this.api.deleteAffectation(_id).subscribe({
       next:(res)=>{
         alert("Deleted successfully");
         this.getAllAffectations();
       }
     })
+
+
+
+
+
+
+
+
+
+    
   
   }
 
@@ -114,6 +151,29 @@ export class AffectationComponent implements OnInit {
   }
 
 
+
+
+ /* updateens(nomenseignant1:string,nomenseignant2:string,semestre:string,periode:string){
+
+
+    let datae1 = { 
+      nomenseignant1:nomenseignant1, 
+      nomenseignant2:nomenseignant2,
+      semestre:semestre,
+      periode:periode,
+  } 
+
+  console.log("pssssst   "+datae1.nomenseignant1 +datae1.nomenseignant2+datae1.periode+datae1.semestre );
+
+
+  this.api.incrementenseignant(datae1)
+  .subscribe({
+  
+  })
+
+  
+
+  }*/
 
 
 

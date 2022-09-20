@@ -18,7 +18,14 @@ var Enseignant = new Schema({
     nbrcrenauxp2: Number,
     nbrcrenauxp3: Number,
     nbrcrenauxp4: Number,
+    
     disponibilite: Number,
+
+    disponibilite1: Number,
+    disponibilite2: Number,
+    disponibilite3: Number,
+    disponibilite4: Number,
+
 
     _userId:{
         type:mongoose.Types.ObjectId,
