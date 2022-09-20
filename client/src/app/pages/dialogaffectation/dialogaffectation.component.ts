@@ -123,6 +123,8 @@ export class DialogaffectationComponent implements OnInit {
 
 addClasse(){
 
+
+
   if(!this.editData)
      {
         if(this.classeForm.valid){
@@ -169,6 +171,16 @@ addClasse(){
       semestre:this.classeForm.controls['semestre'].value,
       periode:this.classeForm.controls['periode'].value
   } 
+
+
+
+  let datae3 = { 
+    nomenseignant1:this.classeForm.controls['nomenseignant1'].value, 
+    nomenseignant2:this.classeForm.controls['nomenseignant2'].value, 
+    periode:this.classeForm.controls['periode'].value
+
+} 
+
     
 
 
@@ -182,6 +194,17 @@ addClasse(){
       .subscribe({
        
       })
+
+
+
+      this.api.incrementnbcrenaux(datae3)
+      .subscribe({
+      
+      })
+
+
+
+
 
     }
 

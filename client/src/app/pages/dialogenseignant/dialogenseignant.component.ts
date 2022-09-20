@@ -250,6 +250,7 @@ ngOnInit(): void {
             this.affectation.nomenseignant=nom;
             this.affectation.type=type;
             this.affectation.chargehorraire=this.chargehorraire;
+            
             this.affectation.nbrcrenauxp1=nbrcrenaux1;
             this.affectation.nbrcrenauxp2=nbrcrenaux2;
             this.affectation.nbrcrenauxp3=nbrcrenaux3;
