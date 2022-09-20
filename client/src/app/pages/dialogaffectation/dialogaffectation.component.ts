@@ -177,7 +177,8 @@ addClasse(){
   let datae3 = { 
     nomenseignant1:this.classeForm.controls['nomenseignant1'].value, 
     nomenseignant2:this.classeForm.controls['nomenseignant2'].value, 
-    periode:this.classeForm.controls['periode'].value
+    periode:this.classeForm.controls['periode'].value,
+    semestre:this.classeForm.controls['semestre'].value,
 
 } 
 

@@ -796,7 +796,7 @@ console.log("bingoooooooooooooooooooooooooo");
 
 
 
-router.put("/updatecrenaux",  async(req, res) => {
+router.put("/updatecrenaux",  async(req, res) => { 
 
     console.log("bingooooooooiiiiiiiiiiiiii");
     
@@ -806,15 +806,16 @@ router.put("/updatecrenaux",  async(req, res) => {
                 const nomenseignant1=req.body.nomenseignant1;
                 const nomenseignant2=req.body.nomenseignant2;
                 const periode=req.body.periode;
-          
+                const semestre=req.body.semestre;
+
     
                 const value1 = periode.find(v => v.includes('P1'));
                 const value2 = periode.find(v => v.includes('P2'));  
-                const value3 = periode.find(v => v.includes('P3'));  
-                const value4 = periode.find(v => v.includes('P4'));  
+              //  const value3 = periode.find(v => v.includes('P3'));  
+             //   const value4 = periode.find(v => v.includes('P4'));  
 
     
-                if(value1){
+                if((semestre==="S1")&& (value1)){
     
                     tableauhorraire.findOne(
                         {"nomenseignant":nomenseignant1},
@@ -868,7 +869,7 @@ router.put("/updatecrenaux",  async(req, res) => {
     
     
                 
-                if(value2){
+                if((semestre==="S1")&& (value2)){
     
                     tableauhorraire.findOne(
                         {"nomenseignant":nomenseignant1},
@@ -925,7 +926,7 @@ router.put("/updatecrenaux",  async(req, res) => {
 
 
     
-                if(value3){
+                if((semestre==="S2")&& (value1)){
     
                     tableauhorraire.findOne(
                         {"nomenseignant":nomenseignant1},
@@ -976,7 +977,7 @@ router.put("/updatecrenaux",  async(req, res) => {
 
 
     
-                if(value4){
+                if((semestre==="S2")&& (value2)){
     
                     tableauhorraire.findOne(
                         {"nomenseignant":nomenseignant1},
@@ -1111,15 +1112,17 @@ router.put("/updatecrenaux",  async(req, res) => {
                         const nomenseignant1=req.body.nomenseignant1;
                         const nomenseignant2=req.body.nomenseignant2;
                         const periode=req.body.periode;
+                        const semestre=req.body.semestre;
+
                   
             
                         const value1 = periode.find(v => v.includes('P1'));
                         const value2 = periode.find(v => v.includes('P2'));  
-                        const value3 = periode.find(v => v.includes('P3'));  
-                        const value4 = periode.find(v => v.includes('P4'));  
+                    //    const value3 = periode.find(v => v.includes('P3'));  
+                      //  const value4 = periode.find(v => v.includes('P4'));  
         
             
-                        if(value1){
+                      if((semestre==="S1")&& (value1)){
             
                             tableauhorraire.findOne(
                                 {"nomenseignant":nomenseignant1},
@@ -1173,7 +1176,7 @@ router.put("/updatecrenaux",  async(req, res) => {
             
             
                         
-                        if(value2){
+                        if((semestre==="S1")&& (value2)){
             
                             tableauhorraire.findOne(
                                 {"nomenseignant":nomenseignant1},
@@ -1230,7 +1233,7 @@ router.put("/updatecrenaux",  async(req, res) => {
         
         
             
-                        if(value3){
+                        if((semestre==="S2")&& (value1)){
             
                             tableauhorraire.findOne(
                                 {"nomenseignant":nomenseignant1},
@@ -1281,7 +1284,7 @@ router.put("/updatecrenaux",  async(req, res) => {
         
         
             
-                        if(value4){
+                        if((semestre==="S2")&& (value2)){
             
                             tableauhorraire.findOne(
                                 {"nomenseignant":nomenseignant1},

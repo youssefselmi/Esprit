@@ -110,6 +110,7 @@ let datae2 = {
   nomenseignant1:nomenseignant1, 
   nomenseignant2:nomenseignant2,
   periode:periode,
+  semestre:semestre,
 } 
 
 this.api.incrementnbcrenaux2(datae2)
