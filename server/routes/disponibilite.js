@@ -45,7 +45,9 @@ router.post('/add',  authenticate,async(req, res, next) => {
 
 
 
-    enseignant.findOne(
+
+
+       enseignant.findOne(
         {"nomenseignant":nomenseignant,user_id:req.user_id},
        
         
@@ -58,10 +60,17 @@ router.post('/add',  authenticate,async(req, res, next) => {
      
         else{
          
-            updatee(element)
+            modifier(element,periodes)
             console.log(element);
        }
        })
+
+
+
+
+
+
+
 
 
 
@@ -69,14 +78,52 @@ router.post('/add',  authenticate,async(req, res, next) => {
 
 
 
-    function updatee (element){
+    function modifier (element,periodes){
            
         console.log(element.id);
-        element.disponibilite = 0;
+
+        console.log("ddddddddddd   "+periodes)
+
+        const value1 = periodes.find(v => v.includes('P1'));
+        const value2 = periodes.find(v => v.includes('P2'));  
+        const value3 = periodes.find(v => v.includes('P3'));  
+        const value4 = periodes.find(v => v.includes('P4'));  
+
+
+        if(value1)
+        {
+            element.disponibilite1 = 0;
+ 
+        }
+
+        if(value2)
+        {
+            element.disponibilite2 = 0;
+
+        }
+
+        if(value3)
+        {
+            element.disponibilite3 = 0;
+
+        }
+
+        if(value4)
+        {
+            element.disponibilite4 = 0;
+
+        }
+
+        
         
         element.save();
         
       }  
+
+
+
+
+  
     
 
 
@@ -101,29 +148,97 @@ router.get("/read",authenticate, async(req, res) => {
    
   router.delete('/:id',authenticate, async(req, res) => {
 
+
+    disponibilite.findOne(
+        {"id":req.params.id,user_id:req.user_id},
+       
+        
+         function( err,element){
+            if(err){
+                console.log(err);
+            }
+        else{       
+            modifier1(element)
+            console.log(element);
+       }    
+       })
+
+
+
     const id = req.params.id;
     await disponibilite.findByIdAndRemove({_id:id,user_id:req.user_id}).exec();
     res.send("deleted");
 
 
-
-
-
-
-
-
+  
 
 });
 
 
+function modifier1 (element){
 
-function updateens (element){
-           
-    console.log(element.id);
-    element.disponibilite = 1; 
-    element.save();
+    console.log("bingoooooooo     ",element.nomenseignant)
+
+    enseignant.findOne(
+        {"nomenseignant":element.nomenseignant},
+       
+        
+         function( err,element1){
+            if(err){
+                console.log(err);
+            }
+        else{       
+            modifierdispo(element1,element.periodes);
+            console.log(element1);
+       }    
+       })
+
+           }
+
+
+
+           function modifierdispo (element,periodes){
+
+
+            
+        const value1 = periodes.find(v => v.includes('P1'));
+        const value2 = periodes.find(v => v.includes('P2'));  
+        const value3 = periodes.find(v => v.includes('P3'));  
+        const value4 = periodes.find(v => v.includes('P4'));  
+
+
+       if(value1){
+        element.disponibilite1 = 1;
+
+       }
     
-  }  
+       if(value2){
+
+                element.disponibilite2 = 1;}
+
+
+                if(value3){
+
+     
+                element.disponibilite3 = 1;}
+
+
+
+           if(value4){
+
+                element.disponibilite4 = 1;
+    
+           }
+
+
+            element.save();
+
+
+           }
+
+
+
+
 
 
 

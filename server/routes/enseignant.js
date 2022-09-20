@@ -108,7 +108,7 @@ console.log(addaffectation);
 router.post('/add', authenticate,async(req, res, next) => {  
   
      console.log(req.body);
-   const {nomenseignant,email,password,nomcompetence,type,chargehorraire,nbrcrenauxp1,nbrcrenauxp2,nbrcrenauxp3,nbrcrenauxp4,disponibilite} = req.body;
+   const {nomenseignant,email,password,nomcompetence,type,chargehorraire,nbrcrenauxp1,nbrcrenauxp2,nbrcrenauxp3,nbrcrenauxp4,disponibilite,disponibilite1,disponibilite2,disponibilite3,disponibilite4} = req.body;
     
 
  var num;
@@ -124,7 +124,7 @@ router.post('/add', authenticate,async(req, res, next) => {
 
             
 
-                nomenseignant,email,password:pass,nomcompetence,type,chargehorraire,nbrcrenauxp1,nbrcrenauxp2,nbrcrenauxp3,nbrcrenauxp4,disponibilite:1,_userId:req.user_id   });
+                nomenseignant,email,password:pass,nomcompetence,type,chargehorraire,nbrcrenauxp1,nbrcrenauxp2,nbrcrenauxp3,nbrcrenauxp4,disponibilite:1,disponibilite1:1,disponibilite2:1,disponibilite3:1,disponibilite4:1,_userId:req.user_id   });
                 
 
     
