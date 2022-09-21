@@ -86,7 +86,7 @@ export class AffectationComponent implements OnInit {
   deleteAffectation(_id:string,nomenseignant1:string,nomenseignant2:string,periode:string,semestre:string){
 
 
-
+///////////////////////////////////////////////// incrementer dans l enseignant lors de la suppression ///////////////////
     let datae1 = { 
       nomenseignant1:nomenseignant1, 
       nomenseignant2:nomenseignant2,
@@ -101,6 +101,25 @@ export class AffectationComponent implements OnInit {
   .subscribe({
   
   })
+
+/////////////////////////////////////////////////
+
+///////////////////////////////////////////////// incrementer dans l le tableaux horraire lors de la suppression ///////////////////
+
+let datae2 = { 
+  nomenseignant1:nomenseignant1, 
+  nomenseignant2:nomenseignant2,
+  periode:periode,
+  semestre:semestre,
+} 
+
+this.api.incrementnbcrenaux2(datae2)
+.subscribe({
+
+})
+
+
+
 
 
 

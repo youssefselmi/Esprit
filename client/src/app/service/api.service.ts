@@ -250,6 +250,22 @@ REST_APIAE: string = 'http://localhost:3001/affectationenseignant';
   }
 
 
+  incrementnbcrenaux(data : any){
+
+    return this.http.put<any>(`${this.REST_APIAE}/updatecrenaux`,data);
+
+  }
+
+
+  incrementnbcrenaux2(data : any){
+
+    return this.http.put<any>(`${this.REST_APIAE}/incrementecrenaux`,data);
+
+  }
+
+
+
+
 
 
 

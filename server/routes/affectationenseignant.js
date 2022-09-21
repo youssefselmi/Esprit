@@ -3,9 +3,13 @@ var router = express.Router();
 const app = express();
 let cors = require("cors");;
 const enseignant = require('../models/enseignant');
+const tableauhorraire = require('../models/affectationTableauxChargeHorraire');
+
+
 const modulee = require('../models/module');
 const User = require('../models/user');
 const jwt = require('jsonwebtoken');
+
 
 
 
@@ -367,6 +371,7 @@ console.log("bingoooooooooooooooooooooooooo");
       function updatee1 (element){
               
           element.nbrcrenauxp1 = element.nbrcrenauxp1- 1;
+                  
         element.save();
           
         }  
@@ -775,4 +780,639 @@ console.log("bingoooooooooooooooooooooooooo");
 
 
 
-     module.exports = router;
+
+
+
+
+
+
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+/////////////////// increment crenaux /////////////////////////////////////////
+
+
+
+
+
+router.put("/updatecrenaux",  async(req, res) => { 
+
+    console.log("bingooooooooiiiiiiiiiiiiii");
+    
+    
+            try {
+          
+                const nomenseignant1=req.body.nomenseignant1;
+                const nomenseignant2=req.body.nomenseignant2;
+                const periode=req.body.periode;
+                const semestre=req.body.semestre;
+
+    
+                const value1 = periode.find(v => v.includes('P1'));
+                const value2 = periode.find(v => v.includes('P2'));  
+              //  const value3 = periode.find(v => v.includes('P3'));  
+             //   const value4 = periode.find(v => v.includes('P4'));  
+
+    
+                if((semestre==="S1")&& (value1)){
+    
+                    tableauhorraire.findOne(
+                        {"nomenseignant":nomenseignant1},
+                       
+                        
+                         function( err,element){
+                
+                
+                            if(err){
+                                console.log(err);
+                            }
+                     
+                        else{
+                         
+                            updatenb1(element)
+                            console.log(element);
+                       }
+                       })
+
+                       ////////////
+
+
+                       tableauhorraire.findOne(
+                        {"nomenseignant":nomenseignant2},
+                                           
+                         function( err,element){
+                
+                
+                            if(err){
+                                console.log(err);
+                            }
+                     
+                        else{
+                         
+                            updatenb1(element)
+                            console.log(element);
+                       }
+                       })
+                
+                
+                }
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+                
+                if((semestre==="S1")&& (value2)){
+    
+                    tableauhorraire.findOne(
+                        {"nomenseignant":nomenseignant1},
+                       
+                        
+                         function( err,element){
+                
+                
+                            if(err){
+                                console.log(err);
+                            }
+                     
+                        else{
+                         
+                            updatenb2(element)
+                            console.log(element);
+                       }
+                       })
+
+                
+                       ////////////////////////
+
+                       tableauhorraire.findOne(
+                        {"nomenseignant":nomenseignant2},
+                       
+                        
+                         function( err,element){
+                
+                
+                            if(err){
+                                console.log(err);
+                            }
+                     
+                        else{
+                         
+                            updatenb2(element)
+                            console.log(element);
+                       }
+                       })
+                
+                }
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+                if((semestre==="S2")&& (value1)){
+    
+                    tableauhorraire.findOne(
+                        {"nomenseignant":nomenseignant1},
+                       
+                        
+                         function( err,element){
+                
+                
+                            if(err){
+                                console.log(err);
+                            }
+                     
+                        else{
+                         
+                            updatenb3(element)
+                            console.log(element);
+                       }
+                       })
+
+
+                       ////////////////////////////////////
+
+
+                       tableauhorraire.findOne(
+                        {"nomenseignant":nomenseignant2},
+                       
+                        
+                         function( err,element){
+                
+                
+                            if(err){
+                                console.log(err);
+                            }
+                     
+                        else{
+                         
+                            updatenb3(element)
+                            console.log(element);
+                       }
+                       })
+                
+                
+                }
+    
+
+
+
+
+
+    
+                if((semestre==="S2")&& (value2)){
+    
+                    tableauhorraire.findOne(
+                        {"nomenseignant":nomenseignant1},
+                       
+                        
+                         function( err,element){
+                
+                
+                            if(err){
+                                console.log(err);
+                            }
+                     
+                        else{
+                         
+                            updatenb4(element)
+                            console.log(element);
+                       }
+                       })
+                
+                       //////////////////////////////////////////////
+
+
+                       tableauhorraire.findOne(
+                        {"nomenseignant":nomenseignant2},
+                       
+                        
+                         function( err,element){
+                
+                
+                            if(err){
+                                console.log(err);
+                            }
+                     
+                        else{
+                         
+                            updatenb4(element)
+                            console.log(element);
+                       }
+                       })
+                
+                }
+    
+    
+    
+          
+              
+          
+          
+                console.log(updatecomposant);
+                res.status(201).json(updatecomposant);
+          
+            } catch (error) {
+                res.status(422).json(error);
+            }
+          })
+          
+    
+
+
+          function updatenb1 (element){         
+          element.nbrcrenauxp1 = element.nbrcrenauxp1 + 1;        
+          element.p1 = element.p1 + 21;
+
+          element.charges1 =  element.chargehorraire-(element.p1+element.p2);
+
+          element.save();           
+          } 
+          
+
+          function updatenb2 (element){         
+            element.nbrcrenauxp2 = element.nbrcrenauxp2 + 1;
+            element.p2 = element.p2 + 21;
+
+            element.charges1 =  element.chargehorraire-(element.p1+element.p2);
+
+            element.save();           
+            } 
+            
+          
+
+            
+          function updatenb3 (element){         
+            element.nbrcrenauxp3 = element.nbrcrenauxp3 + 1;
+            element.p3 = element.p3 + 21;
+
+            element.charges2 =  element.chargehorraire-(element.p3+element.p4);
+
+            element.save();           
+            } 
+            
+
+
+            function updatenb4 (element){         
+                element.nbrcrenauxp4 = element.nbrcrenauxp4 + 1;
+                element.p4 = element.p4 + 21;
+
+                element.charges2 =  element.chargehorraire-(element.p3+element.p4);
+
+                element.save();           
+                } 
+                
+    
+
+
+          //////////////////////////////////////////////////////////////////
+
+
+
+
+
+          //////////////////////////////////////////  ////////////////////////////////////////////////
+
+
+
+
+
+
+
+
+
+
+
+
+
+          router.put("/incrementecrenaux",  async(req, res) => {
+
+            console.log("bingooooooooiiiiiiiiiiiiii");
+            
+            
+                    try {
+                  
+                        const nomenseignant1=req.body.nomenseignant1;
+                        const nomenseignant2=req.body.nomenseignant2;
+                        const periode=req.body.periode;
+                        const semestre=req.body.semestre;
+
+                  
+            
+                        const value1 = periode.find(v => v.includes('P1'));
+                        const value2 = periode.find(v => v.includes('P2'));  
+                    //    const value3 = periode.find(v => v.includes('P3'));  
+                      //  const value4 = periode.find(v => v.includes('P4'));  
+        
+            
+                      if((semestre==="S1")&& (value1)){
+            
+                            tableauhorraire.findOne(
+                                {"nomenseignant":nomenseignant1},
+                               
+                                
+                                 function( err,element){
+                        
+                        
+                                    if(err){
+                                        console.log(err);
+                                    }
+                             
+                                else{
+                                 
+                                    mupdatenb1(element)
+                                    console.log(element);
+                               }
+                               })
+        
+                               ////////////
+        
+        
+                               tableauhorraire.findOne(
+                                {"nomenseignant":nomenseignant2},
+                                                   
+                                 function( err,element){
+                        
+                        
+                                    if(err){
+                                        console.log(err);
+                                    }
+                             
+                                else{
+                                 
+                                    mupdatenb1(element)
+                                    console.log(element);
+                               }
+                               })
+                        
+                        
+                        }
+        
+        
+            
+            
+            
+            
+            
+            
+            
+            
+            
+                        
+                        if((semestre==="S1")&& (value2)){
+            
+                            tableauhorraire.findOne(
+                                {"nomenseignant":nomenseignant1},
+                               
+                                
+                                 function( err,element){
+                        
+                        
+                                    if(err){
+                                        console.log(err);
+                                    }
+                             
+                                else{
+                                 
+                                    mupdatenb2(element)
+                                    console.log(element);
+                               }
+                               })
+        
+                        
+                               ////////////////////////
+        
+                               tableauhorraire.findOne(
+                                {"nomenseignant":nomenseignant2},
+                               
+                                
+                                 function( err,element){
+                        
+                        
+                                    if(err){
+                                        console.log(err);
+                                    }
+                             
+                                else{
+                                 
+                                    mupdatenb2(element)
+                                    console.log(element);
+                               }
+                               })
+                        
+                        }
+            
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+            
+                        if((semestre==="S2")&& (value1)){
+            
+                            tableauhorraire.findOne(
+                                {"nomenseignant":nomenseignant1},
+                               
+                                
+                                 function( err,element){
+                        
+                        
+                                    if(err){
+                                        console.log(err);
+                                    }
+                             
+                                else{
+                                 
+                                    mupdatenb3(element)
+                                    console.log(element);
+                               }
+                               })
+        
+        
+                               ////////////////////////////////////
+        
+        
+                               tableauhorraire.findOne(
+                                {"nomenseignant":nomenseignant2},
+                               
+                                
+                                 function( err,element){
+                        
+                        
+                                    if(err){
+                                        console.log(err);
+                                    }
+                             
+                                else{
+                                 
+                                    mupdatenb3(element)
+                                    console.log(element);
+                               }
+                               })
+                        
+                        
+                        }
+            
+        
+        
+        
+        
+        
+            
+                        if((semestre==="S2")&& (value2)){
+            
+                            tableauhorraire.findOne(
+                                {"nomenseignant":nomenseignant1},
+                               
+                                
+                                 function( err,element){
+                        
+                        
+                                    if(err){
+                                        console.log(err);
+                                    }
+                             
+                                else{
+                                 
+                                    mupdatenb4(element)
+                                    console.log(element);
+                               }
+                               })
+                        
+                               //////////////////////////////////////////////
+        
+        
+                               tableauhorraire.findOne(
+                                {"nomenseignant":nomenseignant2},
+                               
+                                
+                                 function( err,element){
+                        
+                        
+                                    if(err){
+                                        console.log(err);
+                                    }
+                             
+                                else{
+                                 
+                                    mupdatenb4(element)
+                                    console.log(element);
+                               }
+                               })
+                        
+                        }
+            
+            
+            
+                  
+                      
+                  
+                  
+                        console.log(updatecomposant);
+                        res.status(201).json(updatecomposant);
+                  
+                    } catch (error) {
+                        res.status(422).json(error);
+                    }
+                  })
+                  
+            
+        
+        
+                  function mupdatenb1 (element){         
+                  element.nbrcrenauxp1 = element.nbrcrenauxp1 - 1;
+                          
+                  element.p1 = element.p1 - 21;
+
+                  element.charges1 =  element.chargehorraire-(element.p1+element.p2);
+
+                  element.save();           
+                  } 
+                  
+        
+                  function mupdatenb2 (element){         
+                    element.nbrcrenauxp2 = element.nbrcrenauxp2 - 1;
+                    element.p2 = element.p2 - 21;
+
+                    element.charges1 =  element.chargehorraire-(element.p1+element.p2);
+
+                    element.save();           
+                    } 
+                    
+                  
+        
+                    
+                  function mupdatenb3 (element){         
+                    element.nbrcrenauxp3 = element.nbrcrenauxp3 - 1;
+                    element.p3 = element.p3 - 21;
+
+                    element.charges2 =  element.chargehorraire-(element.p2+element.p3);
+
+                    element.save();           
+                    } 
+                    
+        
+        
+                    function mupdatenb4 (element){         
+                        element.nbrcrenauxp4 = element.nbrcrenauxp4 - 1;
+                        element.p4 = element.p4 - 21;
+
+                        element.charges2 =  element.chargehorraire-(element.p2+element.p3);
+
+                        element.save();           
+                        } 
+                        
+            
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  module.exports = router;

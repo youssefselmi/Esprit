@@ -16,9 +16,10 @@ var Affectation = new Schema({
     _userId:{
         type:mongoose.Types.ObjectId,
         required: true
-    }
+    },
 
-    
+
+     
 
 
 });
