@@ -17,6 +17,9 @@ export class LoginComponent implements OnInit, OnDestroy {
         if(res.status ===200){
           this.router.navigate(['/affectation']);
         }
+        else{
+          alert("verifier votre adresse et mot de passe");
+        }
         console.log(res);
         
       });

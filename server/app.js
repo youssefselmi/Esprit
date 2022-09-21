@@ -25,7 +25,8 @@ var optupRouter = require('./routes/optup')
 
 var affectationtabchargehorraireRouter =  require('./routes/AffectationTableauxChargeHorraires');
 var disponibiliteRouter =  require('./routes/disponibilite');
-var affectationenseignantRouter= require('./routes/affectationenseignant')
+var affectationenseignantRouter= require('./routes/affectationenseignant');
+var sendmailRouter =  require('./routes/sendmail');
 
 var app = express();
 
@@ -59,6 +60,7 @@ app.use('/disponibilite',disponibiliteRouter);
 app.use('/type',typeRouter);
 app.use('/heuresup', heuresupRouter);
 app.use('/affectationenseignant',affectationenseignantRouter);
+app.use('/sendmail',sendmailRouter)
 
 
 

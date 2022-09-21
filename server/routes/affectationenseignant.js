@@ -53,7 +53,7 @@ let authenticate=(req,res,next)=>{
                     for (let index = 0; index < result.length; index++) {
                       
                          
-                    modulee.find({}, (err1, result1) => {
+                    modulee.find({_userId:req.user_id }, (err1, result1) => {
        
                         if (err1) {
                             console.log(err1)
@@ -214,7 +214,7 @@ let authenticate=(req,res,next)=>{
 
 
 
-     router.put("/update",  async(req, res) => {
+     router.put("/update",authenticate,  async(req, res) => {
 
 console.log("bingoooooooooooooooooooooooooo");
 
@@ -233,7 +233,7 @@ console.log("bingoooooooooooooooooooooooooo");
             if((semestre==="S1")&&(value)){
 
                 enseignant.findOne(
-                    {"nomenseignant":nomenseignant},
+                    {_userId:req.user_id ,"nomenseignant":nomenseignant},
                    
                     
                      function( err,element){
@@ -265,7 +265,7 @@ console.log("bingoooooooooooooooooooooooooo");
             if((semestre==="S1")&&(value1)){
 
                 enseignant.findOne(
-                    {"nomenseignant":nomenseignant},
+                    {"nomenseignant":nomenseignant,_userId:req.user_id },
                    
                     
                      function( err,element){
@@ -291,7 +291,7 @@ console.log("bingoooooooooooooooooooooooooo");
             if((semestre==="S2")&&(value)){
 
                 enseignant.findOne(
-                    {"nomenseignant":nomenseignant},
+                    {"nomenseignant":nomenseignant,_userId:req.user_id },
                    
                     
                      function( err,element){
@@ -323,7 +323,7 @@ console.log("bingoooooooooooooooooooooooooo");
             if((semestre==="S2")&&(value1)){
 
                 enseignant.findOne(
-                    {"nomenseignant":nomenseignant},
+                    {"nomenseignant":nomenseignant,_userId:req.user_id },
                    
                     
                      function( err,element){
@@ -440,7 +440,7 @@ console.log("bingoooooooooooooooooooooooooo");
 
 
 
-      router.put("/increment",  async(req, res) => {
+      router.put("/increment",authenticate,  async(req, res) => {
 
         
 
@@ -491,7 +491,7 @@ console.log("bingoooooooooooooooooooooooooo");
             if((semestre==="S1")&&(valuep1)){
 
                 enseignant.findOne(
-                    {"nomenseignant":nomenseignant1},
+                    {"nomenseignant":nomenseignant1,_userId:req.user_id},
                    
                     
                      function( err,element){
@@ -516,7 +516,7 @@ console.log("bingoooooooooooooooooooooooooo");
             if((semestre==="S1")&&(valuep1)){
 
                 enseignant.findOne(
-                    {"nomenseignant":nomenseignant2},
+                    {"nomenseignant":nomenseignant2,_userId:req.user_id},
                    
                     
                      function( err,element){
@@ -544,7 +544,7 @@ console.log("bingoooooooooooooooooooooooooo");
             if((semestre==="S1")&&(valuep2)){
 
                 enseignant.findOne(
-                    {"nomenseignant":nomenseignant1},
+                    {"nomenseignant":nomenseignant1,_userId:req.user_id},
                    
                     
                      function( err,element){
@@ -570,7 +570,7 @@ console.log("bingoooooooooooooooooooooooooo");
             if((semestre==="S1")&&(valuep2)){
 
                 enseignant.findOne(
-                    {"nomenseignant":nomenseignant2},
+                    {"nomenseignant":nomenseignant2,_userId:req.user_id},
                    
                     
                      function( err,element){
@@ -604,7 +604,7 @@ console.log("bingoooooooooooooooooooooooooo");
             if((semestre==="S2")&&(valuep3)){
 
                 enseignant.findOne(
-                    {"nomenseignant":nomenseignant1},
+                    {"nomenseignant":nomenseignant1,_userId:req.user_id },
                    
                     
                      function( err,element){
@@ -630,7 +630,7 @@ console.log("bingoooooooooooooooooooooooooo");
             if((semestre==="S2")&&(valuep3)){
 
                 enseignant.findOne(
-                    {"nomenseignant":nomenseignant2},
+                    {"nomenseignant":nomenseignant2,_userId:req.user_id },
                    
                     
                      function( err,element){
@@ -664,7 +664,7 @@ console.log("bingoooooooooooooooooooooooooo");
             if((semestre==="S2")&&(valuep4)){
 
                 enseignant.findOne(
-                    {"nomenseignant":nomenseignant1},
+                    {"nomenseignant":nomenseignant1,_userId:req.user_id },
                    
                     
                      function( err,element){
@@ -690,7 +690,7 @@ console.log("bingoooooooooooooooooooooooooo");
             if((semestre==="S2")&&(valuep4)){
 
                 enseignant.findOne(
-                    {"nomenseignant":nomenseignant2},
+                    {"nomenseignant":nomenseignant2,_userId:req.user_id },
                    
                     
                      function( err,element){

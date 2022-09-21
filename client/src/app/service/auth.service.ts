@@ -1,8 +1,8 @@
-import { HttpClient, HttpResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { localizedString } from '@angular/compiler/src/output/output_ast';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { shareReplay,tap } from 'rxjs/operators';
+import { catchError, shareReplay,tap } from 'rxjs/operators';
 import { LoginComponent } from '../pages/login/login.component';
 import { ApiService } from './api.service';
 
@@ -34,6 +34,9 @@ export class AuthService {
         //the auth tokens will be in the header of this response
         this.setSession(res.body._id,res.headers.get('x-access-token'),res.headers.get('x-refresh-token'));
         console.log('SUCCESSFULY SIGNED UP AND NOW LOGGED IN');
+       /*  catchError((error:HttpErrorResponse)=>{
+          console.log(error);
+        }) */
         //this.router.navigate(['/dashbord']);
       
       })

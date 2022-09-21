@@ -147,15 +147,15 @@ router.put("/users/forgetpassword",async(req,res)=>{
     var passwordd= req.body.password;
     let constFactor = 10;
    
-    /* bcrypt.genSalt(10).then(salt => {
-        return bcrypt.hash(password,salt); 
-    }).then(hash => {
-        console.log(hash);
+     bcrypt.genSalt(10).then(salt => {
+        return bcrypt.hash(passwordd,salt); 
+    }).then(passwordd=> {
+        console.log(passwordd);
     }, err => {
         console.log(err);
     });
 
-    console.log(passwordd); */
+    
     
         
     try {
