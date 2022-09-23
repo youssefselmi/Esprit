@@ -24,7 +24,7 @@ let verifySession = (req, res, next)=>{
                 'error': 'user not found .'
             });
         }
-        req.user8id=user._id;
+        req.user_id=user._id;
         req.refreshToken = refreshToken;
         req.userObject = user;
         let isSessionValid = false;
@@ -147,31 +147,71 @@ router.put("/users/forgetpassword",async(req,res)=>{
     var passwordd= req.body.password;
     let constFactor = 10;
    
-    /* bcrypt.genSalt(10).then(salt => {
-        return bcrypt.hash(password,salt); 
-    }).then(hash => {
-        console.log(hash);
+     bcrypt.genSalt(10).then(salt => {
+        return bcrypt.hash(passwordd,salt); 
+    }).then(passwordd=> {
+        console.log(passwordd);
+        updatepassword(passwordd,emaill);
     }, err => {
         console.log(err);
     });
 
-    console.log(passwordd); */
+    
     
         
-    try {
+   
+})
+function updatepassword(password,emaill){
+  /*   try {
+        console.log(password);
         
         
-        const updatecomposant = await User.findOneAndUpdate({email:emaill},{password:passwordd},{
+         const updatecomposant = User.findOneAndUpdate({email:emaill},{password:password},{
             new: true
         });
 
         console.log(updatecomposant);
-        res.status(201).json(updatecomposant);
+       status(201).json(updatecomposant); 
 
     } catch (error) {
         res.status(422).json(error);
-    }
-})
+    } */
+    User.findOne({email:emaill
+
+    }, function( err,element){
+                
+                
+        if(err){
+            console.log(err);
+        }
+ 
+    else{
+     element.password =password;
+     element.save().then(()=>{
+        return element.createSession();
+    }).then((refreshToken)=>{
+        //session created successfully - refreshToken returned
+        // now we generate an access auth token for the user
+        return element.generateAccessAuthToken().then((accessToken)=>{
+            return{accessToken, refreshToken}
+        });
+    }).then((authTokens)=>{
+        element 
+            .header('x-refresh-token',authTokens.refreshToken)
+            .header('x-access-token',authTokens.accessToken)
+            .send(element);
+    }).catch((e)=>{
+       // element.status(400).send(e);
+    })
+   }
+   }
+    )
+
+
+
+
+
+}
 
 
 

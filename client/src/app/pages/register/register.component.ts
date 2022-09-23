@@ -16,8 +16,11 @@ export class RegisterComponent implements OnInit {
   ngOnInit() {
   }
   onSignupButtonClicked(email: string,password:string){
+    
     this.authService.signup(email,password).subscribe((res:HttpResponse<any>)=>{
       console.log(res);
+      
+      
 
 
 
@@ -41,13 +44,14 @@ export class RegisterComponent implements OnInit {
             `
   
       }
-      this.authService.sendEmail("http://localhost:3003/sendmail", user).subscribe(
+      this.authService.sendEmail("http://localhost:3001/sendmail/sendmail", user).subscribe(
         data => {
           let res:any = data; 
           console.log("success"   );
         },
       );
     });
+    alert("un email de confirmation envoyé a votre adresse 🙂");
   }
 
 }

@@ -14,6 +14,7 @@ export class ForgetpwComponent implements OnInit {
   ngOnInit(): void {
   }
   Clicked(email){
+    alert("Le lien de reset password est envoyé vers votre email 🙂")
     let user = {
       name: "test 11",
        email:email,
@@ -34,7 +35,7 @@ export class ForgetpwComponent implements OnInit {
        `
  
      }
-     this.authService.sendEmail("http://localhost:3003/sendmail", user).subscribe(
+     this.authService.sendEmail("http://localhost:3001/sendmail/sendmail", user).subscribe(
        data => {
          let res:any = data; 
          console.log("success"   );
