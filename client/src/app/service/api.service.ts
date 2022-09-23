@@ -264,7 +264,9 @@ REST_APIAE: string = 'http://localhost:3001/affectationenseignant';
   }
 
 
-
+  incrementheuresup(data:any){
+    return this.http.put<any>(`${this.REST_APIH}/discrimentheuresup`,data);
+  }
 
 
 

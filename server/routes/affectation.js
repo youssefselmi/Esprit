@@ -50,7 +50,7 @@ router.post('/add',  authenticate,async(req) => {
     
 router.get("/read",authenticate,  async(req, res) => {
     Affectation.find({
-      /* _userId:req.user_id */
+       _userId:req.user_id 
     }, (err, result) => {
   
         if (err) {

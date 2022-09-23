@@ -189,7 +189,7 @@ router.get("/read",authenticate, async(req, res) => {
 
 
 
-router.put("/update/:id", async(req, res) => {
+router.put("/update/:id", authenticate, async(req, res) => {
     try {
         const { id } = req.params;
         const updatecomposant = await classe.findOneAndUpdate({_id:id,user_id:req.user_id}, req.body, {
