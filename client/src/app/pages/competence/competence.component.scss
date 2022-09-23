@@ -1,47 +1,47 @@
 .example-form {
-    min-width: 150px;
-    max-width: 500px;
-    width: 100%;
-  }
-  
-  .example-full-width {
-    width: 100%;
-  }
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.example-full-width {
+  width: 100%;
+}
 
 
-  .buttonpos {
-    position: relative;
-    left: 1380px;
-  }
+.buttonpos {
+  display:flex;
+  position: relative;
+  align-self:flex-end;
+}
 
 
-  .example-spacer {
-    flex: 1 1 auto;
-  } 
+.example-spacer {
+  flex: 1 1 auto;
+} 
 
-  table {
-    width: 100%;
-  }
-  
-  .mat-form-field {
-    font-size: 14px;
-    width: 100%;
-  }
-  
-  td, th {
-    width: 25%;
-  }
+table {
+  width: 100%;
+}
 
-  .container {
-    max-width: 1200px;
-    margin: 0 auto;
-  }
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+td, th {
+  width: 25%;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
 
 
-  .posbutton
-  {
-    position: relative;
-    left: 210px;
-  }
+.posbutton
+{
+  position: relative;
+  left: 210px;
+}
 
-  
