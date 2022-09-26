@@ -57,7 +57,26 @@ router.get("/read",authenticate, async(req, res) => {
         if (err) {
             res.send(err)
         }
-        res.send(result)
+
+
+
+        for (var key in result) {
+            if(result[key].nomenseignant == "pas d'ensiegnat"){
+            delete result[key];
+                } }
+
+
+
+
+        var result_filter = result.filter( function(val){return val !== ''} );
+
+
+
+
+
+
+
+        res.send(result_filter)
 
     })
   })

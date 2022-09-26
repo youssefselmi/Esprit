@@ -11,7 +11,8 @@
 
 
 
-
+<br>
+  <button class="btn btn-success buttonpos" (click)="exportExcel()">Export Excel</button>
 
 
 
@@ -32,7 +33,9 @@
     </mat-form-field>
     
     <div class="mat-elevation-z8">
-      <table mat-table [dataSource]="dataSource" matSort>
+
+
+      <table id="excel-table" mat-table [dataSource]="dataSource" matSort>
     
         <ng-container matColumnDef="nomclasse">
           <th mat-header-cell *matHeaderCellDef mat-sort-header> Classe Name </th>

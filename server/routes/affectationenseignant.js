@@ -162,10 +162,7 @@ let authenticate=(req,res,next)=>{
  
       } );
      function mafonction(res,index,result,nomenseignants,index1,result1){
-        //console.log(index1);
-        //console.log("dkhal");
-       // console.log(result);
-        //console.log(index);
+       
          if((index==result.length-1)&&(index1==result1.length-1) ){
            
             let nomenseignantss = [...new Set(nomenseignants)];
@@ -232,6 +229,8 @@ console.log("bingoooooooooooooooooooooooooo");
             const value = periode.find(v => v.includes('P1'));
             const value1 = periode.find(v => v.includes('P2'));  
 
+         
+
 
             if((semestre==="S1")&&(value)){
 
@@ -257,14 +256,6 @@ console.log("bingoooooooooooooooooooooooooo");
             
             
             }
-
-
-
-
-
-
-
-
 
             
             if((semestre==="S1")&&(value1)){
@@ -292,8 +283,6 @@ console.log("bingoooooooooooooooooooooooooo");
             }
 
 
-
-
             if((semestre==="S2")&&(value)){
 
                 enseignant.findOne(
@@ -316,14 +305,6 @@ console.log("bingoooooooooooooooooooooooooo");
             
             
             }
-
-
-
-
-
-
-
-
 
 
             if((semestre==="S2")&&(value1)){
@@ -355,10 +336,10 @@ console.log("bingoooooooooooooooooooooooooo");
       
           
       
-      
+       
             console.log(updatecomposant);
             res.status(201).json(updatecomposant);
-      
+     
         } catch (error) {
             res.status(422).json(error);
         }
@@ -371,12 +352,19 @@ console.log("bingoooooooooooooooooooooooooo");
 
 
 
+      
+
+
       function updatee1 (element){
+
+     
               
           element.nbrcrenauxp1 = element.nbrcrenauxp1- 1;
-                  
-        element.save();
-          
+          element.save();
+
+
+      
+
         }  
       
       

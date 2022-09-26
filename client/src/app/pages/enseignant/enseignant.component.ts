@@ -47,6 +47,11 @@ export class EnseignantComponent implements OnInit {
       }
     })
   }
+
+
+
+
+
   getAllEnseignants()
   {
     this.api.getEnseignant().subscribe({
@@ -57,6 +62,7 @@ export class EnseignantComponent implements OnInit {
   this.dataSource.paginator = this.paginator;
   this.dataSource.sort = this.sort;
   
+  console.log("na3n din zebiiiiiiiiiiiiiii"+res);
   
            },
   
@@ -67,6 +73,11 @@ export class EnseignantComponent implements OnInit {
            }
     })
   }
+
+
+
+
+
 
 
   applyFilter(event: Event) {

@@ -50,6 +50,7 @@ export class DialogenseignantComponent implements OnInit {
   enseignant: Enseignant;
 
   affectation: AffectationTablleHorraire;
+  affectation2: AffectationTablleHorraire;
 
 
   enseignantForm !: FormGroup;
@@ -146,6 +147,8 @@ ngOnInit(): void {
   this.enseignant =  new Enseignant();
   this.affectation =  new AffectationTablleHorraire();
 
+  this.affectation2 =  new AffectationTablleHorraire();
+
 
 
     this.enseignantForm = this.formbuilder.group({
@@ -191,6 +194,9 @@ ngOnInit(): void {
               })
 
   }
+
+
+
   addEnseignant(nom,type,nbrcrenaux1,nbrcrenaux2,nbrcrenaux3,nbrcrenaux4){
 
     if(!this.editData)
@@ -233,33 +239,35 @@ ngOnInit(): void {
             this.p2=nbrcrenaux2*21;
             this.p3=nbrcrenaux3*21;
             this.p4=nbrcrenaux4*21;
+
             this.password="lqldsdk5qsd";
-          /*  console.log("nom  "+ nom);
-            console.log("type  "+ type);
-            console.log("nbrcrenaux1  "+ nbrcrenaux1);
-            console.log("nbrcrenaux2  "+ nbrcrenaux2);
-            console.log("nbrcrenaux3  "+ nbrcrenaux3);
-            console.log("nbrcrenaux4  "+ nbrcrenaux4);
-            console.log("chargehorraire  "+ this.chargehorraire);
-            console.log("p1  "+ this.p1);
-            console.log("p2  "+ this.p2);
-            console.log("p3  "+ this.p3);
-            console.log("p4  "+ this.p4);*/
-
-
             this.affectation.nomenseignant=nom;
             this.affectation.type=type;
             this.affectation.chargehorraire=this.chargehorraire;
-            
             this.affectation.nbrcrenauxp1=nbrcrenaux1;
             this.affectation.nbrcrenauxp2=nbrcrenaux2;
             this.affectation.nbrcrenauxp3=nbrcrenaux3;
             this.affectation.nbrcrenauxp4=nbrcrenaux4;
-
             this.affectation.p1=this.p1;
             this.affectation.p2=this.p2;
             this.affectation.p3=this.p3;
             this.affectation.p4=this.p4;
+
+        
+
+
+            this.password="lqldsdk5qsd";
+            this.affectation2.nomenseignant="pas d'ensiegnat";
+            this.affectation2.type=type;
+            this.affectation2.chargehorraire=this.chargehorraire;
+            this.affectation2.nbrcrenauxp1=1000;
+            this.affectation2.nbrcrenauxp2=1000;
+            this.affectation2.nbrcrenauxp3=1000;
+            this.affectation2.nbrcrenauxp4=1000;
+            this.affectation2.p1=this.p1;
+            this.affectation2.p2=this.p2;
+            this.affectation2.p3=this.p3;
+            this.affectation2.p4=this.p4;
 
         
 
@@ -270,6 +278,12 @@ ngOnInit(): void {
             })
 
 
+
+
+            
+            this.api.postAffectationTH(this.affectation2).subscribe({
+     
+            })
 
       
           }

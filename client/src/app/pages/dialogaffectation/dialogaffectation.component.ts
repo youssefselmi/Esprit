@@ -50,7 +50,7 @@ export class DialogaffectationComponent implements OnInit {
       semestre : ['',Validators.required],
       periode : ['',Validators.required],
       nomenseignant1 : ['',Validators.required],
-      nomenseignant2 : ['',Validators.required],
+      nomenseignant2 : [''],
 
        })
 
