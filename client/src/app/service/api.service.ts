@@ -25,13 +25,9 @@ export class ApiService {
   REST_APID: string = 'http://localhost:3001/disponibilite';
   REST_APIT: string = 'http://localhost:3001/type';
   REST_APIH: string = 'http://localhost:3001/heuresup';
-
-REST_APIAE: string = 'http://localhost:3001/affectationenseignant';
-
-
+  REST_APIAE: string = 'http://localhost:3001/affectationenseignant';
   REST_APIAFFECTATIONTABLECHARGEHORRAIRE: string = 'http://localhost:3001/affectationtabchargehorraire';
-
-
+  REST_APIHISTORIQUE: string = 'http://localhost:3001/historique';
 
      // Http Header
      httpHeaders = new HttpHeaders().set('Content-Type', 'application/json');
@@ -431,4 +427,22 @@ resetpw(data:any){
   return this.http.put<any>(API_URL,data)
 
 }
+
+
+
+
+//////////////////////////** Historique **//////////////////////////////////
+
+
+postHistorique(data : any ){
+  return this.http.post<any>(`${this.REST_APIHISTORIQUE}/add`,data);
+}
+
+
+getHistorique(){
+  return this.http.get<any>(`${this.REST_APIHISTORIQUE}/read`);
+}
+
+
+
 }

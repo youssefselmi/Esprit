@@ -11,26 +11,43 @@ import { DialogaffectationComponent } from '../dialogaffectation/dialogaffectati
 import * as fs from 'file-saver';
 import * as Workbook from 'exceljs/dist/exceljs.min.js'
 import * as XLSX from 'xlsx'; 
+import { AffectationTablleHorraire } from 'src/app/service/affectationTableauxChargeHorraire';
+import { HistoriqueAffectation } from 'src/app/service/historiqueaffectation';
+
+import * as _ from 'lodash'; 
 
 
 @Component({
-  selector: 'app-affectation',
-  templateUrl: './affectation.component.html',
-  styleUrls: ['./affectation.component.css']
+  selector: 'app-historiquedesaffectation',
+  templateUrl: './historiquedesaffectation.component.html',
+  styleUrls: ['./historiquedesaffectation.component.scss']
 })
-export class AffectationComponent implements OnInit {
+export class HistoriquedesaffectationComponent implements OnInit {
 
-
-  displayedColumns: string[] = ['nomclasse','nomdepartement' ,'nommodules','semestre','periode','nomenseignant1','nomenseignant2','anneuni','actions'];
+ 
+  displayedColumns: string[] = ['nomclasse','nomdepartement' ,'nommodules','semestre','periode','nomenseignant1','nomenseignant2','anneuni'];
   dataSource!: MatTableDataSource<any>;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
+  apiResponse:any = [];
 
   fileName= 'ExcelSheet.xlsx';  
 
-  listaffectation: Affectation[];
+  listaffectation: HistoriqueAffectation[];
   listeclasses : Classe[];
+
+  emplselected:Number;
+
+
+  selectedDay: string = '';
+
+
+  selectedChangeHandler(event:any){
+    this.selectedDay = event.target.value;
+//console.log("zzzzzzzzzz  "+this.selectedDay);
+
+  }
 
   constructor(private dialog : MatDialog,private api:ApiService) { }
 
@@ -43,24 +60,45 @@ export class AffectationComponent implements OnInit {
   ngOnInit(): void {
 
 
+
     this.getAllAffectations();
 
 
-    this.api.getAffectation().subscribe(
-      (data: Affectation[]) => {
+    this.api.getHistorique().subscribe(
+      (data: HistoriqueAffectation[]) => {
 
          this.listaffectation = data;
       })
+
+
+
+
+
+      
     }
+
+
+
+  /*  public onChange(event): void {  //event will give you full breif of action
+      const newVal = event.target.value;
+      console.log("hococo  "+newVal);
+    }*/
+ 
+
+
+
+
 
 
 
     getAllAffectations()
     {
-      this.api.getAffectation().subscribe({
+      this.api.getHistorique().subscribe({
         next:(res)=>{
     
     
+          this.apiResponse = res;
+
     this.dataSource = new MatTableDataSource(res);
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
@@ -81,53 +119,33 @@ export class AffectationComponent implements OnInit {
 
 
     
-  applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
+    onChange($event:any) {
+
+let fitereddata = _.filter(this.apiResponse,(item)=>{
+  return item.anneuni.toLowerCase() == $event.value.toLowerCase();
+})
+
+
+this.dataSource = new MatTableDataSource(fitereddata);
+
+
+
+   /* const filterValue = (event.target as HTMLSelectElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
   
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
-    }
+    }*/
+
+
   }
 
 
 
+  
 
   
-  deleteAffectation(_id:string,nomenseignant1:string,nomenseignant2:string,periode:string,semestre:string){
-
-
-///////////////////////////////////////////////// incrementer dans l enseignant lors de la suppression ///////////////////
-    let datae1 = { 
-      nomenseignant1:nomenseignant1, 
-      nomenseignant2:nomenseignant2,
-      semestre:semestre,
-      periode:periode,
-  } 
-
-  console.log("pssssst "+datae1.nomenseignant1 +datae1.nomenseignant2+datae1.periode+datae1.semestre );
-
-
-  this.api.incrementenseignant(datae1)
-  .subscribe({
   
-  })
-
-/////////////////////////////////////////////////
-
-///////////////////////////////////////////////// incrementer dans l le tableaux horraire lors de la suppression ///////////////////
-
-let datae2 = { 
-  nomenseignant1:nomenseignant1, 
-  nomenseignant2:nomenseignant2,
-  periode:periode,
-  semestre:semestre,
-} 
-
-this.api.incrementnbcrenaux2(datae2)
-.subscribe({
-
-})
 
 
 
@@ -138,28 +156,8 @@ this.api.incrementnbcrenaux2(datae2)
 
 
 
-
-
-    ///////////////////////////////////////////////////
-    this.api.deleteAffectation(_id).subscribe({
-      next:(res)=>{
-        alert("Deleted successfully");
-        this.getAllAffectations();
-      }
-    })
-
-
-
-
-
-
-
-
-
-    
   
-  }
-
+  
 
 
 

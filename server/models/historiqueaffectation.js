@@ -1,30 +1,29 @@
 const mongoose = require('mongoose');
 
 var Schema = mongoose.Schema;
-var Classe = new Schema({
+var HistoriqueAffectation = new Schema({
 
 
     nomclasse: String,
-    //nbretudiant: Number,
     nomdepartement: String,
-    
-    nombreclasses: Number,
-    //nommodules : String,
-    nommodules : String,
+    nommodules: String,
     semestre: String,
     periode:[{
         type: String
     }],
-    nbreenseignant: Number,
+    nomenseignant1: String,
+    nomenseignant2: String,
     _userId:{
         type:mongoose.Types.ObjectId,
         required: true
     },
     anneuni: String,
 
-    
+
+
+     
 
 
 });
-module.exports = mongoose.model('classes', Classe);
+module.exports = mongoose.model('historiqueaffectations', HistoriqueAffectation);
 

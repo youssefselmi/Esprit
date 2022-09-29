@@ -104,7 +104,12 @@
           
         
           
-        
+          <ng-container matColumnDef="anneuni">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Année universitaire </th>
+            <td mat-cell *matCellDef="let row"> {{row.anneuni}}</td>
+          </ng-container>
+
+
      
         
           

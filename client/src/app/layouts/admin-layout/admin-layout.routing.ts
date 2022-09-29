@@ -30,6 +30,7 @@ import { TypeComponent } from 'src/app/pages/type/type.component';
 import { HeuresupComponent } from 'src/app/pages/heuresup/heuresup.component';
 import { ForgetpwComponent } from 'src/app/pages/forgetpw/forgetpw.component';
 import { ResetpwComponent } from 'src/app/pages/resetpw/resetpw.component';
+import { HistoriquedesaffectationComponent } from 'src/app/pages/historiquedesaffectation/historiquedesaffectation.component';
 
 export const AdminLayoutRoutes: Routes = [
     { path: 'dashboard',      component: DashboardComponent },
@@ -61,7 +62,10 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'type',    component: TypeComponent},
     { path: 'heuresup',    component: HeuresupComponent},
     { path: 'resetpw',    component: ForgetpwComponent},
-    { path: 'newpw', component: ResetpwComponent}
+    { path: 'newpw', component: ResetpwComponent},
+
+    { path: 'historique',    component: HistoriquedesaffectationComponent},
+
 
 
 

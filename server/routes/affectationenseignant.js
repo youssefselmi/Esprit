@@ -68,7 +68,11 @@ let authenticate=(req,res,next)=>{
                         for (let index1 = 0; index1 < result1.length; index1++) { 
                             
                           // console.log(nommodules);
-                            if ((JSON.stringify(result1[index1].nommodule) ===JSON.stringify(nommodules)) && (JSON.stringify(result[index].nomcompetence) === JSON.stringify(result1[index1].nomcompetence))  && (JSON.stringify(result[index].disponibilite) != 0 ) ){
+                            if ((JSON.stringify(result1[index1].nommodule) ===JSON.stringify(nommodules)) && (result[index].nomcompetence.find(v=>v.includes(result1[index1].nomcompetence)) || (JSON.stringify(result[index].nomcompetence) === JSON.stringify(result1[index1].nomcompetence))) && (JSON.stringify(result[index].disponibilite) != 0 ) )
+
+                            
+                            
+                            {
                                 nomenseignant =result[index].nomenseignant;
                                // console.log("hahahah"+nomenseignant );
                                // res.status(201).json(nomenseignant);

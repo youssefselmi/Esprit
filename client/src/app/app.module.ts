@@ -63,6 +63,8 @@ import { DialogtypeComponent } from './pages/dialogtype/dialogtype.component';
 import { WebReqInterceptor } from './service/web-req.interceptor';
 import { ForgetpwComponent } from './pages/forgetpw/forgetpw.component';
 import { ResetpwComponent } from './pages/resetpw/resetpw.component';
+import { HistoriquedesaffectationComponent } from './pages/historiquedesaffectation/historiquedesaffectation.component';
+import {MatRadioModule} from '@angular/material/radio';
 
 
 @NgModule({
@@ -84,7 +86,8 @@ import { ResetpwComponent } from './pages/resetpw/resetpw.component';
     MatSortModule,
     MatPaginatorModule,
     MatSelectModule,
-    NotifierModule
+    NotifierModule,
+    MatRadioModule
   ],
   declarations: [
     AppComponent,
@@ -127,6 +130,7 @@ import { ResetpwComponent } from './pages/resetpw/resetpw.component';
     DialogtypeComponent,
     ForgetpwComponent,
     ResetpwComponent,
+    HistoriquedesaffectationComponent,
   ],
   providers: [{provide:HTTP_INTERCEPTORS, useClass: WebReqInterceptor,multi:true}],
   bootstrap: [AppComponent]  

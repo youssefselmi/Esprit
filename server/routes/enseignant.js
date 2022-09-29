@@ -52,7 +52,7 @@ router.post('/add', authenticate,async(req, res, next) => {
 
                 const addenfake = new enseignant({
 
-                    nomenseignant:"pas d'ensiegnat",email,password:pass,nomcompetence,type,chargehorraire,nbrcrenauxp1:1000,nbrcrenauxp2:1000,nbrcrenauxp3:1000,nbrcrenauxp4:1000,disponibilite:1,disponibilite1:1,disponibilite2:1,disponibilite3:1,disponibilite4:1,_userId:req.user_id   });
+                    nomenseignant:"pas d'ensiegnat",email,password:pass,nomcompetence,type,chargehorraire,nbrcrenauxp1:10000,nbrcrenauxp2:10000,nbrcrenauxp3:10000,nbrcrenauxp4:10000,disponibilite:1,disponibilite1:1,disponibilite2:1,disponibilite3:1,disponibilite4:1,_userId:req.user_id   });
 
 
 

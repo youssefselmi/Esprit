@@ -260,10 +260,10 @@ ngOnInit(): void {
             this.affectation2.nomenseignant="pas d'ensiegnat";
             this.affectation2.type=type;
             this.affectation2.chargehorraire=this.chargehorraire;
-            this.affectation2.nbrcrenauxp1=1000;
-            this.affectation2.nbrcrenauxp2=1000;
-            this.affectation2.nbrcrenauxp3=1000;
-            this.affectation2.nbrcrenauxp4=1000;
+            this.affectation2.nbrcrenauxp1=10000;
+            this.affectation2.nbrcrenauxp2=10000;
+            this.affectation2.nbrcrenauxp3=10000;
+            this.affectation2.nbrcrenauxp4=10000;
             this.affectation2.p1=this.p1;
             this.affectation2.p2=this.p2;
             this.affectation2.p3=this.p3;

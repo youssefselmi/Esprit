@@ -7,5 +7,6 @@ export class Affectation {
     periode! : String[];
     nomenseignant1!: String;
     nomenseignant2!: String;
+    anneuni!: String;
 
 }

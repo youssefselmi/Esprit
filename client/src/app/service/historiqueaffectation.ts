@@ -1,15 +1,12 @@
-export class Classe {
+export class HistoriqueAffectation {
     _id!: string;
     nomclasse!: string;
-    //nbretudiant!: Number;   
     nomdepartement!: string;
-
-    nombreclasses!: Number;
     nommodules!: String;
     semestre!: String;
     periode! : String[];
-    nbreenseignant: Number;
+    nomenseignant1!: String;
+    nomenseignant2!: String;
     anneuni!: String;
-
 
 }

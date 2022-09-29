@@ -51,6 +51,7 @@ export class DialogaffectationComponent implements OnInit {
       periode : ['',Validators.required],
       nomenseignant1 : ['',Validators.required],
       nomenseignant2 : [''],
+      anneuni : ['',Validators.required],
 
        })
 
@@ -75,7 +76,8 @@ export class DialogaffectationComponent implements OnInit {
           this.classeForm.controls['nomenseignant1'].setValue(this.editData.nomenseignant1);
           this.classeForm.controls['nomenseignant2'].setValue(this.editData.nomenseignant2);
 
-    
+          this.classeForm.controls['anneuni'].setValue(this.editData.anneuni);
+
         }
 
 
@@ -235,6 +237,57 @@ addClasse(){
   
   
     }
+
+
+
+
+
+
+
+
+
+
+
+
+    gotohistorique(){
+
+      let datae3 = { 
+        nomenseignant1:this.classeForm.controls['nomenseignant1'].value, 
+        nomenseignant2:this.classeForm.controls['nomenseignant2'].value, 
+        periode:this.classeForm.controls['periode'].value,
+        semestre:this.classeForm.controls['semestre'].value,
+        anneuni:this.classeForm.controls['anneuni'].value,
+
+        nomclasse:this.classeForm.controls['nomclasse'].value,
+
+        nomdepartement:this.classeForm.controls['nomdepartement'].value,
+
+        nommodules:this.classeForm.controls['nommodules'].value,
+
+
+    } 
+
+
+    
+    this.api.postHistorique(datae3)
+    .subscribe({
+    
+    })
+
+
+
+
+    }
+
+
+
+
+
+
+
+
+
+
 
 
 
