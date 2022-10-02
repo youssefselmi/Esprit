@@ -7,8 +7,10 @@ import { Enseignant } from 'src/app/service/enseignant';
 import { ApiService } from 'src/app/service/api.service';
 import { Competence } from 'src/app/service/competence';
 import { Type } from 'src/app/service/type';
-import { AffectationTableauCHComponent } from '../affectation-tableau-ch/affectation-tableau-ch.component';
-import { AffectationTablleHorraire } from 'src/app/service/affectationTableauxChargeHorraire';
+import { AffectationTableauCHComponent } from
+'../affectation-tableau-ch/affectation-tableau-ch.component';
+import { AffectationTablleHorraire } from
+'src/app/service/affectationTableauxChargeHorraire';
 
 
 
@@ -50,7 +52,6 @@ export class DialogenseignantComponent implements OnInit {
   enseignant: Enseignant;
 
   affectation: AffectationTablleHorraire;
-  affectation2: AffectationTablleHorraire;
 
 
   enseignantForm !: FormGroup;
@@ -66,7 +67,7 @@ export class DialogenseignantComponent implements OnInit {
   selectedValue4: number;
 
 
-  
+
 
   nombrecrenaux: NombreCrenaux[] = [
   //  {value: 0, viewValue: 0},
@@ -120,7 +121,8 @@ export class DialogenseignantComponent implements OnInit {
 
 
 
-  constructor(private formbuilder : FormBuilder, private api : ApiService,notifierService: NotifierService,
+  constructor(private formbuilder : FormBuilder, private api :
+ApiService,notifierService: NotifierService,
     private dialogRef : MatDialogRef<DialogenseignantComponent>,
     @Inject(MAT_DIALOG_DATA) public editData : any,
     ) {
@@ -147,8 +149,6 @@ ngOnInit(): void {
   this.enseignant =  new Enseignant();
   this.affectation =  new AffectationTablleHorraire();
 
-  this.affectation2 =  new AffectationTablleHorraire();
-
 
 
     this.enseignantForm = this.formbuilder.group({
@@ -160,12 +160,14 @@ ngOnInit(): void {
       nbrcrenauxp2 : ['',Validators.required],
       nbrcrenauxp3 : ['',Validators.required],
       nbrcrenauxp4 : ['',Validators.required],
+      daterecrutement : ['',Validators.required],
+      datesortie : ['',],
        })
 
 
        if(this.editData){
         this.actionButton = "Update"
-        
+
               this.enseignantForm.controls['nomenseignant'].setValue(this.editData.nomenseignant);
               this.enseignantForm.controls['email'].setValue(this.editData.email);
               this.enseignantForm.controls['nomcompetence'].setValue(this.editData.nomcompetence);;
@@ -174,14 +176,17 @@ ngOnInit(): void {
               this.enseignantForm.controls['nbrcrenauxp2'].setValue(this.editData.nbrcrenauxp2);
               this.enseignantForm.controls['nbrcrenauxp3'].setValue(this.editData.nbrcrenauxp3);
               this.enseignantForm.controls['nbrcrenauxp4'].setValue(this.editData.nbrcrenauxp4);
+              this.enseignantForm.controls['daterecrutement'].setValue(this.editData.daterecrutement);
+              this.enseignantForm.controls['datesortie'].setValue(this.editData.datesortie);
 
 
-        
+
+
             }
-    
-    
-    
-            
+
+
+
+
           this.api.getCompetence().subscribe(
             (data: Competence[]) => {
                this.listecompetence = data;
@@ -194,15 +199,12 @@ ngOnInit(): void {
               })
 
   }
-
-
-
   addEnseignant(nom,type,nbrcrenaux1,nbrcrenaux2,nbrcrenaux3,nbrcrenaux4){
 
     if(!this.editData)
        {
           if(this.enseignantForm.valid){
-    
+
             this.api.postEnseignant(this.enseignantForm.value).subscribe({
               next:(res)=>{
                 alert("Enseignant ajouté!!");
@@ -211,12 +213,12 @@ ngOnInit(): void {
                 this.dialogRef.close('save');
               },
               error:()=>{
-      
+
                 alert("Error !!!!")
-      
+
               },
-              
-              
+
+
             })
 
 
@@ -239,53 +241,45 @@ ngOnInit(): void {
             this.p2=nbrcrenaux2*21;
             this.p3=nbrcrenaux3*21;
             this.p4=nbrcrenaux4*21;
-
             this.password="lqldsdk5qsd";
+          /*  console.log("nom  "+ nom);
+            console.log("type  "+ type);
+            console.log("nbrcrenaux1  "+ nbrcrenaux1);
+            console.log("nbrcrenaux2  "+ nbrcrenaux2);
+            console.log("nbrcrenaux3  "+ nbrcrenaux3);
+            console.log("nbrcrenaux4  "+ nbrcrenaux4);
+            console.log("chargehorraire  "+ this.chargehorraire);
+            console.log("p1  "+ this.p1);
+            console.log("p2  "+ this.p2);
+            console.log("p3  "+ this.p3);
+            console.log("p4  "+ this.p4);*/
+
+
             this.affectation.nomenseignant=nom;
             this.affectation.type=type;
             this.affectation.chargehorraire=this.chargehorraire;
+
             this.affectation.nbrcrenauxp1=nbrcrenaux1;
             this.affectation.nbrcrenauxp2=nbrcrenaux2;
             this.affectation.nbrcrenauxp3=nbrcrenaux3;
             this.affectation.nbrcrenauxp4=nbrcrenaux4;
+
             this.affectation.p1=this.p1;
             this.affectation.p2=this.p2;
             this.affectation.p3=this.p3;
             this.affectation.p4=this.p4;
 
-        
 
-
-            this.password="lqldsdk5qsd";
-            this.affectation2.nomenseignant="pas d'ensiegnat";
-            this.affectation2.type=type;
-            this.affectation2.chargehorraire=this.chargehorraire;
-            this.affectation2.nbrcrenauxp1=10000;
-            this.affectation2.nbrcrenauxp2=10000;
-            this.affectation2.nbrcrenauxp3=10000;
-            this.affectation2.nbrcrenauxp4=10000;
-            this.affectation2.p1=this.p1;
-            this.affectation2.p2=this.p2;
-            this.affectation2.p3=this.p3;
-            this.affectation2.p4=this.p4;
-
-        
 
 
 
             this.api.postAffectationTH(this.affectation).subscribe({
-     
+
             })
 
 
 
 
-            
-            this.api.postAffectationTH(this.affectation2).subscribe({
-     
-            })
-
-      
           }
        }
         else{
@@ -297,7 +291,7 @@ ngOnInit(): void {
 
 
         ////////////////////////////////////////////////
-      
+
 
 
 
@@ -318,8 +312,8 @@ ngOnInit(): void {
             this.dialogRef.close('update');
           }
         })
-    
-    
+
+
       }
 
 }

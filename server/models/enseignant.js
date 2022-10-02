@@ -9,7 +9,7 @@ var Enseignant = new Schema({
     password : String,
     nomcompetence :[{
         type:String
-    }], 
+    }],
 
     type: String,
 
@@ -18,7 +18,7 @@ var Enseignant = new Schema({
     nbrcrenauxp2: Number,
     nbrcrenauxp3: Number,
     nbrcrenauxp4: Number,
-    
+
     disponibilite: Number,
 
     disponibilite1: Number,
@@ -29,15 +29,18 @@ var Enseignant = new Schema({
 
     _userId:{
         type:mongoose.Types.ObjectId,
+
     },
 
-    
+
     rep: Number,
+    daterecrutement : Date,
+    datesortie: Date,
 
 
 
 
-     
+
 
 
 
