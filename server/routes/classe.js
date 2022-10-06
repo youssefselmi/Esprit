@@ -75,9 +75,9 @@ let authenticate=(req,res,next)=>{
                     const periode = per;
                     var bool = 0;
                     const nomclasse=(nom+" "+x );
-                              
                     const anneuni= au;
 
+                
 
 
 
@@ -86,7 +86,7 @@ let authenticate=(req,res,next)=>{
       
 
                    
-                                const addaffectation = new affectation({nomclasse,nomdepartement,nommodules,semestre,periode,anneuni,_userId:req.user_id}); 
+                    const addaffectation = new affectation({nomclasse,nomdepartement,nommodules,semestre,periode,anneuni,_userId:req.user_id}); 
 
                                 x=x+++1;
 

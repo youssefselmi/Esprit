@@ -54,7 +54,7 @@ let verifySession = (req, res, next)=>{
 router.use(function(req,res,next){
     res.header("Access-Control-Allow-Origin","*");
     res.header("Access-Control-Allow-Methods","GET,POST,HEAD,OPTIONS,PUT,PATCH,DELETE");
-    res.header("Access-Control-Allow-Headers","Origin,X-Requested-with,Content-Type,Accept,x-access-token,x-refresh-token");
+    res.header("Access-Control-Allow-Headers","Origin, X-Requested-with,Content-Type,Accept,x-access-token,x-refresh-token");
 
     res.header(
         'Access-Control-Expose-Headers',
@@ -80,7 +80,7 @@ router.post('/users', async(req, res)=>{
             return{accessToken, refreshToken}
         });
     }).then((authTokens)=>{
-        res
+        res 
             .header('x-refresh-token',authTokens.refreshToken)
             .header('x-access-token',authTokens.accessToken)
             .send(newUser);
@@ -99,17 +99,6 @@ router.post('/users', async(req, res)=>{
 router.post('/users/login', async(req, res)=>{
     let email = req.body.email;
     let password= req.body.password;
-    User.findOne({email:email},((err,user)=>{
-        if(!user){
-            return res.send("email doesn't exist")        }
-            else{
-                bcrypt.compare(password,user.password).then((match)=>{
-                    if(!match){
-                        res.send("wrong password");
-                    }
-                })
-            }
-    }))
      User.findByCredentials(email,password).then((user) =>{
          return user.createSession().then((refreshToken) =>{
              //session created successffuly
@@ -118,7 +107,7 @@ router.post('/users/login', async(req, res)=>{
                  return {accessToken, refreshToken}
              });
          }).then((authToken)=>{
-            res
+            res 
                 .header('x-refresh-token',authToken.refreshToken)
                 .header('x-access-token',authToken.accessToken)
                 .send(user);
@@ -127,7 +116,7 @@ router.post('/users/login', async(req, res)=>{
         })
      }).catch((e)=>{
          res.status(400).send(2);
-
+         
      })
 })
 /**
@@ -145,7 +134,7 @@ router.get('/users/getbyid/:id',async(req, res) => {
 
     const  {id} = req.params.id;
     await User.findById({id}, (err, result) => {
-
+  
         if (err) {
             res.send(err)
         }
@@ -157,9 +146,9 @@ router.put("/users/forgetpassword",async(req,res)=>{
     const emaill = req.body.email;
     var passwordd= req.body.password;
     let constFactor = 10;
-
+   
      bcrypt.genSalt(10).then(salt => {
-        return bcrypt.hash(passwordd,salt);
+        return bcrypt.hash(passwordd,salt); 
     }).then(passwordd=> {
         console.log(passwordd);
         updatepassword(passwordd,emaill);
@@ -167,23 +156,22 @@ router.put("/users/forgetpassword",async(req,res)=>{
         console.log(err);
     });
 
-
-
-
-
+    
+    
+        
+   
 })
 function updatepassword(password,emaill){
   /*   try {
         console.log(password);
-
-
-         const updatecomposant =
-User.findOneAndUpdate({email:emaill},{password:password},{
+        
+        
+         const updatecomposant = User.findOneAndUpdate({email:emaill},{password:password},{
             new: true
         });
 
         console.log(updatecomposant);
-       status(201).json(updatecomposant);
+       status(201).json(updatecomposant); 
 
     } catch (error) {
         res.status(422).json(error);
@@ -191,12 +179,12 @@ User.findOneAndUpdate({email:emaill},{password:password},{
     User.findOne({email:emaill
 
     }, function( err,element){
-
-
+                
+                
         if(err){
             console.log(err);
         }
-
+ 
     else{
      element.password =password;
      element.save().then(()=>{
@@ -208,7 +196,7 @@ User.findOneAndUpdate({email:emaill},{password:password},{
             return{accessToken, refreshToken}
         });
     }).then((authTokens)=>{
-        element
+        element 
             .header('x-refresh-token',authTokens.refreshToken)
             .header('x-access-token',authTokens.accessToken)
             .send(element);

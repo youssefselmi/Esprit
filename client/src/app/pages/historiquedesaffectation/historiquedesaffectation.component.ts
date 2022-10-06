@@ -11,10 +11,9 @@ import { DialogaffectationComponent } from '../dialogaffectation/dialogaffectati
 import * as fs from 'file-saver';
 import * as Workbook from 'exceljs/dist/exceljs.min.js'
 import * as XLSX from 'xlsx'; 
-import { AffectationTablleHorraire } from 'src/app/service/affectationTableauxChargeHorraire';
-import { HistoriqueAffectation } from 'src/app/service/historiqueaffectation';
 
 import * as _ from 'lodash'; 
+import { HistoriqueAffectation } from 'src/app/service/hisroriqueaffectation';
 
 
 @Component({

@@ -27,10 +27,7 @@ var affectationtabchargehorraireRouter =  require('./routes/AffectationTableauxC
 var disponibiliteRouter =  require('./routes/disponibilite');
 var affectationenseignantRouter= require('./routes/affectationenseignant')
 var sendmailRouter =  require('./routes/sendmail');
-
 var historiqueaffectation= require('./routes/historiqueaffectation')
-
-
 
 var app = express();
 

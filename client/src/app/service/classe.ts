@@ -9,7 +9,6 @@ export class Classe {
     semestre!: String;
     periode! : String[];
     nbreenseignant: Number;
-    anneuni!: String;
 
 
 }

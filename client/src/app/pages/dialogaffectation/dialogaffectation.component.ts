@@ -75,9 +75,9 @@ export class DialogaffectationComponent implements OnInit {
      
           this.classeForm.controls['nomenseignant1'].setValue(this.editData.nomenseignant1);
           this.classeForm.controls['nomenseignant2'].setValue(this.editData.nomenseignant2);
-
           this.classeForm.controls['anneuni'].setValue(this.editData.anneuni);
 
+    
         }
 
 
@@ -246,9 +246,6 @@ addClasse(){
 
 
 
-
-
-
     gotohistorique(){
 
       let datae3 = { 
@@ -278,6 +275,9 @@ addClasse(){
 
 
     }
+
+
+
 
 
 

@@ -64,10 +64,7 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'resetpw',    component: ForgetpwComponent},
     { path: 'newpw', component: ResetpwComponent},
 
-    { path: 'historique',    component: HistoriquedesaffectationComponent},
-
-
-
+    { path: 'historique', component: HistoriquedesaffectationComponent},
 
 
 

@@ -64,7 +64,6 @@ import { WebReqInterceptor } from './service/web-req.interceptor';
 import { ForgetpwComponent } from './pages/forgetpw/forgetpw.component';
 import { ResetpwComponent } from './pages/resetpw/resetpw.component';
 import { HistoriquedesaffectationComponent } from './pages/historiquedesaffectation/historiquedesaffectation.component';
-import {MatRadioModule} from '@angular/material/radio';
 
 
 @NgModule({
@@ -86,8 +85,7 @@ import {MatRadioModule} from '@angular/material/radio';
     MatSortModule,
     MatPaginatorModule,
     MatSelectModule,
-    NotifierModule,
-    MatRadioModule
+    NotifierModule
   ],
   declarations: [
     AppComponent,

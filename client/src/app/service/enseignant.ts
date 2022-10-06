@@ -1,5 +1,3 @@
-
-
 export class Enseignant {
     _id!: String;
     nomenseignant: String;
@@ -9,14 +7,12 @@ export class Enseignant {
     type : String;
     Chargehorraire: Number;
 
-
+    
     nbrcrenauxp1: Number;
     nbrcrenauxp2: Number;
     nbrcrenauxp3: Number;
     nbrcrenauxp4: Number;
     disponibilite: Number;
-    daterecrutement : Date;
-    datesortie: Date;
 
 
 

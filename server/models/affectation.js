@@ -17,9 +17,8 @@ var Affectation = new Schema({
         type:mongoose.Types.ObjectId,
         required: true
     },
+
     anneuni: String,
-
-
 
      
 
