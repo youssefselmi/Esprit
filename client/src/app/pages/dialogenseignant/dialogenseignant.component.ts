@@ -160,6 +160,8 @@ ngOnInit(): void {
       nbrcrenauxp2 : ['',Validators.required],
       nbrcrenauxp3 : ['',Validators.required],
       nbrcrenauxp4 : ['',Validators.required],
+      daterecrutement : ['',Validators.required],
+      datesortie : ['',],
        })
 
 
@@ -174,6 +176,8 @@ ngOnInit(): void {
               this.enseignantForm.controls['nbrcrenauxp2'].setValue(this.editData.nbrcrenauxp2);
               this.enseignantForm.controls['nbrcrenauxp3'].setValue(this.editData.nbrcrenauxp3);
               this.enseignantForm.controls['nbrcrenauxp4'].setValue(this.editData.nbrcrenauxp4);
+              this.enseignantForm.controls['daterecrutement'].setValue(this.editData.daterecrutement);
+              this.enseignantForm.controls['datesortie'].setValue(this.editData.datesortie);
 
 
         

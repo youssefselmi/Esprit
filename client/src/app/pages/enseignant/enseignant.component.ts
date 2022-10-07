@@ -19,7 +19,7 @@ import { Affectation } from 'src/app/service/affectation';
   styleUrls: ['./enseignant.component.scss']
 })
 export class EnseignantComponent implements OnInit { 
-  displayedColumns: string[] = ['nomenseignant', 'email','password' ,'nomcompetence','type','nbrcrenauxp1','nbrcrenauxp2','nbrcrenauxp3','nbrcrenauxp4','disponibilite','actions'];
+  displayedColumns: string[] = ['nomenseignant', 'email','password' ,'nomcompetence','type','nbrcrenauxp1','nbrcrenauxp2','nbrcrenauxp3','nbrcrenauxp4','disponibilite','daterecrutement','datesortie','actions'];
   dataSource!: MatTableDataSource<any>;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
@@ -62,7 +62,7 @@ export class EnseignantComponent implements OnInit {
   this.dataSource.paginator = this.paginator;
   this.dataSource.sort = this.sort;
   
-  console.log("na3n din zebiiiiiiiiiiiiiii"+res);
+  console.log("*****"+res);
   
            },
   

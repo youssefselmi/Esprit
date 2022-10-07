@@ -33,6 +33,8 @@ var Enseignant = new Schema({
 
     
     rep: Number,
+    daterecrutement : Date,
+    datesortie: Date,
 
 
 
