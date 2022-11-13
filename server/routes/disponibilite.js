@@ -158,7 +158,7 @@ router.get("/read",authenticate, async(req, res) => {
                 console.log(err);
             }
         else{       
-            modifier1(element,req.user_id)
+            modifier1(element)
             console.log(element);
        }    
        })
@@ -175,12 +175,12 @@ router.get("/read",authenticate, async(req, res) => {
 });
 
 
-function modifier1 (element,idd){
+function modifier1 (element){
 
     console.log("bingoooooooo     ",element.nomenseignant)
 
     enseignant.findOne(
-        {"nomenseignant":element.nomenseignant,_userId:idd },
+        {"nomenseignant":element.nomenseignant},
        
         
          function( err,element1){

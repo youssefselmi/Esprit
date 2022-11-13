@@ -19,7 +19,10 @@ export class RegisterComponent implements OnInit {
     
     this.authService.signup(email,password).subscribe((res:HttpResponse<any>)=>{
       console.log(res);
-      
+     
+      if(res.body.msg==0){
+        alert("email exist deja ")}
+        else{
       
 
 
@@ -48,10 +51,13 @@ export class RegisterComponent implements OnInit {
         data => {
           let res:any = data; 
           console.log("success"   );
+          alert("un email de confirmation envoyé a votre adresse 🙂");
         },
       );
+        }
     });
-    alert("Verifiez votre email pour confirmer votre signup :)");
+    
+  
   }
 
 }

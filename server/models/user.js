@@ -104,9 +104,11 @@ User.statics.findByCredentials = function(email,password){
     return User.findOne({email}).then((user)=>{
         if(!user) return Promise.reject();
         return new Promise((resolve,reject)=>{
+           // console.log("raw wsol hnaaaaaaaaaaa");
             bcrypt.compare(password, user.password,(err,res)=>{
                 if(res)resolve(user);
                 else{
+                    console.log("hna ray lmochkla");
                     reject();
                 }
             })

@@ -30,9 +30,8 @@ router.post('/add', authenticate,async(req, res, next) => {
       
     try {   
             const addenseignant = new affectaiontab({
-
                 nomenseignant,type,chargehorraire,nbrcrenauxp1:0,nbrcrenauxp2:0,nbrcrenauxp3:0,nbrcrenauxp4:0,p1:0,p2:0,p3:0,p4:0,charges1:0,charges2:0,_userId:req.user_id  });
-
+    
             await addenseignant.save();
             res.status(201).json(addenseignant);
 
@@ -58,7 +57,26 @@ router.get("/read",authenticate, async(req, res) => {
         if (err) {
             res.send(err)
         }
-        res.send(result)
+
+
+
+        for (var key in result) {
+            if(result[key].nomenseignant == "pas d'ensiegnat"){
+            delete result[key];
+                } }
+
+
+
+
+        var result_filter = result.filter( function(val){return val !== ''} );
+
+
+
+
+
+
+
+        res.send(result_filter)
 
     })
   })

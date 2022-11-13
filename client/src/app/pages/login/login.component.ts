@@ -15,10 +15,18 @@ export class LoginComponent implements OnInit, OnDestroy {
     onLoginButtonClicked(email: string,password:string){
       this.authService.login(email,password).subscribe((res:HttpResponse<any>)=>{
         if(res.status ===200){
+         if(res.body.msg==0){
+          alert("verifiez mail");
+         }
+         else{
+          if(res.body.msg==1){
+            alert("verifiez password");
+          }
+          else{
+        
           this.router.navigate(['/affectation']);
         }
-        else{
-          alert("verifier votre adresse et mot de passe");
+        }
         }
         console.log(res);
         

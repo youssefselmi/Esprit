@@ -1,4 +1,3 @@
-
 const express = require("express");
 const cors = require("cors");
 const bodyParser = require("body-parser");
@@ -38,10 +37,10 @@ async function sendMail(user, callback) {
       pass: details.password
     }
   });
- 
+
 
   let mailOptions = {
-    from: "jalel.barhoumi@esprit.tn", // sender address
+    from: "", // sender address
     to: user.email, // list of receivers
     subject: user.sujet, // Subject line
     html: user.html
@@ -56,3 +55,4 @@ async function sendMail(user, callback) {
 // main().catch(console.error);
 
 module.exports = router;
+

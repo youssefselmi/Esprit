@@ -30,6 +30,7 @@ REST_APIAE: string = 'http://localhost:3001/affectationenseignant';
 
 
   REST_APIAFFECTATIONTABLECHARGEHORRAIRE: string = 'http://localhost:3001/affectationtabchargehorraire';
+  REST_APIHISTORIQUE: string = 'http://localhost:3001/historique';
 
 
 
@@ -264,7 +265,9 @@ REST_APIAE: string = 'http://localhost:3001/affectationenseignant';
   }
 
 
-
+  incrementheuresup(data:any){
+    return this.http.put<any>(`${this.REST_APIH}/discrimentheuresup`,data);
+  }
 
 
 
@@ -429,4 +432,22 @@ resetpw(data:any){
   return this.http.put<any>(API_URL,data)
 
 }
+
+
+
+
+//////////////////////////** Historique **//////////////////////////////////
+
+
+postHistorique(data : any ){
+  return this.http.post<any>(`${this.REST_APIHISTORIQUE}/add`,data);
+}
+
+
+getHistorique(){
+  return this.http.get<any>(`${this.REST_APIHISTORIQUE}/read`);
+}
+
+
+
 }

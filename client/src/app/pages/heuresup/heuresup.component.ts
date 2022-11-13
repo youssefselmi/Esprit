@@ -61,7 +61,19 @@ export class HeuresupComponent implements OnInit {
             this.dataSource.paginator.firstPage();
           }
         }
-        deleteheuresup(_id:string){
+        deleteheuresup(_id:string,nomenseignant:string,periodes:string,nbreheures:number){
+
+
+
+
+          let data={
+            nomenseignant:nomenseignant,
+            periodes:periodes,
+            nbreheures:nbreheures,
+            
+          }
+          this.api.incrementheuresup(data).subscribe({})
+
           this.api.deleteHeuresup(_id).subscribe({
             next:(res)=>{
               alert("Deleted successfully");

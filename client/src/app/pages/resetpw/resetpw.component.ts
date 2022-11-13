@@ -14,11 +14,14 @@ export class ResetpwComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  Clicked(email: string,password:string){
+  Clicked(email: string,password:string,password1:string){
+    if(password!=password1){
+      alert("passwords don't match");
+    }else{
     this.authService.reset(email,password).subscribe((res:HttpResponse<any>)=>{
       console.log(res);
     });
-    alert("password modifié!!");
+    alert("password modifié!!");}
   
 }
 }

@@ -52,6 +52,7 @@ export class DialogclasseComponent implements OnInit {
       nbreenseignant:['',Validators.required],
       nomenseignant1:['',],
       nomenseignant2:['',],
+      anneuni : ['',Validators.required],
 
        })
 
@@ -76,6 +77,7 @@ export class DialogclasseComponent implements OnInit {
           this.classeForm.controls['nbreenseignant'].setValue(this.editData.nbreenseignant);
           this.classeForm.controls['nomenseignant1'].setValue(this.editData.nomenseignant1);
           this.classeForm.controls['nomenseignant2'].setValue(this.editData.nomenseignant2);
+          this.classeForm.controls['anneuni'].setValue(this.editData.anneuni);
 
     
         }

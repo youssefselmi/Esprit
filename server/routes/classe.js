@@ -44,7 +44,7 @@ let authenticate=(req,res,next)=>{
 
 
     router.all('/add',authenticate,(req, res) => {  
-        const {nomclasse,nomdepartement,nombreclasses,nommodules,semestre,periode,nbreenseignant} = req.body;
+        const {nomclasse,nomdepartement,nombreclasses,nommodules,semestre,periode,nbreenseignant,anneuni} = req.body;
         const nbr= req.body.nombreclasses;
         const nom= req.body.nomclasse;
         const dep= req.body.nomdepartement;
@@ -52,6 +52,8 @@ let authenticate=(req,res,next)=>{
         const sem = req.body.semestre;
         const per = req.body.periode;
         const nbre = req.body.nbreenseignant;
+        const au = req.body.anneuni;
+
         var x = 1;
 
        
@@ -62,7 +64,7 @@ let authenticate=(req,res,next)=>{
         
        
                 const addclasse = new classe({
-                    nomclasse,nomdepartement,nombreclasses,nommodules,semestre,periode,nbreenseignant,_userId:req.user_id    });
+                    nomclasse,nomdepartement,nombreclasses,nommodules,semestre,periode,nbreenseignant,anneuni,_userId:req.user_id    });
                 
 
                 for (let index = 1; index <= nbr; index++) {     
@@ -73,7 +75,8 @@ let authenticate=(req,res,next)=>{
                     const periode = per;
                     var bool = 0;
                     const nomclasse=(nom+" "+x );
-                              
+                    const anneuni= au;
+
                 
 
 
@@ -83,7 +86,7 @@ let authenticate=(req,res,next)=>{
       
 
                    
-                                const addaffectation = new affectation({nomclasse,nomdepartement,nommodules,semestre,periode,_userId:req.user_id}); 
+                    const addaffectation = new affectation({nomclasse,nomdepartement,nommodules,semestre,periode,anneuni,_userId:req.user_id}); 
 
                                 x=x+++1;
 
@@ -189,7 +192,7 @@ router.get("/read",authenticate, async(req, res) => {
 
 
 
-router.put("/update/:id", async(req, res) => {
+router.put("/update/:id", authenticate, async(req, res) => {
     try {
         const { id } = req.params;
         const updatecomposant = await classe.findOneAndUpdate({_id:id,user_id:req.user_id}, req.body, {

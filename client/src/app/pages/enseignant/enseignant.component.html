@@ -149,6 +149,19 @@
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> Disponibilite </th>
                 <td mat-cell *matCellDef="let row"> {{row.disponibilite}}</td>
               </ng-container>
+              
+            <ng-container matColumnDef="daterecrutement">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>
+Date de recrutement </th>
+              <td mat-cell *matCellDef="let row"> {{row.daterecrutement}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="datesortie">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>
+Date de démission </th>
+              <td mat-cell *matCellDef="let row"> {{row.datesortie}}</td>
+            </ng-container>
+
           
             
         

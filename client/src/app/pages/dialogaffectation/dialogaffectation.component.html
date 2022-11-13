@@ -77,13 +77,51 @@
     <mat-form-field appearance="outline">
       <mat-label>Nom enseignant 2</mat-label>
       <mat-select formControlName="nomenseignant2">
-        <mat-option *ngFor="let u of listenseignant" [value]="u.nomenseignant">
+        <mat-option *ngFor="let u of listenseignant"  [value]="u.nomenseignant">
           {{u.nomenseignant}}
         </mat-option>
       </mat-select>
       </mat-form-field>
 
     <br>
+
+ 
+    
+    <mat-form-field appearance="outline">
+      <mat-label>Année Universitaire</mat-label>
+      <mat-select  formControlName="anneuni" >
+        <mat-option value="2022-2023" >
+               2022-2023
+        </mat-option>
+
+        <mat-option value="2023-2024" >
+          2023-2024
+        </mat-option>
+        <mat-option value="2024-2025" >
+          2024-2025
+        </mat-option>
+
+        <mat-option value="2025-2026" >
+          2025-2026
+        </mat-option>
+
+
+        <mat-option value="2026-2027" >
+          2026-2027
+        </mat-option>  <mat-option value="2027-2028" >
+          2027-2028
+        </mat-option>  <mat-option value="2028-2029" >
+          2028-2029
+        </mat-option>
+
+
+      
+      <mat-option value="2029-2030" >
+        2029-2030
+      </mat-option>
+
+      </mat-select>
+      </mat-form-field>
 
 
 
@@ -111,7 +149,7 @@
     <button mat-raised-button color="warn" mat-dialog-close>Close</button>
     
     <button [disabled]="f.invalid" style="margin-left: 8px;" mat-raised-button color="primary" mat-dialog-close (click)="addClasse()">{{actionButton}}</button>
-    <button [disabled]="f.invalid" style="margin-left: 8px;" mat-raised-button color="primary"    (click)="updateens()">Valider Enseignant</button>
+    <button [disabled]="f.invalid" style="margin-left: 8px;" mat-raised-button color="primary" (click)="gotohistorique()"    (click)="updateens()">Valider Enseignant</button>
 
   </div>
 

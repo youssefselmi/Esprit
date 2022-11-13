@@ -7,7 +7,7 @@
     
       <mat-form-field appearance="outline">
         <mat-label>Nom enseignant</mat-label>
-        <input formControlName="nomenseignant"  matInput placeholder="Nom enseignant" [(ngModel)]="enseignant.nomenseignant">
+        <input #nomenseignant formControlName="nomenseignant"  matInput placeholder="Nom enseignant" >
       </mat-form-field>
       <br>
 
@@ -42,7 +42,7 @@
 
       <mat-form-field appearance="fill">
         <mat-label>Type enseignant</mat-label>
-        <mat-select   formControlName="type" [(ngModel)]="enseignant.type">
+        <mat-select #type   formControlName="type">
           <mat-option *ngFor="let typeen of listeType" [value]="typeen.typeenseignement" >
             {{typeen.typeenseignement}}
           </mat-option>
@@ -58,7 +58,7 @@
 
       <mat-form-field appearance="outline">
         <mat-label>Nombre Crénaux Periode 1</mat-label>
-        <mat-select   formControlName="nbrcrenauxp1"   [(ngModel)]="enseignant.nbrcrenauxp1">
+        <mat-select  #nbrcrenauxp1 formControlName="nbrcrenauxp1" >
           <mat-option *ngFor="let nb1 of nombrecrenaux" [value]="nb1.value">
             {{nb1.viewValue}}
           </mat-option>
@@ -70,7 +70,7 @@
 
       <mat-form-field appearance="outline">
         <mat-label>Nombre Crénaux Periode 2</mat-label>
-        <mat-select   formControlName="nbrcrenauxp2"   [(ngModel)]="enseignant.nbrcrenauxp2">
+        <mat-select #nbrcrenauxp2  formControlName="nbrcrenauxp2"  >
           <mat-option *ngFor="let nb2 of nombrecrenaux2" [value]="nb2.value2">
             {{nb2.viewValue2}}
           </mat-option>
@@ -82,7 +82,7 @@
 
       <mat-form-field appearance="outline">
         <mat-label>Nombre Crénaux Periode 3</mat-label>
-        <mat-select   formControlName="nbrcrenauxp3"  [(ngModel)]="enseignant.nbrcrenauxp3">
+        <mat-select #nbrcrenauxp3   formControlName="nbrcrenauxp3" >
           <mat-option *ngFor="let nb3 of nombrecrenaux3" [value]="nb3.value3">
             {{nb3.viewValue3}}
           </mat-option>
@@ -95,7 +95,7 @@
 
       <mat-form-field appearance="outline">
         <mat-label>Nombre Crénaux Periode 4</mat-label>
-        <mat-select   formControlName="nbrcrenauxp4"   [(ngModel)]="enseignant.nbrcrenauxp4">
+        <mat-select #nbrcrenauxp4  formControlName="nbrcrenauxp4"   >
 
 
           <mat-option *ngFor="let nb4 of nombrecrenaux4" [value]="nb4.value4">
@@ -105,6 +105,18 @@
 
         </mat-select>
       </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Date de recrutement</mat-label>
+        <input formControlName="daterecrutement"  matInput
+  placeholder="Date de recrutement" type="date">
+      </mat-form-field>
+      <br>
+      <mat-form-field appearance="outline">
+        <mat-label>Date de démission</mat-label>
+        <input formControlName="datesortie"  matInput
+  placeholder="Date de démission" type="date">
+      </mat-form-field>
+      <br>
 
 
 
@@ -137,7 +149,7 @@
     <div mat-dialog-action [align]="'end'">
       <button mat-raised-button color="warn" mat-dialog-close>Close</button>
       
-      <button [disabled]="f.invalid" style="margin-left: 8px;" mat-raised-button color="primary" mat-dialog-close     (click)="addEnseignant(enseignant.nomenseignant,enseignant.type,enseignant.nbrcrenauxp1,enseignant.nbrcrenauxp2,enseignant.nbrcrenauxp3,enseignant.nbrcrenauxp4)">{{actionButton}}</button>
+      <button [disabled]="f.invalid" style="margin-left: 8px;" mat-raised-button color="primary" mat-dialog-close     (click)="addEnseignant(nomenseignant.value,type.value,nbrcrenauxp1.value,nbrcrenauxp2.value,nbrcrenauxp3.value,nbrcrenauxp4.value)">{{actionButton}}</button>
       
       </div>
     

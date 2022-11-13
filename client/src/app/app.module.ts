@@ -63,6 +63,7 @@ import { DialogtypeComponent } from './pages/dialogtype/dialogtype.component';
 import { WebReqInterceptor } from './service/web-req.interceptor';
 import { ForgetpwComponent } from './pages/forgetpw/forgetpw.component';
 import { ResetpwComponent } from './pages/resetpw/resetpw.component';
+import { HistoriquedesaffectationComponent } from './pages/historiquedesaffectation/historiquedesaffectation.component';
 
 
 @NgModule({
@@ -127,6 +128,7 @@ import { ResetpwComponent } from './pages/resetpw/resetpw.component';
     DialogtypeComponent,
     ForgetpwComponent,
     ResetpwComponent,
+    HistoriquedesaffectationComponent,
   ],
   providers: [{provide:HTTP_INTERCEPTORS, useClass: WebReqInterceptor,multi:true}],
   bootstrap: [AppComponent]  

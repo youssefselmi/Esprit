@@ -13,6 +13,8 @@ export class Enseignant {
     nbrcrenauxp3: Number;
     nbrcrenauxp4: Number;
     disponibilite: Number;
+    daterecrutement : Date;
+    datesortie: Date;
 
 
 

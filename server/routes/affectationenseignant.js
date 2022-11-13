@@ -57,7 +57,8 @@ let authenticate=(req,res,next)=>{
                     for (let index = 0; index < result.length; index++) {
                       
                          
-                    modulee.find({_userId:req.user_id }, (err1, result1) => {
+                    modulee.find({ _userId:req.user_id 
+                    }, (err1, result1) => {
        
                         if (err1) {
                             console.log(err1)
@@ -67,7 +68,10 @@ let authenticate=(req,res,next)=>{
                         for (let index1 = 0; index1 < result1.length; index1++) { 
                             
                           // console.log(nommodules);
-                            if ((JSON.stringify(result1[index1].nommodule) ===JSON.stringify(nommodules)) && (JSON.stringify(result[index].nomcompetence) === JSON.stringify(result1[index1].nomcompetence))  && (JSON.stringify(result[index].disponibilite) != 0 ) ){
+                          if (  !(result[index].datesortie)&&   (JSON.stringify(result1[index1].nommodule) ===JSON.stringify(nommodules)) && (result[index].nomcompetence.find(v=>v.includes(result1[index1].nomcompetence)) || (JSON.stringify(result[index].nomcompetence) === JSON.stringify(result1[index1].nomcompetence))) && (JSON.stringify(result[index].disponibilite) != 0 ) )
+                            
+                            
+                            {
                                 nomenseignant =result[index].nomenseignant;
                                // console.log("hahahah"+nomenseignant );
                                // res.status(201).json(nomenseignant);
@@ -76,7 +80,7 @@ let authenticate=(req,res,next)=>{
                                 const value1 = periode.find(v => v.includes('P2'));  
                                 if((semestre==="S1")&&(value)){
                                     console.log("P1");
-                                    if(result[index].nbrcrenauxp1 && result[index].disponibilite1!=0 ){
+                                    if(result[index].nbrcrenauxp1 >0 && result[index].disponibilite1!=0 ){
                                         nomenseignants.push(result[index]);
                                         //console.log(nomenseignants)
                                        // res.status(201).json(nomenseignants);
@@ -94,7 +98,7 @@ let authenticate=(req,res,next)=>{
                                 }
                                 if((semestre==="S1")&&(value1)){
                                     console.log("P2");
-                                    if(result[index].nbrcrenauxp2!=0 &&  result[index].disponibilite2!=0 ){
+                                    if(result[index].nbrcrenauxp2>0 &&  result[index].disponibilite2!=0 ){
                                         nomenseignants.push(result[index]);
                                     }
                                   
@@ -102,14 +106,14 @@ let authenticate=(req,res,next)=>{
                                 }
                                 if((semestre==="S2")&&(value)){
                                     console.log("P3"); 
-                                    if(result[index].nbrcrenauxp3!=0 && result[index].disponibilite3!=0 ){
+                                    if(result[index].nbrcrenauxp3 >0 && result[index].disponibilite3!=0 ){
                                         nomenseignants.push(result[index]);
                                     }
 
                                 }
                                 if((semestre==="S2")&&(value1)){
                                     console.log("P4");
-                                    if(result[index].nbrcrenauxp4!=0 &&   result[index].disponibilite4!=0 ){
+                                    if(result[index].nbrcrenauxp4 > 0 &&   result[index].disponibilite4!=0 ){
                                         nomenseignants.push(result[index]);
                                     }
                                         
@@ -161,18 +165,13 @@ let authenticate=(req,res,next)=>{
  
       } );
      function mafonction(res,index,result,nomenseignants,index1,result1){
-        //console.log(index1);
-        //console.log("dkhal");
-       // console.log(result);
-        //console.log(index);
+       
          if((index==result.length-1)&&(index1==result1.length-1) ){
            
-
-
             let nomenseignantss = [...new Set(nomenseignants)];
 
             res.send(nomenseignantss);
-
+                     
                       
                      } 
 
@@ -233,11 +232,15 @@ console.log("bingoooooooooooooooooooooooooo");
             const value = periode.find(v => v.includes('P1'));
             const value1 = periode.find(v => v.includes('P2'));  
 
+         
+
 
             if((semestre==="S1")&&(value)){
 
                 enseignant.findOne(
-                    {_userId:req.user_id ,"nomenseignant":nomenseignant},
+                    {"nomenseignant":nomenseignant,
+                    _userId:req.user_id 
+                },
                    
                     
                      function( err,element){
@@ -257,19 +260,12 @@ console.log("bingoooooooooooooooooooooooooo");
             
             }
 
-
-
-
-
-
-
-
-
             
             if((semestre==="S1")&&(value1)){
 
                 enseignant.findOne(
-                    {"nomenseignant":nomenseignant,_userId:req.user_id },
+                    {"nomenseignant":nomenseignant,       _userId:req.user_id 
+                },
                    
                     
                      function( err,element){
@@ -290,12 +286,10 @@ console.log("bingoooooooooooooooooooooooooo");
             }
 
 
-
-
             if((semestre==="S2")&&(value)){
 
                 enseignant.findOne(
-                    {"nomenseignant":nomenseignant,_userId:req.user_id },
+                    {"nomenseignant":nomenseignant, _userId:req.user_id },
                    
                     
                      function( err,element){
@@ -316,18 +310,11 @@ console.log("bingoooooooooooooooooooooooooo");
             }
 
 
-
-
-
-
-
-
-
-
             if((semestre==="S2")&&(value1)){
 
                 enseignant.findOne(
-                    {"nomenseignant":nomenseignant,_userId:req.user_id },
+                    {"nomenseignant":nomenseignant,_userId:req.user_id 
+                },
                    
                     
                      function( err,element){
@@ -352,10 +339,10 @@ console.log("bingoooooooooooooooooooooooooo");
       
           
       
-      
+       
             console.log(updatecomposant);
             res.status(201).json(updatecomposant);
-      
+     
         } catch (error) {
             res.status(422).json(error);
         }
@@ -368,12 +355,19 @@ console.log("bingoooooooooooooooooooooooooo");
 
 
 
+      
+
+
       function updatee1 (element){
+
+     
               
           element.nbrcrenauxp1 = element.nbrcrenauxp1- 1;
-                  
-        element.save();
-          
+          element.save();
+
+
+      
+
         }  
       
       
@@ -445,7 +439,7 @@ console.log("bingoooooooooooooooooooooooooo");
 
 
 
-      router.put("/increment",authenticate,  async(req, res) => {
+      router.put("/increment", authenticate, async(req, res) => {
 
         
 
@@ -496,7 +490,8 @@ console.log("bingoooooooooooooooooooooooooo");
             if((semestre==="S1")&&(valuep1)){
 
                 enseignant.findOne(
-                    {"nomenseignant":nomenseignant1,_userId:req.user_id},
+                    {"nomenseignant":nomenseignant1,_userId:req.user_id 
+                },
                    
                     
                      function( err,element){
@@ -521,7 +516,8 @@ console.log("bingoooooooooooooooooooooooooo");
             if((semestre==="S1")&&(valuep1)){
 
                 enseignant.findOne(
-                    {"nomenseignant":nomenseignant2,_userId:req.user_id},
+                    {"nomenseignant":nomenseignant2,_userId:req.user_id 
+                },
                    
                     
                      function( err,element){
@@ -549,7 +545,8 @@ console.log("bingoooooooooooooooooooooooooo");
             if((semestre==="S1")&&(valuep2)){
 
                 enseignant.findOne(
-                    {"nomenseignant":nomenseignant1,_userId:req.user_id},
+                    {"nomenseignant":nomenseignant1,_userId:req.user_id 
+                },
                    
                     
                      function( err,element){
@@ -575,7 +572,8 @@ console.log("bingoooooooooooooooooooooooooo");
             if((semestre==="S1")&&(valuep2)){
 
                 enseignant.findOne(
-                    {"nomenseignant":nomenseignant2,_userId:req.user_id},
+                    {"nomenseignant":nomenseignant2,_userId:req.user_id 
+                },
                    
                     
                      function( err,element){
@@ -609,7 +607,8 @@ console.log("bingoooooooooooooooooooooooooo");
             if((semestre==="S2")&&(valuep3)){
 
                 enseignant.findOne(
-                    {"nomenseignant":nomenseignant1,_userId:req.user_id },
+                    {"nomenseignant":nomenseignant1,_userId:req.user_id 
+                },
                    
                     
                      function( err,element){
@@ -635,7 +634,8 @@ console.log("bingoooooooooooooooooooooooooo");
             if((semestre==="S2")&&(valuep3)){
 
                 enseignant.findOne(
-                    {"nomenseignant":nomenseignant2,_userId:req.user_id },
+                    {"nomenseignant":nomenseignant2,_userId:req.user_id 
+                },
                    
                     
                      function( err,element){
@@ -669,7 +669,8 @@ console.log("bingoooooooooooooooooooooooooo");
             if((semestre==="S2")&&(valuep4)){
 
                 enseignant.findOne(
-                    {"nomenseignant":nomenseignant1,_userId:req.user_id },
+                    {"nomenseignant":nomenseignant1,_userId:req.user_id 
+                },
                    
                     
                      function( err,element){
@@ -695,7 +696,8 @@ console.log("bingoooooooooooooooooooooooooo");
             if((semestre==="S2")&&(valuep4)){
 
                 enseignant.findOne(
-                    {"nomenseignant":nomenseignant2,_userId:req.user_id },
+                    {"nomenseignant":nomenseignant2,_userId:req.user_id 
+                },
                    
                     
                      function( err,element){
@@ -798,7 +800,7 @@ console.log("bingoooooooooooooooooooooooooo");
 
 
 
-router.put("/updatecrenaux",  async(req, res) => { 
+router.put("/updatecrenaux", authenticate,  async(req, res) => { 
 
     console.log("bingooooooooiiiiiiiiiiiiii");
     
@@ -820,7 +822,8 @@ router.put("/updatecrenaux",  async(req, res) => {
                 if((semestre==="S1")&& (value1)){
     
                     tableauhorraire.findOne(
-                        {"nomenseignant":nomenseignant1},
+                        {"nomenseignant":nomenseignant1, _userId:req.user_id 
+                    },
                        
                         
                          function( err,element){
@@ -841,7 +844,8 @@ router.put("/updatecrenaux",  async(req, res) => {
 
 
                        tableauhorraire.findOne(
-                        {"nomenseignant":nomenseignant2},
+                        {"nomenseignant":nomenseignant2, _userId:req.user_id 
+                    },
                                            
                          function( err,element){
                 
@@ -874,7 +878,8 @@ router.put("/updatecrenaux",  async(req, res) => {
                 if((semestre==="S1")&& (value2)){
     
                     tableauhorraire.findOne(
-                        {"nomenseignant":nomenseignant1},
+                        {"nomenseignant":nomenseignant1, _userId:req.user_id 
+                    },
                        
                         
                          function( err,element){
@@ -895,7 +900,8 @@ router.put("/updatecrenaux",  async(req, res) => {
                        ////////////////////////
 
                        tableauhorraire.findOne(
-                        {"nomenseignant":nomenseignant2},
+                        {"nomenseignant":nomenseignant2,_userId:req.user_id 
+                    },
                        
                         
                          function( err,element){
@@ -931,7 +937,8 @@ router.put("/updatecrenaux",  async(req, res) => {
                 if((semestre==="S2")&& (value1)){
     
                     tableauhorraire.findOne(
-                        {"nomenseignant":nomenseignant1},
+                        {"nomenseignant":nomenseignant1, _userId:req.user_id 
+                    },
                        
                         
                          function( err,element){
@@ -953,7 +960,8 @@ router.put("/updatecrenaux",  async(req, res) => {
 
 
                        tableauhorraire.findOne(
-                        {"nomenseignant":nomenseignant2},
+                        {"nomenseignant":nomenseignant2, _userId:req.user_id 
+                    },
                        
                         
                          function( err,element){
@@ -982,7 +990,8 @@ router.put("/updatecrenaux",  async(req, res) => {
                 if((semestre==="S2")&& (value2)){
     
                     tableauhorraire.findOne(
-                        {"nomenseignant":nomenseignant1},
+                        {"nomenseignant":nomenseignant1,_userId:req.user_id 
+                    },
                        
                         
                          function( err,element){
@@ -1003,7 +1012,8 @@ router.put("/updatecrenaux",  async(req, res) => {
 
 
                        tableauhorraire.findOne(
-                        {"nomenseignant":nomenseignant2},
+                        {"nomenseignant":nomenseignant2, _userId:req.user_id 
+                    },
                        
                         
                          function( err,element){
@@ -1104,7 +1114,7 @@ router.put("/updatecrenaux",  async(req, res) => {
 
 
 
-          router.put("/incrementecrenaux",  async(req, res) => {
+          router.put("/incrementecrenaux", authenticate,  async(req, res) => {
 
             console.log("bingooooooooiiiiiiiiiiiiii");
             
@@ -1127,7 +1137,8 @@ router.put("/updatecrenaux",  async(req, res) => {
                       if((semestre==="S1")&& (value1)){
             
                             tableauhorraire.findOne(
-                                {"nomenseignant":nomenseignant1},
+                                {"nomenseignant":nomenseignant1, _userId:req.user_id 
+                            },
                                
                                 
                                  function( err,element){
@@ -1148,7 +1159,8 @@ router.put("/updatecrenaux",  async(req, res) => {
         
         
                                tableauhorraire.findOne(
-                                {"nomenseignant":nomenseignant2},
+                                {"nomenseignant":nomenseignant2, _userId:req.user_id 
+                            },
                                                    
                                  function( err,element){
                         
@@ -1181,7 +1193,8 @@ router.put("/updatecrenaux",  async(req, res) => {
                         if((semestre==="S1")&& (value2)){
             
                             tableauhorraire.findOne(
-                                {"nomenseignant":nomenseignant1},
+                                {"nomenseignant":nomenseignant1, _userId:req.user_id 
+                            },
                                
                                 
                                  function( err,element){
@@ -1202,7 +1215,8 @@ router.put("/updatecrenaux",  async(req, res) => {
                                ////////////////////////
         
                                tableauhorraire.findOne(
-                                {"nomenseignant":nomenseignant2},
+                                {"nomenseignant":nomenseignant2,_userId:req.user_id 
+                            },
                                
                                 
                                  function( err,element){
@@ -1238,7 +1252,8 @@ router.put("/updatecrenaux",  async(req, res) => {
                         if((semestre==="S2")&& (value1)){
             
                             tableauhorraire.findOne(
-                                {"nomenseignant":nomenseignant1},
+                                {"nomenseignant":nomenseignant1,       _userId:req.user_id 
+                            },
                                
                                 
                                  function( err,element){
@@ -1260,7 +1275,8 @@ router.put("/updatecrenaux",  async(req, res) => {
         
         
                                tableauhorraire.findOne(
-                                {"nomenseignant":nomenseignant2},
+                                {"nomenseignant":nomenseignant2,       _userId:req.user_id 
+                            },
                                
                                 
                                  function( err,element){
@@ -1289,7 +1305,8 @@ router.put("/updatecrenaux",  async(req, res) => {
                         if((semestre==="S2")&& (value2)){
             
                             tableauhorraire.findOne(
-                                {"nomenseignant":nomenseignant1},
+                                {"nomenseignant":nomenseignant1, _userId:req.user_id 
+                            },
                                
                                 
                                  function( err,element){
@@ -1310,7 +1327,8 @@ router.put("/updatecrenaux",  async(req, res) => {
         
         
                                tableauhorraire.findOne(
-                                {"nomenseignant":nomenseignant2},
+                                {"nomenseignant":nomenseignant2,       _userId:req.user_id 
+                            },
                                
                                 
                                  function( err,element){

@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 var Schema = mongoose.Schema;
-var Affectation = new Schema({
+var HistoriqueAffectation = new Schema({
 
 
     nomclasse: String,
@@ -17,12 +17,13 @@ var Affectation = new Schema({
         type:mongoose.Types.ObjectId,
         required: true
     },
-
     anneuni: String,
+
+
 
      
 
 
 });
-module.exports = mongoose.model('affectations', Affectation);
+module.exports = mongoose.model('historiqueaffectations', HistoriqueAffectation);
 

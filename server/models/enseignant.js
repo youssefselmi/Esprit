@@ -29,11 +29,12 @@ var Enseignant = new Schema({
 
     _userId:{
         type:mongoose.Types.ObjectId,
-
     },
 
     
     rep: Number,
+    daterecrutement : Date,
+    datesortie: Date,
 
 
 

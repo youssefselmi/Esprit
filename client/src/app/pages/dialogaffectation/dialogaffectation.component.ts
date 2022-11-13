@@ -50,7 +50,8 @@ export class DialogaffectationComponent implements OnInit {
       semestre : ['',Validators.required],
       periode : ['',Validators.required],
       nomenseignant1 : ['',Validators.required],
-      nomenseignant2 : ['',Validators.required],
+      nomenseignant2 : [''],
+      anneuni : ['',Validators.required],
 
        })
 
@@ -71,11 +72,10 @@ export class DialogaffectationComponent implements OnInit {
           this.classeForm.controls['semestre'].setValue(this.editData.semestre);
           this.classeForm.controls['periode'].setValue(this.editData.periode);
 
+     
           this.classeForm.controls['nomenseignant1'].setValue(this.editData.nomenseignant1);
           this.classeForm.controls['nomenseignant2'].setValue(this.editData.nomenseignant2);
-
-
-     
+          this.classeForm.controls['anneuni'].setValue(this.editData.anneuni);
 
     
         }
@@ -136,7 +136,7 @@ addClasse(){
               alert("Classe added!!");
            //   this.notifier.notify('success', 'Classe Addes with Sucess');
               this.classeForm.reset();
-              //this.dialogRef.close('save');
+              this.dialogRef.close('save');
             },
             error:()=>{
     
@@ -159,7 +159,6 @@ addClasse(){
 
 
     updateens(){
-      console.log("updaaaaaaaaaaaaaaaaaaate");
 
       let datae1 = { 
         nomenseignant:this.classeForm.controls['nomenseignant1'].value, 
@@ -188,11 +187,16 @@ addClasse(){
     
 
 
+      this.api.putEnseignant2(datae1)
+      .subscribe({
+      
+      })
 
-      this.api.putEnseignant2(datae1);
 
-
-      this.api.putEnseignant2(datae2);
+      this.api.putEnseignant2(datae2)
+      .subscribe({
+       
+      })
 
 
 
@@ -233,6 +237,57 @@ addClasse(){
   
   
     }
+
+
+
+
+
+
+
+
+
+    gotohistorique(){
+
+      let datae3 = { 
+        nomenseignant1:this.classeForm.controls['nomenseignant1'].value, 
+        nomenseignant2:this.classeForm.controls['nomenseignant2'].value, 
+        periode:this.classeForm.controls['periode'].value,
+        semestre:this.classeForm.controls['semestre'].value,
+        anneuni:this.classeForm.controls['anneuni'].value,
+
+        nomclasse:this.classeForm.controls['nomclasse'].value,
+
+        nomdepartement:this.classeForm.controls['nomdepartement'].value,
+
+        nommodules:this.classeForm.controls['nommodules'].value,
+
+
+    } 
+
+
+    
+    this.api.postHistorique(datae3)
+    .subscribe({
+    
+    })
+
+
+
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

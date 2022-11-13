@@ -24,7 +24,7 @@ let verifySession = (req, res, next)=>{
                 'error': 'user not found .'
             });
         }
-        req.user8id=user._id;
+        req.user_id=user._id;
         req.refreshToken = refreshToken;
         req.userObject = user;
         let isSessionValid = false;
@@ -54,7 +54,7 @@ let verifySession = (req, res, next)=>{
 router.use(function(req,res,next){
     res.header("Access-Control-Allow-Origin","*");
     res.header("Access-Control-Allow-Methods","GET,POST,HEAD,OPTIONS,PUT,PATCH,DELETE");
-    res.header("Access-Control-Allow-Headers","Origin, X-Requested-with,Content-Type,Accept,x-access-token,x-refresh-token");
+    res.header("Access-Control-Allow-Headers","Origin,X-Requested-with,Content-Type,Accept,x-access-token,x-refresh-token");
 
     res.header(
         'Access-Control-Expose-Headers',
@@ -70,7 +70,15 @@ router.use(function(req,res,next){
 router.post('/users', async(req, res)=>{
     //sign up
     let body=req.body;
+    let email=req.body.email;
+    
     let newUser = new User(body);
+    User.findOne({email:email},((err,user)=>{
+        if(user){
+            console.log("mail exist");
+            return res.json({msg:0})        }
+           
+                    else{
     newUser.save().then(()=>{
         return newUser.createSession();
     }).then((refreshToken)=>{
@@ -80,13 +88,16 @@ router.post('/users', async(req, res)=>{
             return{accessToken, refreshToken}
         });
     }).then((authTokens)=>{
-        res 
+        res
             .header('x-refresh-token',authTokens.refreshToken)
             .header('x-access-token',authTokens.accessToken)
             .send(newUser);
     }).catch((e)=>{
         res.status(400).send(e);
     })
+}
+}))
+
 })
 
 
@@ -99,6 +110,20 @@ router.post('/users', async(req, res)=>{
 router.post('/users/login', async(req, res)=>{
     let email = req.body.email;
     let password= req.body.password;
+    User.findOne({email:email},((err,user)=>{
+        if(!user){
+            console.log("mail does not exist");
+            return res.json({msg:0})        }
+            else{
+                bcrypt.compare(password,user.password).then((match)=>{
+                    if(!match){
+                        console.log("wrong password");
+                        res.json({msg:1});
+                    }
+                    else{
+            
+         
+   
      User.findByCredentials(email,password).then((user) =>{
          return user.createSession().then((refreshToken) =>{
              //session created successffuly
@@ -107,7 +132,7 @@ router.post('/users/login', async(req, res)=>{
                  return {accessToken, refreshToken}
              });
          }).then((authToken)=>{
-            res 
+            res
                 .header('x-refresh-token',authToken.refreshToken)
                 .header('x-access-token',authToken.accessToken)
                 .send(user);
@@ -116,8 +141,12 @@ router.post('/users/login', async(req, res)=>{
         })
      }).catch((e)=>{
          res.status(400).send(2);
-         
+
      })
+    }
+})
+    }
+    }))
 })
 /**
  * generate and returns an access token
@@ -134,7 +163,7 @@ router.get('/users/getbyid/:id',async(req, res) => {
 
     const  {id} = req.params.id;
     await User.findById({id}, (err, result) => {
-  
+
         if (err) {
             res.send(err)
         }
@@ -145,33 +174,38 @@ router.get('/users/getbyid/:id',async(req, res) => {
 router.put("/users/forgetpassword",async(req,res)=>{
     const emaill = req.body.email;
     var passwordd= req.body.password;
-    let constFactor = 10;
    
-     bcrypt.genSalt(10).then(salt => {
-        return bcrypt.hash(passwordd,salt); 
-    }).then(passwordd=> {
-        console.log(passwordd);
-    }, err => {
-        console.log(err);
-    });
-
+    updatepassword(passwordd,emaill);
     
-    
-        
-    try {
-        
-        
-        const updatecomposant = await User.findOneAndUpdate({email:emaill},{password:passwordd},{
-            new: true
-        });
 
-        console.log(updatecomposant);
-        res.status(201).json(updatecomposant);
 
-    } catch (error) {
-        res.status(422).json(error);
-    }
+
+
+
 })
+function updatepassword(password,emaill){
+    console.log(password);
+    User.findOne({email:emaill
+
+    }, function( err,element){
+
+
+        if(err){
+            console.log(err);
+        }
+
+    else{
+     element.password =password;
+     element.save();
+   }
+   }
+    )
+
+
+
+
+
+}
 
 
 
@@ -181,3 +215,6 @@ router.put("/users/forgetpassword",async(req,res)=>{
 
 
 module.exports = router;
+
+
+       
